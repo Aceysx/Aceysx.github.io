@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
-    <title>Gridea</title>
-    <updated>2019-08-30T04:36:00.203Z</updated>
+    <title>Acey</title>
+    <updated>2019-08-30T04:37:34.185Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>终身学习实践者</subtitle>
     <logo>https://aceysx.github.io/images/avatar.png</logo>
     <icon>https://aceysx.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2019, Gridea</rights>
+    <rights>All rights reserved 2019, Acey</rights>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
         <id>https://aceysx.github.io/post/hello-gridea</id>
