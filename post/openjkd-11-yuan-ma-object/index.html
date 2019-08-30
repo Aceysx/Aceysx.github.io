@@ -1,0 +1,433 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    「OpenJkd-11 源码」 : Object | Acey
+</title>
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567155942067">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://aceysx.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+        
+            
+                <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+                <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+                
+
+                    
+                            
+</head>
+
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://aceysx.github.io">
+                <img class="avatar" src="https://aceysx.github.io/images/avatar.png?v=1567155942067" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Acey
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                                Github
+                            </a>
+                        </li>
+                        
+                                
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
+
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
+
+        });
+    });
+</script>
+
+            <div id="main-content" class="post-detail main-container">
+                <!-- left -->
+                <div id="content" class="main-container-left">
+                    <article class="post i-card">
+                        <h2 class="post-title">
+                            「OpenJkd-11 源码」 : Object
+                        </h2>
+                        <div class="post-info">
+                            <time class="post-time">2019-08-30</time>
+                            
+                                <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="post-tag i-tag
+                            i-tag-warning">
+                            #源码
+                        </a>
+                                
+                                <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="post-tag i-tag
+                            i-tag-other_3">
+                            #Java
+                        </a>
+                                
+                        </div>
+                        
+                            <div class="post-feature-image" style="background-image: url('https://upload-images.jianshu.io/upload_images/3126293-f0460934b2849b79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240')"></div>
+                            
+                                <div class="post-content">
+                                    <h2 id="object">Object</h2>
+<p>在 Java 中 <code>Object</code> 类是所有类的祖先类，<code>Object</code> 没有定义属性，一共有13个方法。其它所有的子类都会继承这些方法。</p>
+<h2 id="构造函数">构造函数</h2>
+<h3 id="registernatives">registerNatives()</h3>
+<pre><code class="language-java"> private static native void registerNatives();
+ static {
+        registerNatives();
+ }
+</code></pre>
+<blockquote>
+<p>在 Java 中，用 native 关键字修饰的函数表明该方法的实现并不是在Java中去完成，而是由C/C++去完成，并被编译成了.dll，由Java去调用</p>
+</blockquote>
+<p>而 <code>registerNatives()</code>方法的主要作用则是将C/C++中的方法映射到 Java 中的 <code>native</code>方法，实现方法命名的解耦。</p>
+<h3 id="构造函数-public-object">构造函数 public Object()</h3>
+<pre><code class="language-java"> @HotSpotIntrinsicCandidate
+ public Object() {}
+</code></pre>
+<blockquote>
+<p>@HotSpotIntrinsicCandidate注解，该注解是特定于Java虚拟机的注解。通过该注解表示的方法可能( 但不保证 )通过HotSpot VM自己来写汇编或IR编译器来实现该方法以提供性能。 它表示注释的方法可能（但不能保证）由HotSpot虚拟机内在化。如果HotSpot VM用手写汇编和/或手写编译器IR（编译器本身）替换注释的方法以提高性能，则方法是内在的。 也就是说虽然外面看到的在JDK9中weakCompareAndSet和compareAndSet底层依旧是调用了一样的代码，但是不排除HotSpot VM会手动来实现weakCompareAndSet真正含义的功能的可能性</p>
+</blockquote>
+<p>一般创建对象的时候直接使用 <code>new className(Args)</code> 来创建一个新的对象。而在类的定义过程中，对于未定义构造函数的类，那么它就会默认继承<code>Object</code>的无参构造函数，如果定了一个或多个构造函数，那么就需要把无参构造函数方法也写上。</p>
+<h2 id="方法">方法</h2>
+<h3 id="public-final-native-class-getclass">public final native Class&lt;?&gt; getClass()</h3>
+<pre><code class="language-java"> @HotSpotIntrinsicCandidate
+ public final native Class&lt;?&gt; getClass();
+</code></pre>
+<p><code>getClass</code>返回运行时当前对象的类对象。在 Java 中，类是对具有一组相同特征或行为的实例的抽象进行描述。而<strong>类对象</strong>则是对<strong>类</strong>的特征和行为进行描述（即类的名称，属性，方法...）。也就是说通过获取到类对象，则可以获取到该类的所有属性，方法...</p>
+<h3 id="public-native-int-hashcode">public native int hashCode()</h3>
+<pre><code class="language-java">@HotSpotIntrinsicCandidate
+public native int hashCode();
+</code></pre>
+<p><code>hashCode</code> 返回当前对象的哈希码。<code>hashCode</code>遵守以下三个约定</p>
+<ul>
+<li>在 Java 程序运行期间，对同一个对象多次调用<code>hashCode</code>，那么它们的返回值需要是一致的。（前提：没有对对象进行修改）</li>
+<li>如果两个对象相等（调用<code>equals()</code>方法），那么这两个对象的 <code>hashCode</code>也是一样</li>
+<li>两个对象调用<code>hashCode</code>方法返回的哈希码相等，这两个对象不一定相等</li>
+</ul>
+<p>也即是说，调用<code>equals</code>方法返回值相等，那么调用<code>hashCode</code>方法返回值也一定相等。所以，在重写<code>euqlas</code>方法之后，一定要重写<code>hashCode</code>方法。</p>
+<p>那么判断对象是否先等可以直接用<code>equals</code>来判断，为什么还需要<code>hashCode</code>方法呢？</p>
+<p>其实<code>hashCode</code>方法的一个主要作用是为了增强哈希表的性能。比如：我们知道<code>Set</code>集合不能存在相同的两个对象，那么该怎么判断两个对象是否相同呢？如果没有<code>hashCode</code>，那么就需要进行遍历来逐一判断。那么有<code>hashCode</code>，我们就可以计算出即将要加入集合的对象的<code>hashCode</code>，然后查看集合中对应的位置上是否有对象即可。</p>
+<h3 id="public-boolean-equalsobject-obj">public boolean equals(Object obj)</h3>
+<pre><code class="language-java">public boolean equals(Object obj) {
+   return (this == obj);
+}
+    
+</code></pre>
+<p><code>equals()</code>用于判断两个对象是否相等。根据 <code>Object</code>    的实现，可以看到判断的依据是看两个对象的引用地址是否相等。</p>
+<p>而一般我们会用另外一种方式来判断是否相等。即<code>==</code>,<code>==</code>表示的是两个变量值是否相等（基础类型的值在内存地址中存储的是值）</p>
+<p>那么我们想要判断是否相等：</p>
+<ul>
+<li>如果是基础类型，就可以直接用<code>==</code>来判断</li>
+<li>如果是引用类型，那么就需要通过<code>equals</code>方法来判断（在实际业务中，一般会重写<code>equals</code>方法）</li>
+</ul>
+<p>需要注意的一点是<code>String</code>也是引用类型，我们判断<code>String</code>的时候是直接使用的<code>equals</code>方法，而按照默认的<code>equals</code>实现，创建两个具有相同值的<code>String</code>对象，那么<code>equals</code>返回的应该是<code>false</code>，</p>
+<pre><code class="language-java">public boolean equals(Object anObject) {
+    if (this == anObject) {
+        return true;
+    }
+    if (anObject instanceof String) {
+        String aString = (String)anObject;
+        if (coder() == aString.coder()) {
+            return isLatin1() ? StringLatin1.equals(value, aString.value)
+                              : StringUTF16.equals(value, aString.value);
+        }
+    }
+    return false;
+}
+</code></pre>
+<h3 id="public-string-tostring">public String toString()</h3>
+<pre><code class="language-java"> public String toString() {  
+    return getClass().getName() + &quot;@&quot; + Integer.toHexString(hashCode());  
+}
+</code></pre>
+<p><code>toString()</code>返回该对象的字符串表示。在使用 <code>System.out.printLn(obj)</code>的时候，其内部也是调用的<code>toString</code>方法。可以按需重写<code>toString</code>方法。</p>
+<h3 id="protected-native-object-clone">protected native Object clone()</h3>
+<pre><code class="language-java">protected native Object clone() throws CloneNotSupportedException;
+</code></pre>
+<p><code>clone()</code>方法返回的是当前对象的引用，指向的是新<code>clone</code>出来的对象，此对象和原对象占用不同的堆空间。</p>
+<p><strong><code>clone</code>方法的正确调用需要实现 <code>cloneable</code> 接口，如果没有实现该接口，那么子类调用父类的 <code>clone</code>方法则会抛出<code>CloneNotSupportedException</code>异常</strong></p>
+<blockquote>
+<p>Cloneable接口仅是一个表示接口，接口本身不包含任何方法，用来指示Object.clone()可以合法的被子类引用所调用。</p>
+</blockquote>
+<h4 id="使用">使用</h4>
+<p>先看一段代码</p>
+<pre><code class="language-java">public class CloneTest {  
+  
+    public static void main(String[] args) {  
+        Object o1 = new Object();  
+        try {
+            Object clone = o1.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+    }  
+  
+}  
+</code></pre>
+<p>执行这段段代码会抛出<code>The method clone() from the type Object is not visible</code>异常。原因是<code>clone</code> 方法是被 <code>protected</code>修饰的，也就是说被<code>protected</code>修饰的属性和方法，<strong>在同一包下或在不同包下的子类可以访问</strong>。显然，<code>CloneTest</code>和<code>Object</code>不在同一包下，不过按照字面意思，<code>CloneTest</code>会默认继承<code>Object</code>，所以即使在不同的包下，应该也是可以访问的才对。那么问题就出现在「在不同包下的子类可以访问」这句话上：</p>
+<blockquote>
+<p>不同包中的子类可以访问: 是指当两个类不在同一个包中的时候，继承自父类的子类内部且主调（调用者）为子类的引用时才能访问父类用protected修饰的成员（属性/方法）。 在子类内部，主调为父类的引用时并不能访问此protected修饰的成员。（super关键字除外）</p>
+</blockquote>
+<p>也就是说在子类中想要调用父类的<code>protected</code>方法，可以</p>
+<ul>
+<li>在子类中重写父类的方法</li>
+<li>在子类中通过<code>super.methodName()</code>来调用父类方法</li>
+</ul>
+<h4 id="浅拷贝深拷贝">浅拷贝&amp;深拷贝</h4>
+<blockquote>
+<p>浅拷贝： 浅拷贝是按位拷贝对象，它会创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值；如果属性是引用类型，拷贝的就是内存地址。<br>
+深拷贝： 深拷贝会拷贝所有的属性，并拷贝属性指向的动态分配的内存。当对象和它所引用的对象一起拷贝时即发生深拷贝。深拷贝相比于浅拷贝速度较慢并且花销较大。</p>
+</blockquote>
+<p>对于浅拷贝来说，如果含有引用类型，那么修改其中一个对象的引用值，那么会影响到另外一个对象。按层级来说，浅拷贝只拷贝了第一层。对于默认的<code>clone</code>实现是浅拷贝。如果想要实现深拷贝，可以</p>
+<ul>
+<li>对对象进行序列化</li>
+<li>重写<code>clone</code>方法</li>
+</ul>
+<pre><code class="language-java">//序列化实现深拷贝
+
+public class CloneUtils {
+    @SuppressWarnings(&quot;unchecked&quot;)
+    public static &lt;T extends Serializable&gt; T clone(T obj){
+        T cloneObj = null;
+        try {
+            //写入字节流
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            ObjectOutputStream obs = new ObjectOutputStream(out);
+            obs.writeObject(obj);
+            obs.close();
+            
+            //分配内存，写入原始对象，生成新对象
+            ByteArrayInputStream ios = new ByteArrayInputStream(out.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(ios);
+            //返回生成的新对象
+            cloneObj = (T) ois.readObject();
+            ois.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cloneObj;
+    }
+}
+
+public class Person implements Serializable{
+    private static final long serialVersionUID = 2631590509760908280L;
+}
+
+public class CloneTest {
+    public static void main(String[] args) {
+        Person person =  new Person();
+        Person person1 =  CloneUtils.clone(person);     
+    }
+}
+
+
+参考：https://blog.csdn.net/chenssy/article/details/12952063
+</code></pre>
+<h3 id="protected-void-finalize">protected void finalize()</h3>
+<pre><code class="language-java">protected void finalize() throws Throwable {}
+</code></pre>
+<p><code>finalize()</code>方法主要与 Java 垃圾回收机制有关，JVM准备对此对形象所占用的内存空间进行垃圾回收前，将被调用。所以此方法并不是由我们主动去调用的。</p>
+<h3 id="waitnotifynotifyall">wait()/notify/notifyAll</h3>
+<p>详情可见 <a href="">线程安全</a>()</p>
+
+                                </div>
+                    </article>
+                    <!--  -->
+                    
+                        <div class="next-post">
+                            <div class="next">白嫖下一篇</div>
+                            <a href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">
+                                <h3 class="post-title">
+                                    思维导图最佳实践
+                                </h3>
+                            </a>
+                        </div>
+                        
+                            <div id="disqus_thread"></div>
+                            <div id="gitalk-container"></div>
+                </div>
+                <!-- middle -->
+                <div class="main-container-middle"></div>
+                <!-- right -->
+                <div id="sidebar" class="main-container-right">
+                    
+                        <!-- toc -->
+                        
+    <div class="toc-card i-card ">
+        <div class="toc-title i-card-title">目录</div>
+        <div class="toc-content">
+            <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#object">Object</a></li>
+<li><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0">构造函数</a>
+<ul>
+<li><a href="#registernatives">registerNatives()</a></li>
+<li><a href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-public-object">构造函数 public Object()</a></li>
+</ul>
+</li>
+<li><a href="#%E6%96%B9%E6%B3%95">方法</a>
+<ul>
+<li><a href="#public-final-native-class-getclass">public final native Class&lt;?&gt; getClass()</a></li>
+<li><a href="#public-native-int-hashcode">public native int hashCode()</a></li>
+<li><a href="#public-boolean-equalsobject-obj">public boolean equals(Object obj)</a></li>
+<li><a href="#public-string-tostring">public String toString()</a></li>
+<li><a href="#protected-native-object-clone">protected native Object clone()</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8">使用</a></li>
+<li><a href="#%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%B7%B1%E6%8B%B7%E8%B4%9D">浅拷贝&amp;深拷贝</a></li>
+</ul>
+</li>
+<li><a href="#protected-void-finalize">protected void finalize()</a></li>
+<li><a href="#waitnotifynotifyall">wait()/notify/notifyAll</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+        <script>
+            function locateCatelogList() {
+                /*获取文章目录集合,可通过:header过滤器*/
+                var alis = $('.post-content :header');
+                /*获取侧边栏目录列表集合**/
+                var sidebar_alis = $('.markdownIt-TOC a');
+                /*获取滚动条到顶部的距离*/
+                var scroll_height = $(window).scrollTop();
+                for (var i = 0; i < alis.length; i++) {
+                    /*获取锚点集合中的元素分别到顶点的距离*/
+                    var a_height = $(alis[i]).offset().top;
+                    if (a_height < scroll_height) {
+                        /*高亮显示*/
+                        sidebar_alis.removeClass('on');
+                        $(sidebar_alis[i]).addClass('on');
+                    }
+                }
+            }
+            $(function() {
+                /*绑定滚动事件 */
+                $(window).bind('scroll', locateCatelogList);
+            });
+        </script>
+    </div>
+    
+                            
+
+                </div>
+
+
+
+
+            </div>
+
+
+            <div class="site-footer">
+  Powered by xin❤️
+ | 
+  <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
+    
+        
+            <script>
+    window.onload = function() {
+        var gitalk = new Gitalk({
+            clientID: '6b3df5aab7628f658644',
+            clientSecret: '8f262215c4be4b77d5d8dbe4767a1016a95c13d5',
+            repo: 'Aceysx.github.io',
+            owner: 'Aceysx',
+            admin: ['Aceysx'],
+            id: (location.pathname).substring(0, 49), // Ensure uniqueness and length less than 50
+            distractionFreeMode: false // Facebook-like distraction free mode
+        })
+
+        gitalk.render('gitalk-container')
+    }
+</script>
+                
+
+                    
+                                
+</body>
+
+</html>
