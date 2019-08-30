@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-08-30T04:51:55.468Z</updated>
+    <updated>2019-08-30T05:27:05.291Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -11,35 +11,83 @@
     <icon>https://aceysx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Acey</rights>
     <entry>
-        <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://aceysx.github.io/post/hello-gridea</id>
-        <link href="https://aceysx.github.io/post/hello-gridea">
+        <title type="html"><![CDATA[🏃跑步？也许你一开始就跑错咯]]></title>
+        <id>https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯</id>
+        <link href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
-<!-- more -->
-<p><a href="https://github.com/getgridea/gridea">Github</a><br>
-<a href="http://hvenotes.fehey.com/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
-<h2 id="特性">特性👇</h2>
-<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
-<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
-<p>🏷️  你可以对文章进行标签分组</p>
-<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
-<p>💻  你可以在 <strong>𝖶𝗂𝗇𝖽𝗈𝗐𝗌</strong> 或 <strong>𝖬𝖺𝖼𝖮𝖲</strong> 设备上使用此客户端</p>
-<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
-<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
-<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
-<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
-<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
-<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前🏃</p>
-<p>未来，它一定会成为你离不开的伙伴</p>
-<p>尽情发挥你的才华吧！</p>
-<p>😘 Enjoy~</p>
+        <content type="html"><![CDATA[<p>前几天在朋友圈看到小波老师发的一个小故事，大概内容是，读书人在讨论XXX思维，XXX理论...的时候，如果没有读书的人碰到，大多都会说，卧槽，这是传销，骗人的...</p>
+<p>在很多方面都是这样，如果你愿意去学习， 愿意探索，你总是会发现更优解来优化当前的自己。比如睡眠，阅读，沟通，健身.... 当你对它们亮起绿灯的时候，你会发现 哇，还可以这样.. 不过一旦你亮起了黄灯，那么 卧槽，这绝对是骗人的 就来了..  养成绿灯思维很重要。</p>
+<hr>
+<p>来，开始聊聊跑步，如果你点进来了。我猜猜你可能遇到过以下的场景</p>
+<blockquote>
+<p>还没开始就结束了：每次跑步还没到几分钟，我的妈，就上气不接下气，两腿不听使唤... 第二天一想起前一天跑步的痛苦赶脚，嗯，太痛苦了，还是算了... 不去了</p>
+</blockquote>
+<blockquote>
+<p>我每天都跑，但是咋就是减肥减不下来...</p>
+</blockquote>
+<blockquote>
+<p>长期跑步后，跑了一身的伤痛出来</p>
+</blockquote>
+<blockquote>
+<p>......</p>
+</blockquote>
+<h5 id="首先我们先来了解下科学跑步的几种方式"><strong>首先</strong>，我们先来了解下科学跑步的几种方式</h5>
+<ol>
+<li>快走：大概 10min/km</li>
+<li>慢跑：大概 6～8min/km</li>
+<li>短跑</li>
+</ol>
+<p>来看看自己是属于哪种？大多数是第三种吧，你可能就会说了，第三种咋了，我跑的快还不好？跑的快不是消耗的热量就越多吗，减肥就更快吗？No No No，跑的快意味着你很难将这种速度保持很长的时间，一般都会在半个小时内结束掉这次跑步。我们知道想要减肥，那么就需要我们消耗的热量要多余摄入的，而这半个小时消耗的热量可能才刚好把当时多摄入的热量消耗掉，而短跑的话，体内的糖类会优先供能，而我们的脂肪缺毫发无伤... 这就是为什么我们即使天天跑，而体重很难降下来。说白了，我们要选择合适自己的跑步速率。</p>
+<h5 id="那么我们的跑步速率是多少呢">那么我们的跑步速率是多少呢？</h5>
+<p>首先先来了解一个概念，<strong>心率</strong></p>
+<blockquote>
+<p>心率是每分钟的心跳数，反应了活动的剧烈程度，目前身体对血液需求量的大小。当跑的更快时，会大口呼吸，肌肉就会收缩剧烈，身体就需要大量的供血量来输送氧气和运走代谢副产物，于是心率就会增高</p>
+</blockquote>
+<p>那么心率是用来干撒用的呢？心率可以反映你费力程度的真实数据，决定了你的训练强度。可以告诉你现在是不是跑的太快了（心率偏高），是不是可以再加速，是不是可以继续跑很久... 所以在跑步的时候，我们需要时刻关注我们的心率。</p>
+<p>每个人都会有一个心率的最高点（最大心率）和最低点（安静心率），这两个心率分别是</p>
+<ul>
+<li>最大心率：一般在网上我们可以搜到说最大心率=220-年龄 这种简单粗暴的方式来计算得到，但是这个并不准确，每个人的最大心率都是不同的，且可以通过锻炼得到提升的。那么如果想要测试的话，可以可以进行一个最快的几分钟跑步，通过心率测试工具，来测得最大心率。</li>
+<li>安静心率：普通人一般会在60～70之间，常年运动的人为40～50，安静心率月底，代表心肺功能越强。可以在上床休息的时候或者刚起床的时候进行测试。</li>
+</ul>
+<p>我们把最大心率减去安静心率，就可以得到储备心率，储备心率很重要，它将决定我们在跑步的时候，根据我们自己的目的来确定我们跑步心率。</p>
+<p>储备心率 是一个范围心率，可以分为 <strong>无氧区</strong>，<strong>过渡区</strong>和<strong>有氧区</strong></p>
+<p><strong>无氧区</strong></p>
+<ul>
+<li>心率一般高于储备心率的88%以上，多是100，200，400米短跑为主。</li>
+<li>主要以糖类为能量补给，产生大量乳酸，所以在每次短跑结束后我们总是腿特别酸痛</li>
+<li>无氧区又分为
+<ul>
+<li>A强度（Anaerobic 无氧 88%～95%）</li>
+<li>I强度（Interval 间歇 95%～100%）</li>
+<li>R强度（Repetition 反复）</li>
+</ul>
+</li>
+</ul>
+<p><strong>过渡区</strong></p>
+<ul>
+<li>心率84%～88%之间</li>
+<li>过渡区又分为
+<ul>
+<li>T强度（Threshold 乳酸阈值） 长期T跑，有助于提高软酸临界值，提高长跑能力</li>
+</ul>
+</li>
+</ul>
+<p><strong>有氧区</strong></p>
+<ul>
+<li>心率保持在59～84%之间，多以LSD马拉松，长距离慢跑</li>
+<li>以脂肪为热量消耗 59%～74%</li>
+<li>有氧区又分为
+<ul>
+<li>E强度（easy）</li>
+<li>M强度（Marathon 马拉松）74%～84%</li>
+</ul>
+</li>
+</ul>
+<p>所以呐，如果你想要降脂（降脂和减重的区别相信这么聪明的你肯定知道的），那么你在跑步的时候就需要保持心率为59～74%的储备心率，长时间持续性的消耗脂肪。如果没有测试心率的工具，那么一个方式也可以让自己心率保持在这个范围，在跑步时候控制自己的速率，可以边跑步，边聊天，且不会出现喘气，可以一直跑下去这种状态。<br>
+如果你想要提高自己长跑能力，那么就将自己的心率保持在过渡区。<br>
+怎么样，很简单吧。</p>
+<p>而对于跑姿和装备的选择，啊额嗯，下回继续聊。</p>
 ]]></content>
     </entry>
 </feed>
