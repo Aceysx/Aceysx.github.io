@@ -1,304 +1,277 @@
-
 <html>
-<head lang="zh">
-        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
-        <meta content="yes" name="apple-mobile-web-app-capable"/>
-        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
-        <meta content="telephone=no" name="format-detection"/>
-        <meta name="renderer" content="webkit">
-    <title>Acey</title>
-<link href="https://aceysx.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
-<script type="text/javascript" src="https://aceysx.github.io/media/scripts/jquery.js"></script>
-<script type="text/javascript" src="https://aceysx.github.io/media/scripts/basic.js"></script>
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
 
-  </head>
-
-  <body>
-    <div class="header">
-      <div class="logo_title">
-		  
-        <div class="title animated fadeInDown"><img src="https://aceysx.github.io/images/avatar.png?v=1567142753670"/>
-
-          <h1 title="Acey" class="weaklink"><a href="/">Acey</a>
-
-          </h1>
-
-          <div class="navbar weaklink">
-            <div class="normal_nav">
-
-<div class="bitcron_nav_container">
+<head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>
+    运动 | Acey
+</title>
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567143244560">
+<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+<!-- js -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://aceysx.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-  <div class="bitcron_nav">
-    <div class="mixed_site_nav_wrap site_nav_wrap">
-		
-      <ul class="mixed_site_nav site_nav sm sm-base">
- 
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
+</head>
 
-  </li>
- 
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
-
-  </li>
- 
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
-
-  </li>
- 
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
-
-  </li>
- 
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="https://github.com/Aceysx" class="selected active current nav__item" >Github</a>
-
-  </li>
- 
-
-      </ul>
-
-      <div class="clear clear_nav_inline_end"></div>
-
+<body>
+    <div class="main">
+        <div class="header">
+    <div class="nav">
+        <div class="logo">
+            <a href="https://aceysx.github.io">
+                <img class="avatar" src="https://aceysx.github.io/images/avatar.png?v=1567143244560" alt="">
+            </a>
+            <div class="site-title">
+                <h1>
+                    Acey
+                </h1>
+            </div>
+        </div>
+        <span class="menu-btn fa fa-align-justify"></span>
+        <div class="menu-container">
+            <ul>
+                
+                    
+                            <li>
+                                <a href="/" class="menu">
+                                    首页
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/archives" class="menu">
+                                    归档
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/tags" class="menu">
+                                    标签
+                                </a>
+                            </li>
+                            
+                                
+                    
+                            <li>
+                                <a href="/post/about" class="menu">
+                                    关于
+                                </a>
+                            </li>
+                            
+                                
+                    
+                        <li>
+                            <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                                Github
+                            </a>
+                        </li>
+                        
+                                
+            </ul>
+        </div>
     </div>
-
-  </div>
-
-
-
-  <div class="clear clear_nav_end"></div>
-
 </div>
 
-            </div>
+<script>
+    $(document).ready(function() {
+        $(".menu-btn").click(function() {
+            $(".menu-container").slideToggle();
+        });
+        $(window).resize(function() {
 
-            <div class="hamberger"><i class="fa fa-bars"></i>
-<i class="fa fa-times"></i>
+            if (window.matchMedia('(min-width: 960px)').matches) {
+                $(".menu-container").css('display', 'block')
+            } else {
+                $(".menu-container").css('display', 'none')
+            }
 
-            </div>
+        });
+    });
+</script>
 
-          </div>
+            <div id="main-content" class="post-container main-container">
+                <div id="content" class="main-container-left">
+                    
+    <div class="i-card">
+        <b>标签：#
+        运动</b>
+    </div>
+    
+        
+            <article class="post i-card">
+                <h2 class="post-title">
+                    <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">
+                        🏃跑步？也许你一开始就跑错咯
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2018-12-12</time>
+                    
+                        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="post-tag i-tag
+                            i-tag-primary">
+            #运动
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                        <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯" class="post-feature-image" style="background-image:url(https://aceysx.github.io/post-images/🏃跑步？也许你一开始就跑错咯.jpg) ">
+                        </a>
+                        
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            前几天在朋友圈看到小波老师发的一个小故事，大概内容是，读书人在讨论XXX思维，XXX理论...的时候，如果没有读书的人碰到，大多都会说，卧槽，这是传销，骗人的...
+在很多方面都是这样，如果你愿意去学习， 愿意探索，你总是会发现更优解来优化当前的自己。比如睡眠，阅读，沟通，健身.... 当你对它们亮起绿灯的时候，你会发现 哇，还可以这样.. 不过一旦你亮起了黄灯，那么 卧槽，这绝对是骗人的 就来了..  养成绿灯思维很重要。
+
+来，开始聊聊跑步，如果你点进来了。我猜猜你可能遇到过以下的场景
+
+还没开始就结束了：每次跑步还没到几分钟，我的妈，就上气不接下气，两腿不听使唤... 第二天一想起前一天跑步的痛苦赶脚，嗯，太痛苦了，还是算了... 不去了
+
+
+我每天都跑，但是咋就是减肥减不下来...
+
+
+长期跑步后，跑了一身的伤痛出来
+
+
+......
+
+首先，我们先来了解下科学跑步的几种方式
+
+快走：大概 10min/km
+慢跑：大概 6～8min/km
+短跑
+
+来看看自己是属于哪种？大多数是第三种吧，你可能就会说了，第三种咋了，我跑的快还不好？跑的快不是消耗的热量就越多吗，减肥就更快吗？No No No，跑的快意味着你很难将这种速度保持很长的时间，一般都会在半个小时内结束掉这次跑步。我们知道想要减肥，那么就需要我们消耗的热量要多余摄入的，而这半个小时消耗的热量可能才刚好把当时多摄入的热量消耗掉，而短跑的话，体内的糖类会优先供能，而我们的脂肪缺毫发无伤... 这就是为什么我们即使天天跑，而体重很难降下来。说白了，我们要选择合适自己的跑步速率。
+那么我们的跑步速率是多少呢？
+首先先来了解一个概念，心率
+
+心率是每分钟的心跳数，反应了活动的剧烈程度，目前身体对血液需求量的大小。当跑的更快时，会大口呼吸，肌肉就会收缩剧烈，身体就需要大量的供血量来输送氧气和运走代谢副产物，于是心率就会增高
+
+那么心率是用来干撒用的呢？心率可以反映你费力程度的真实数据，决定了你的训练强度。可以告诉你现在是不是跑的太快了（心率偏高），是不是可以再加速，是不是可以继续跑很久... 所以在跑步的时候，我们需要时刻关注我们的心率。
+每个人都会有一个心率的最高点（最大心率）和最低点（安静心率），这两个心率分别是
+
+最大心率：一般在网上我们可以搜到说最大心率=220-年龄 这种简单粗暴的方式来计算得到，但是这个并不准确，每个人的最大心率都是不同的，且可以通过锻炼得到提升的。那么如果想要测试的话，可以可以进行一个最快的几分钟跑步，通过心率测试工具，来测得最大心率。
+安静心率：普通人一般会在60～70之间，常年运动的人为40～50，安静心率月底，代表心肺功能越强。可以在上床休息的时候或者刚起床的时候进行测试。
+
+我们把最大心率减去安静心率，就可以得到储备心率，储备心率很重要，它将决定我们在跑步的时候，根据我们自己的目的来确定我们跑步心率。
+储备心率 是一个范围心率，可以分为 无氧区，过渡区和有氧区
+无氧区
+
+心率一般高于储备心率的88%以上，多是100，200，400米短跑为主。
+主要以糖类为能量补给，产生大量乳酸，所以在每次短跑结束后我们总是腿特别酸痛
+无氧区又分为
+
+A强度（Anaerobic 无氧 88%～95%）
+I强度（Interval 间歇 95%～100%）
+R强度（Repetition 反复）
+
+
+
+过渡区
+
+心率84%～88%之间
+过渡区又分为
+
+T强度（Threshold 乳酸阈值） 长期T跑，有助于提高软酸临界值，提高长跑能力
+
+
+
+有氧区
+
+心率保持在59～84%之间，多以LSD马拉松，长距离慢跑
+以脂肪为热量消耗 59%～74%
+有氧区又分为
+
+E强度（easy）
+M强度（Marathon 马拉松）74%～84%
+
+
+
+所以呐，如果你想要降脂（降脂和减重的区别相信这么聪明的你肯定知道的），那么你在跑步的时候就需要保持心率为59～74%的储备心率，长时间持续性的消耗脂肪。如果没有测试心率的工具，那么一个方式也可以让自己心率保持在这个范围，在跑步时候控制自己的速率，可以边跑步，边聊天，且不会出现喘气，可以一直跑下去这种状态。
+如果你想要提高自己长跑能力，那么就将自己的心率保持在过渡区。
+怎么样，很简单吧。
+而对于跑姿和装备的选择，啊额嗯，下回继续聊。
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+                <!-- 翻页 -->
+                
+                </div>
+                <!--  -->
+                <div class="main-container-middle"></div>
+                <!--  -->
+                <div id="sidebar" class="main-container-right">
+
+                    <!-- 个人信息 -->
+                    
+    <div class="id_card i-card">
+        <div class="id_card-avatar" style="background-image: url(https://aceysx.github.io/images/avatar.png?v=1567143244560)">
+        </div>
+        <h1 class="id_card-title">
+            Acey
+        </h1>
+        <h2 class="id_card-description">
+            终身学习实践者
+        </h2>
+        <!--  -->
+        <div class="id_card-sns">
+            <!-- github -->
+            
+                    <!-- twitter -->
+                    
+                            <!-- weibo -->
+                            
+                                    <!-- facebook -->
+                                    
 
         </div>
-
-      </div>
-
-      <div class="hidden_nav animated fadeInDown">
-
-<div class="bitcron_nav_container">
-
-
-  <div class="bitcron_nav">
-    <div class="mixed_site_nav_wrap site_nav_wrap">
-      <ul class="mixed_site_nav site_nav sm sm-base">
-		  
-	
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/" class="selected active current nav__item" >首页</a>
-
-  </li>
-
-
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/archives" class="selected active current nav__item" >归档</a>
-
-  </li>
-
-
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/tags" class="selected active current nav__item" >标签</a>
-
-  </li>
-
-
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="/post/about" class="selected active current nav__item" >关于</a>
-
-  </li>
-
-
-  <li><a id="d2ef19af68cc211e98f8a0242ac110003" href="https://github.com/Aceysx" class="selected active current nav__item" >Github</a>
-
-  </li>
-
-
-
-
-
-      </ul>
-
-      <div class="clear clear_nav_inline_end"></div>
-
     </div>
+    
 
-  </div>
+                        <!-- 公告栏 -->
+                        
+
+                </div>
+            </div>
 
 
 
-  <div class="clear clear_nav_end"></div>
-
+            <div class="site-footer">
+  Powered by xin❤️
+ | 
+  <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-      </div>
-
-    </div>
-
-
-    <div class="main">
-      <div class="main-inner">
-
-<div class="content">
-
-
-
-
-
-
-  <div class="post_list" >
-
-	
-<div class="post">
-  <div class="post_title weaklink">
-    <h2><a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯" >🏃跑步？也许你一开始就跑错咯</a>
-    </h2>
-  </div>
-  <div class="post_content markdown"><div class="p_part"><p></p></div></div>
-  <div class="post_footer">
-    <div class="info weaklink"><i class="fa fa-clock-o"></i>
-<span class="date_info">2018-12-12</span>
-
-<i class="fa fa-bookmark-o"></i>
-	
-<span class="tags_info weaklink">
-	
-	<a href="https://aceysx.github.io/tag/lLpswgN2-" class="tag">运动</a>
-
-
-
-</span>
-
-
-    </div>
-
-  </div>
-
-</div>
-	
-	
-
-<div class="paginator pager pagination" >
-	
-
-
-
-    <div style="clear:both;height:0;"></div>
-
-
-  </div>
-
-</div>
-
-
-
-  </div>
-</div>
-
-
-
-      </div>
-
-    </div>
-
-    <div class="footer">
-<link href="https://aceysx.github.io/styles/main.css" type="text/css" rel="stylesheet"/><div class="site_footer_wrap"><div class="site_footer">
-
-      <div class="mysocials"><div class="my_socials">
-		   
-			   
-    
-			   
-    
-			   
-    
-			   
-    
-</div><link href="https://aceysx.github.io/styles/main.css" type="text/css" rel="stylesheet"/>
-
-      </div>
-
-      <div class="copyright">Powered by xin❤️
-
-      </div>
-
-</div></div>
-
-    </div>
-
-
-<style type="text/css">a.back_to_top {
-    text-decoration: none;
-    position: fixed;
-    bottom: 40px;
-    right: 30px;
-    background: #f0f0f0;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    line-height: 36px;
-    font-size: 18px;
-    text-align: center;
-    transition-duration: .5s;
-    transition-propety: background-color;
-    display: none;
-}
-
-a.back_to_top span {
-    color: #888;
-}
-
-a.back_to_top:hover {
-    cursor: pointer;
-    background: #dfdfdf;
-}
-
-a.back_to_top:hover span {
-    color: #555;
-}
-
-@media print, screen and (max-width: 580px) {
-    .back_to_top {
-        display: none !important;
-    }
-}
-
-
-
-</style><a id="back_to_top" href="#" class="back_to_top"><span>△</span>
-</a>
-<script type="text/javascript" src="https://aceysx.github.io/media/scripts/jquery.js"></script>
-
-<script>$(document).ready((function(_this) {
-  return function() {
-    var bt;
-    bt = $('#back_to_top');
-    if ($(document).width() > 480) {
-      $(window).scroll(function() {
-        var st;
-        st = $(window).scrollTop();
-        if (st > 30) {
-          return bt.css('display', 'block');
-        } else {
-          return bt.css('display', 'none');
-        }
-      });
-      return bt.click(function() {
-        $('body,html').animate({
-          scrollTop: 0
-        }, 800);
-        return false;
-      });
-    }
-  };
-})(this));
+<script>
+  hljs.initHighlightingOnLoad()
 </script>
 
+    </div>
+    <script>
+        $('#sidebar').stickySidebar({
+            topSpacing: 80,
+            // bottomSpacing: 60
+        });
+    </script>
 </body>
 
 </html>
