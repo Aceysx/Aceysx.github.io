@@ -225,13 +225,6 @@ body {
   font-weight: 300;
   font-size: 14px;
   font-family: "Myriad Pro", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  cursor: url(default.cur), auto !important;
-}
-a,
-.classify-tag,
-.blog-tag,
-.header-icon {
-  cursor: url(pointer.cur), auto !important;
 }
 a {
   color: #515a6e;
