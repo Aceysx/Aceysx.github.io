@@ -225,6 +225,13 @@ body {
   font-weight: 300;
   font-size: 14px;
   font-family: "Myriad Pro", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  cursor: url(default.cur), auto !important;
+}
+a,
+.classify-tag,
+.blog-tag,
+.header-icon {
+  cursor: url(pointer.cur), auto !important;
 }
 a {
   color: #515a6e;
@@ -876,14 +883,39 @@ body {
   background-position: center;
   background-size: cover;
 }
-.post-detail .post .post-content h1,
-.post-detail .post .post-content h2,
-.post-detail .post .post-content h3,
-.post-detail .post .post-content h4,
-.post-detail .post .post-content h5,
+.post-detail .post .post-content hr {
+  border: dashed #efefef 3px;
+  margin: 10px;
+}
+.post-detail .post .post-content h1 {
+  font-size: 190%;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.post-detail .post .post-content h2 {
+  font-size: 170%;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.post-detail .post .post-content h3 {
+  font-size: 150%;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.post-detail .post .post-content h4 {
+  font-size: 130%;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.post-detail .post .post-content h5 {
+  font-size: 120%;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
 .post-detail .post .post-content h6 {
-  margin: 16px 0;
-  color: #343a40;
+  font-size: 110%;
+  font-weight: 700;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
 .post-detail .post .post-content a {
   color: #4c6ef5;
@@ -919,20 +951,26 @@ body {
   color: #868e96;
 }
 .post-detail .post .post-content blockquote {
-  background: #e9ecef;
-  padding: 16px;
-  border-left: 3px solid #7048e8;
-  border-radius: 2px;
-  margin-bottom: 16px;
+  padding: 15px;
+  margin-left: 0;
+  border-left: 5px solid #81D4FA;
+  color: #8b9597;
+  border-radius: 0 2px 2px 0;
+  background: #E1F5FE;
+  line-height: 20px;
 }
 .post-detail .post .post-content blockquote p {
+  font-size: 100%;
+  color: #8b9597;
+}
+.post-detail .post .post-content p {
   color: #868e96;
   margin-bottom: 0;
 }
-.post-detail .post .post-content pre {
+.post-detail .post pre {
   margin-bottom: 16px;
 }
-.post-detail .post .post-content pre code {
+.post-detail .post pre code {
   font-size: 14px;
   font-family: 'Source Code Pro', Consolas, Menlo, Monaco, 'Courier New', monospace;
   border-radius: 5px;
@@ -942,7 +980,7 @@ body {
   color: #f1f3f5;
   display: block;
 }
-.post-detail .post .post-content pre code:after {
+.post-detail .post pre code:after {
   display: block;
   position: absolute;
   left: 8px;
@@ -951,32 +989,73 @@ body {
   font-weight: bold;
   color: #495057;
 }
-.post-detail .post .post-content table {
+.post-detail .post table {
   border-collapse: collapse;
   margin: 1rem 0;
   display: block;
   overflow-x: auto;
 }
-.post-detail .post .post-content tr {
+.post-detail .post tr {
   border-top: 1px solid #dfe2e5;
 }
-.post-detail .post .post-content td,
-.post-detail .post .post-content th {
+.post-detail .post td,
+.post-detail .post th {
   border: 1px solid #dfe2e5;
   padding: 0.6em 1em;
 }
-.post-detail .post .post-content ul,
-.post-detail .post .post-content ol {
+.post-detail .post ul,
+.post-detail .post ol {
   color: var(--c-base-blacklight);
-  padding-left: 24px;
   line-height: 1.725;
-  margin-bottom: 16px;
+  margin: 16px;
 }
-.post-detail .post .post-content strong {
+.post-detail .post strong {
+  font-size: 110%;
   font-weight: bolder;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1);
 }
-.post-detail .post .post-content em {
+.post-detail .post em {
   color: #868e96;
+}
+ol,
+ul {
+  margin: -3%;
+  position: relative;
+}
+li {
+  list-style: none;
+}
+ol {
+  counter-reset: li;
+}
+.post-content ol > li:before,
+.post-content ul > li:before {
+  position: relative;
+  color: #698dbc;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+.post-content ol > li:before {
+  counter-increment: li;
+  content: counter(li) ".   ";
+  font-size: 1em;
+}
+.post-content ol > li:hover:before,
+.post-content ol > li:hover:before {
+  font-size: 1.2em;
+  left: -5px;
+  transition: all 0.4s;
+}
+.post-content ul > li:before {
+  content: "-> ";
+  color: #59e9a2;
+  font-size: 1em;
+}
+.post-content ul > li:hover:before {
+  left: -10px;
+  font-weight: bold;
+  transition: all 0.4s;
 }
 .next-post {
   padding: 24px 32px;
