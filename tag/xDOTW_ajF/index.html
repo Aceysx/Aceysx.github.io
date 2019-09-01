@@ -7,7 +7,7 @@
 <title>
     源码 | Acey
 </title>
-<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567241296687">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567349717889">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -27,7 +27,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://aceysx.github.io">
-                <img class="avatar" src="https://aceysx.github.io/images/avatar.png?v=1567241296687" alt="">
+                <img class="avatar" src="https://aceysx.github.io/images/avatar.png?v=1567349717889" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -120,12 +120,12 @@
                     <time class="post-time">2019-08-30</time>
                     
                         <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-success">
             #源码
         </a>
                         
                         <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-banana">
             #Java
         </a>
                         
@@ -139,9 +139,11 @@
                                 
                                         <div class="post-content-content">
                                             Object
+
 在 Java 中 Object 类是所有类的祖先类，Object 没有定义属性，一共有13个方法。其它所有的子类都会继承这些方法。
 构造函数
-registerNatives()
+
+- registerNatives()
  private static native void registerNatives();
  static {
         registerNatives();
@@ -151,7 +153,7 @@ registerNatives()
 在 Java 中，用 native 关键字修饰的函数表明该方法的实现并不是在Java中去完成，而是由C/C++去完成，并被编译成了.dll，由Java去调用
 
 而 registerNatives()方法的主要作用则是将C/C++中的方法映射到 Java 中的 native方法，实现方法命名的解耦。
-构造函数 public Object()
+- 构造函数 public Object()
  @HotSpotIntrinsicCandidate
  public Object() {}
 
@@ -160,12 +162,13 @@ registerNatives()
 
 一般创建对象的时候直接使用 new className(Args) 来创建一个新的对象。而在类的定义过程中，对于未定义构造函数的类，那么它就会默认继承Object的无参构造函数，如果定了一个或多个构造函数，那么就需要把无参构造函数方法也写上。
 方法
-public final native Class&amp;lt;?&amp;gt; getClass()
+
+- public final native Class&amp;lt;?&amp;gt; getClass()
  @HotSpotIntrinsicCandidate
  public final native Class&amp;lt;?&amp;gt; getClass();
 
 getClass返回运行时当前对象的类对象。在 Java 中，类是对具有一组相同特征或行为的实例的抽象进行描述。而类对象则是对类的特征和行为进行描述（即类的名称，属性，方法...）。也就是说通过获取到类对象，则可以获取到该类的所有属性，方法...
-public native int hashCode()
+- public native int hashCode()
 @HotSpotIntrinsicCandidate
 public native int hashCode();
 
@@ -178,7 +181,7 @@ hashCode 返回当前对象的哈希码。hashCode遵守以下三个约定
 也即是说，调用equals方法返回值相等，那么调用hashCode方法返回值也一定相等。所以，在重写euqlas方法之后，一定要重写hashCode方法。
 那么判断对象是否先等可以直接用equals来判断，为什么还需要hashCode方法呢？
 其实hashCode方法的一个主要作用是为了增强哈希表的性能。比如：我们知道Set集合不能存在相同的两个对象，那么该怎么判断两个对象是否相同呢？如果没有hashCode，那么就需要进行遍历来逐一判断。那么有hashCode，我们就可以计算出即将要加入集合的对象的hashCode，然后查看集合中对应的位置上是否有对象即可。
-public boolean equals(Object obj)
+- public boolean equals(Object obj)
 public boolean equals(Object obj) {
    return (this == obj);
 }
@@ -206,13 +209,13 @@ public boolean equals(Object anObject) {
     return false;
 }
 
-public String toString()
+- public String toString()
  public String toString() {  
     return getClass().getName() + &amp;quot;@&amp;quot; + Integer.toHexString(hashCode());  
 }
 
 toString()返回该对象的字符串表示。在使用 System.out.printLn(obj)的时候，其内部也是调用的toString方法。可以按需重写toString方法。
-protected native Object clone()
+- protected native Object clone()
 protected native Object clone() throws CloneNotSupportedException;
 
 clone()方法返回的是当前对象的引用，指向的是新clone出来的对象，此对象和原对象占用不同的堆空间。
@@ -220,7 +223,7 @@ clone方法的正确调用需要实现 cloneable 接口，如果没有实现该�
 
 Cloneable接口仅是一个表示接口，接口本身不包含任何方法，用来指示Object.clone()可以合法的被子类引用所调用。
 
-使用
+1. 使用
 先看一段代码
 public class CloneTest {  
   
@@ -244,7 +247,7 @@ public class CloneTest {
 在子类中重写父类的方法
 在子类中通过super.methodName()来调用父类方法
 
-浅拷贝&amp;amp;深拷贝
+2. 浅拷贝&amp;amp;深拷贝
 
 浅拷贝： 浅拷贝是按位拷贝对象，它会创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值；如果属性是引用类型，拷贝的就是内存地址。
 深拷贝： 深拷贝会拷贝所有的属性，并拷贝属性指向的动态分配的内存。当对象和它所引用的对象一起拷贝时即发生深拷贝。深拷贝相比于浅拷贝速度较慢并且花销较大。
@@ -294,11 +297,11 @@ public class CloneTest {
 
 参考：https://blog.csdn.net/chenssy/article/details/12952063
 
-protected void finalize()
+- protected void finalize()
 protected void finalize() throws Throwable {}
 
 finalize()方法主要与 Java 垃圾回收机制有关，JVM准备对此对形象所占用的内存空间进行垃圾回收前，将被调用。所以此方法并不是由我们主动去调用的。
-wait()/notify/notifyAll
+- wait()/notify/notifyAll
 详情可见 线程安全()
 
                                         </div>
@@ -319,7 +322,7 @@ wait()/notify/notifyAll
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://aceysx.github.io/images/avatar.png?v=1567241296687)">
+        <div class="id_card-avatar" style="background-image: url(https://aceysx.github.io/images/avatar.png?v=1567349717889)">
         </div>
         <h1 class="id_card-title">
             Acey

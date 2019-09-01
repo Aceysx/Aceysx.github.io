@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-08-31T14:54:47.099Z</updated>
+    <updated>2019-09-01T14:55:20.733Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -17,9 +17,11 @@
         </link>
         <updated>2019-08-30T06:38:34.000Z</updated>
         <content type="html"><![CDATA[<h2 id="object">Object</h2>
+<hr>
 <p>在 Java 中 <code>Object</code> 类是所有类的祖先类，<code>Object</code> 没有定义属性，一共有13个方法。其它所有的子类都会继承这些方法。</p>
 <h2 id="构造函数">构造函数</h2>
-<h3 id="registernatives">registerNatives()</h3>
+<hr>
+<h3 id="-registernatives">- registerNatives()</h3>
 <pre><code class="language-java"> private static native void registerNatives();
  static {
         registerNatives();
@@ -29,7 +31,7 @@
 <p>在 Java 中，用 native 关键字修饰的函数表明该方法的实现并不是在Java中去完成，而是由C/C++去完成，并被编译成了.dll，由Java去调用</p>
 </blockquote>
 <p>而 <code>registerNatives()</code>方法的主要作用则是将C/C++中的方法映射到 Java 中的 <code>native</code>方法，实现方法命名的解耦。</p>
-<h3 id="构造函数-public-object">构造函数 public Object()</h3>
+<h3 id="-构造函数-public-object">- 构造函数 public Object()</h3>
 <pre><code class="language-java"> @HotSpotIntrinsicCandidate
  public Object() {}
 </code></pre>
@@ -38,12 +40,13 @@
 </blockquote>
 <p>一般创建对象的时候直接使用 <code>new className(Args)</code> 来创建一个新的对象。而在类的定义过程中，对于未定义构造函数的类，那么它就会默认继承<code>Object</code>的无参构造函数，如果定了一个或多个构造函数，那么就需要把无参构造函数方法也写上。</p>
 <h2 id="方法">方法</h2>
-<h3 id="public-final-native-class-getclass">public final native Class&lt;?&gt; getClass()</h3>
+<hr>
+<h3 id="-public-final-native-class-getclass">- public final native Class&lt;?&gt; getClass()</h3>
 <pre><code class="language-java"> @HotSpotIntrinsicCandidate
  public final native Class&lt;?&gt; getClass();
 </code></pre>
 <p><code>getClass</code>返回运行时当前对象的类对象。在 Java 中，类是对具有一组相同特征或行为的实例的抽象进行描述。而<strong>类对象</strong>则是对<strong>类</strong>的特征和行为进行描述（即类的名称，属性，方法...）。也就是说通过获取到类对象，则可以获取到该类的所有属性，方法...</p>
-<h3 id="public-native-int-hashcode">public native int hashCode()</h3>
+<h3 id="-public-native-int-hashcode">- public native int hashCode()</h3>
 <pre><code class="language-java">@HotSpotIntrinsicCandidate
 public native int hashCode();
 </code></pre>
@@ -56,7 +59,7 @@ public native int hashCode();
 <p>也即是说，调用<code>equals</code>方法返回值相等，那么调用<code>hashCode</code>方法返回值也一定相等。所以，在重写<code>euqlas</code>方法之后，一定要重写<code>hashCode</code>方法。</p>
 <p>那么判断对象是否先等可以直接用<code>equals</code>来判断，为什么还需要<code>hashCode</code>方法呢？</p>
 <p>其实<code>hashCode</code>方法的一个主要作用是为了增强哈希表的性能。比如：我们知道<code>Set</code>集合不能存在相同的两个对象，那么该怎么判断两个对象是否相同呢？如果没有<code>hashCode</code>，那么就需要进行遍历来逐一判断。那么有<code>hashCode</code>，我们就可以计算出即将要加入集合的对象的<code>hashCode</code>，然后查看集合中对应的位置上是否有对象即可。</p>
-<h3 id="public-boolean-equalsobject-obj">public boolean equals(Object obj)</h3>
+<h3 id="-public-boolean-equalsobject-obj">- public boolean equals(Object obj)</h3>
 <pre><code class="language-java">public boolean equals(Object obj) {
    return (this == obj);
 }
@@ -84,13 +87,13 @@ public native int hashCode();
     return false;
 }
 </code></pre>
-<h3 id="public-string-tostring">public String toString()</h3>
+<h3 id="-public-string-tostring">- public String toString()</h3>
 <pre><code class="language-java"> public String toString() {  
     return getClass().getName() + &quot;@&quot; + Integer.toHexString(hashCode());  
 }
 </code></pre>
 <p><code>toString()</code>返回该对象的字符串表示。在使用 <code>System.out.printLn(obj)</code>的时候，其内部也是调用的<code>toString</code>方法。可以按需重写<code>toString</code>方法。</p>
-<h3 id="protected-native-object-clone">protected native Object clone()</h3>
+<h3 id="-protected-native-object-clone">- protected native Object clone()</h3>
 <pre><code class="language-java">protected native Object clone() throws CloneNotSupportedException;
 </code></pre>
 <p><code>clone()</code>方法返回的是当前对象的引用，指向的是新<code>clone</code>出来的对象，此对象和原对象占用不同的堆空间。</p>
@@ -98,7 +101,7 @@ public native int hashCode();
 <blockquote>
 <p>Cloneable接口仅是一个表示接口，接口本身不包含任何方法，用来指示Object.clone()可以合法的被子类引用所调用。</p>
 </blockquote>
-<h4 id="使用">使用</h4>
+<h4 id="1-使用">1. 使用</h4>
 <p>先看一段代码</p>
 <pre><code class="language-java">public class CloneTest {  
   
@@ -122,7 +125,7 @@ public native int hashCode();
 <li>在子类中重写父类的方法</li>
 <li>在子类中通过<code>super.methodName()</code>来调用父类方法</li>
 </ul>
-<h4 id="浅拷贝深拷贝">浅拷贝&amp;深拷贝</h4>
+<h4 id="2-浅拷贝深拷贝">2. 浅拷贝&amp;深拷贝</h4>
 <blockquote>
 <p>浅拷贝： 浅拷贝是按位拷贝对象，它会创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值；如果属性是引用类型，拷贝的就是内存地址。<br>
 深拷贝： 深拷贝会拷贝所有的属性，并拷贝属性指向的动态分配的内存。当对象和它所引用的对象一起拷贝时即发生深拷贝。深拷贝相比于浅拷贝速度较慢并且花销较大。</p>
@@ -172,11 +175,11 @@ public class CloneTest {
 
 参考：https://blog.csdn.net/chenssy/article/details/12952063
 </code></pre>
-<h3 id="protected-void-finalize">protected void finalize()</h3>
+<h3 id="-protected-void-finalize">- protected void finalize()</h3>
 <pre><code class="language-java">protected void finalize() throws Throwable {}
 </code></pre>
 <p><code>finalize()</code>方法主要与 Java 垃圾回收机制有关，JVM准备对此对形象所占用的内存空间进行垃圾回收前，将被调用。所以此方法并不是由我们主动去调用的。</p>
-<h3 id="waitnotifynotifyall">wait()/notify/notifyAll</h3>
+<h3 id="-waitnotifynotifyall">- wait()/notify/notifyAll</h3>
 <p>详情可见 <a href="">线程安全</a>()</p>
 ]]></content>
     </entry>
