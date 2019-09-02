@@ -1,375 +1,274 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" >
 
-<head>
-    <meta charset="utf-8" />
-<meta name="description" content="" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    源码 | Acey
-</title>
-<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567349717889">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<title>源码 | Acey</title>
+<meta name="description" content="终身学习实践者">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567399623017">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://aceysx.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
+
+
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
 
 
-</head>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-<body>
-    <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://aceysx.github.io">
-                <img class="avatar" src="https://aceysx.github.io/images/avatar.png?v=1567349717889" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    Acey
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="https://aceysx.github.io/post/about/index.html" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-                    
-                        <li>
-                            <a href="https://github.com/Aceysx" class="menu" target="_blank">
-                                Github
-                            </a>
-                        </li>
-                        
-                                
-            </ul>
-        </div>
-    </div>
-</div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
-
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            <div id="main-content" class="post-container main-container">
-                <div id="content" class="main-container-left">
-                    
-    <div class="i-card">
-        <b>标签：#
-        源码</b>
-    </div>
-    
+  </head>
+  <body>
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://aceysx.github.io">Acey</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-            <article class="post i-card">
-                <h2 class="post-title">
-                    <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">
-                        「OpenJdk-11 源码」 : Object
-                    </a>
-                </h2>
-                <div class="post-info">
-                    <time class="post-time">2019-08-30</time>
-                    
-                        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="post-tag i-tag
-                            i-tag-other_2">
-            #源码
-        </a>
-                        
-                        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="post-tag i-tag
-                            i-tag-error">
-            #Java
-        </a>
-                        
-                </div>
-                <div class="post-article">
-                    
-                        <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object" class="post-feature-image" style="background-image:url(https://upload-images.jianshu.io/upload_images/3126293-f0460934b2849b79.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240) ">
-                        </a>
-                        
-                            <div class="post-content">
-                                
-                                        <div class="post-content-content">
-                                            Object
-
-在 Java 中 Object 类是所有类的祖先类，Object 没有定义属性，一共有13个方法。其它所有的子类都会继承这些方法。
-构造函数
-
-- registerNatives()
- private static native void registerNatives();
- static {
-        registerNatives();
- }
-
-
-在 Java 中，用 native 关键字修饰的函数表明该方法的实现并不是在Java中去完成，而是由C/C++去完成，并被编译成了.dll，由Java去调用
-
-而 registerNatives()方法的主要作用则是将C/C++中的方法映射到 Java 中的 native方法，实现方法命名的解耦。
-- 构造函数 public Object()
- @HotSpotIntrinsicCandidate
- public Object() {}
-
-
-@HotSpotIntrinsicCandidate注解，该注解是特定于Java虚拟机的注解。通过该注解表示的方法可能( 但不保证 )通过HotSpot VM自己来写汇编或IR编译器来实现该方法以提供性能。 它表示注释的方法可能（但不能保证）由HotSpot虚拟机内在化。如果HotSpot VM用手写汇编和/或手写编译器IR（编译器本身）替换注释的方法以提高性能，则方法是内在的。 也就是说虽然外面看到的在JDK9中weakCompareAndSet和compareAndSet底层依旧是调用了一样的代码，但是不排除HotSpot VM会手动来实现weakCompareAndSet真正含义的功能的可能性
-
-一般创建对象的时候直接使用 new className(Args) 来创建一个新的对象。而在类的定义过程中，对于未定义构造函数的类，那么它就会默认继承Object的无参构造函数，如果定了一个或多个构造函数，那么就需要把无参构造函数方法也写上。
-方法
-
-- public final native Class&amp;lt;?&amp;gt; getClass()
- @HotSpotIntrinsicCandidate
- public final native Class&amp;lt;?&amp;gt; getClass();
-
-getClass返回运行时当前对象的类对象。在 Java 中，类是对具有一组相同特征或行为的实例的抽象进行描述。而类对象则是对类的特征和行为进行描述（即类的名称，属性，方法...）。也就是说通过获取到类对象，则可以获取到该类的所有属性，方法...
-- public native int hashCode()
-@HotSpotIntrinsicCandidate
-public native int hashCode();
-
-hashCode 返回当前对象的哈希码。hashCode遵守以下三个约定
-
-在 Java 程序运行期间，对同一个对象多次调用hashCode，那么它们的返回值需要是一致的。（前提：没有对对象进行修改）
-如果两个对象相等（调用equals()方法），那么这两个对象的 hashCode也是一样
-两个对象调用hashCode方法返回的哈希码相等，这两个对象不一定相等
-
-也即是说，调用equals方法返回值相等，那么调用hashCode方法返回值也一定相等。所以，在重写euqlas方法之后，一定要重写hashCode方法。
-那么判断对象是否先等可以直接用equals来判断，为什么还需要hashCode方法呢？
-其实hashCode方法的一个主要作用是为了增强哈希表的性能。比如：我们知道Set集合不能存在相同的两个对象，那么该怎么判断两个对象是否相同呢？如果没有hashCode，那么就需要进行遍历来逐一判断。那么有hashCode，我们就可以计算出即将要加入集合的对象的hashCode，然后查看集合中对应的位置上是否有对象即可。
-- public boolean equals(Object obj)
-public boolean equals(Object obj) {
-   return (this == obj);
-}
-    
-
-equals()用于判断两个对象是否相等。根据 Object    的实现，可以看到判断的依据是看两个对象的引用地址是否相等。
-而一般我们会用另外一种方式来判断是否相等。即==,==表示的是两个变量值是否相等（基础类型的值在内存地址中存储的是值）
-那么我们想要判断是否相等：
-
-如果是基础类型，就可以直接用==来判断
-如果是引用类型，那么就需要通过equals方法来判断（在实际业务中，一般会重写equals方法）
-
-需要注意的一点是String也是引用类型，我们判断String的时候是直接使用的equals方法，而按照默认的equals实现，创建两个具有相同值的String对象，那么equals返回的应该是false，
-public boolean equals(Object anObject) {
-    if (this == anObject) {
-        return true;
-    }
-    if (anObject instanceof String) {
-        String aString = (String)anObject;
-        if (coder() == aString.coder()) {
-            return isLatin1() ? StringLatin1.equals(value, aString.value)
-                              : StringUTF16.equals(value, aString.value);
-        }
-    }
-    return false;
-}
-
-- public String toString()
- public String toString() {  
-    return getClass().getName() + &amp;quot;@&amp;quot; + Integer.toHexString(hashCode());  
-}
-
-toString()返回该对象的字符串表示。在使用 System.out.printLn(obj)的时候，其内部也是调用的toString方法。可以按需重写toString方法。
-- protected native Object clone()
-protected native Object clone() throws CloneNotSupportedException;
-
-clone()方法返回的是当前对象的引用，指向的是新clone出来的对象，此对象和原对象占用不同的堆空间。
-clone方法的正确调用需要实现 cloneable 接口，如果没有实现该接口，那么子类调用父类的 clone方法则会抛出CloneNotSupportedException异常
-
-Cloneable接口仅是一个表示接口，接口本身不包含任何方法，用来指示Object.clone()可以合法的被子类引用所调用。
-
-1. 使用
-先看一段代码
-public class CloneTest {  
-  
-    public static void main(String[] args) {  
-        Object o1 = new Object();  
-        try {
-            Object clone = o1.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-    }  
-  
-}  
-
-执行这段段代码会抛出The method clone() from the type Object is not visible异常。原因是clone 方法是被 protected修饰的，也就是说被protected修饰的属性和方法，在同一包下或在不同包下的子类可以访问。显然，CloneTest和Object不在同一包下，不过按照字面意思，CloneTest会默认继承Object，所以即使在不同的包下，应该也是可以访问的才对。那么问题就出现在「在不同包下的子类可以访问」这句话上：
-
-不同包中的子类可以访问: 是指当两个类不在同一个包中的时候，继承自父类的子类内部且主调（调用者）为子类的引用时才能访问父类用protected修饰的成员（属性/方法）。 在子类内部，主调为父类的引用时并不能访问此protected修饰的成员。（super关键字除外）
-
-也就是说在子类中想要调用父类的protected方法，可以
-
-在子类中重写父类的方法
-在子类中通过super.methodName()来调用父类方法
-
-2. 浅拷贝&amp;amp;深拷贝
-
-浅拷贝： 浅拷贝是按位拷贝对象，它会创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。如果属性是基本类型，拷贝的就是基本类型的值；如果属性是引用类型，拷贝的就是内存地址。
-深拷贝： 深拷贝会拷贝所有的属性，并拷贝属性指向的动态分配的内存。当对象和它所引用的对象一起拷贝时即发生深拷贝。深拷贝相比于浅拷贝速度较慢并且花销较大。
-
-对于浅拷贝来说，如果含有引用类型，那么修改其中一个对象的引用值，那么会影响到另外一个对象。按层级来说，浅拷贝只拷贝了第一层。对于默认的clone实现是浅拷贝。如果想要实现深拷贝，可以
-
-对对象进行序列化
-重写clone方法
-
-//序列化实现深拷贝
-
-public class CloneUtils {
-    @SuppressWarnings(&amp;quot;unchecked&amp;quot;)
-    public static &amp;lt;T extends Serializable&amp;gt; T clone(T obj){
-        T cloneObj = null;
-        try {
-            //写入字节流
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            ObjectOutputStream obs = new ObjectOutputStream(out);
-            obs.writeObject(obj);
-            obs.close();
+          <li>
             
-            //分配内存，写入原始对象，生成新对象
-            ByteArrayInputStream ios = new ByteArrayInputStream(out.toByteArray());
-            ObjectInputStream ois = new ObjectInputStream(ios);
-            //返回生成的新对象
-            cloneObj = (T) ois.readObject();
-            ois.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return cloneObj;
-    }
-}
-
-public class Person implements Serializable{
-    private static final long serialVersionUID = 2631590509760908280L;
-}
-
-public class CloneTest {
-    public static void main(String[] args) {
-        Person person =  new Person();
-        Person person1 =  CloneUtils.clone(person);     
-    }
-}
-
-
-参考：https://blog.csdn.net/chenssy/article/details/12952063
-
-- protected void finalize()
-protected void finalize() throws Throwable {}
-
-finalize()方法主要与 Java 垃圾回收机制有关，JVM准备对此对形象所占用的内存空间进行垃圾回收前，将被调用。所以此方法并不是由我们主动去调用的。
-- wait()/notify/notifyAll
-详情可见 线程安全()
-
-                                        </div>
-                                        
-                                            <a class="btn btn-text" href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">Read More ~</a>
-                            </div>
-                </div>
-            </article>
+              <a href="/" class="menu">
+                首页
+              </a>
             
-                <!-- 翻页 -->
-                
-                </div>
-                <!--  -->
-                <div class="main-container-middle"></div>
-                <!--  -->
-                <div id="sidebar" class="main-container-right">
-
-                    <!-- 个人信息 -->
-                    
-    <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://aceysx.github.io/images/avatar.png?v=1567349717889)">
-        </div>
-        <h1 class="id_card-title">
-            Acey
-        </h1>
-        <h2 class="id_card-description">
-            终身学习实践者
-        </h2>
-        <!--  -->
-        <div class="id_card-sns">
-            <!-- github -->
+          </li>
+        
+          <li>
             
-                    <!-- twitter -->
-                    
-                            <!-- weibo -->
-                            
-                                    <!-- facebook -->
-                                    
-
-        </div>
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
-    
+  </div>
+</nav>
 
-                        <!-- 公告栏 -->
-                        
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <h2 class="current-tag">标签: 源码</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">「OpenJdk-11 源码」 : Object</a>
+    </h2>
+    <p class="article-meta">
+      2019-08-30
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge secondary">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge ">
+          Java
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-                </div>
-            </div>
 
-
-
-            <div class="site-footer">
-  Powered by xin❤️
- | 
-  <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+        </div>
+        <div class="row flex-edges">
+  
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+      </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1567399623017" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">金字塔原理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">「OpenJdk-11 源码」 : Object</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">思维导图最佳实践</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">🏃跑步？也许你一开始就跑错咯</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge success">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge success">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge warning">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge warning">
+          CD/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge secondary">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge secondary">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge secondary">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge secondary">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge ">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge ">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
 
     </div>
-    <script>
-        $('#sidebar').stickySidebar({
-            topSpacing: 80,
-            // bottomSpacing: 60
-        });
-    </script>
-</body>
 
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
 </html>

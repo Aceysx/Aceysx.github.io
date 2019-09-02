@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-09-01T15:01:51.608Z</updated>
+    <updated>2019-09-02T04:47:05.095Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -10,6 +10,618 @@
     <logo>https://aceysx.github.io/images/avatar.png</logo>
     <icon>https://aceysx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Acey</rights>
+    <entry>
+        <title type="html"><![CDATA[培训入门儿——指导手册]]></title>
+        <id>https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce</id>
+        <link href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">
+        </link>
+        <updated>2019-09-02T04:35:47.000Z</updated>
+        <content type="html"><![CDATA[<p>一入培训深似海，从此各处寻套路哇。</p>
+<h2 id="一-聚焦问题显价值">一 聚焦问题显价值</h2>
+<h3 id="问题是什么">✨问题是什么</h3>
+<p>首先，我们来思考一个问题，为什么我们要做培训or参加培训呢？对于培训师而言，他们是帮助客户解决他们所遇到的问题；而作为参加培训的学员主要是为了改善自身的不足or提高自身的能力。任何一次培训都是为了解决或改善存在的问题（人的知识、态度、能力的差距问题）。所以对于一次培训来说，第一步需要先搞清楚以下几个问题：</p>
+<p><strong>1. 需求来源（客户）是谁</strong><br>
+我们是在为谁解决问题？谁来和我们对接？谁来为这次培训买单？总之一定要搞清楚客户是谁。他们可能是某高层领导、业务部门或者是员工。</p>
+<p><strong>2. 培训的目标是谁</strong><br>
+<strong>3. 期望值是什么</strong><br>
+培训前，学员是什么水平；经过培训后，希望达到什么样的高度。</p>
+<p>这就是培训的价值所在，帮助<strong>客户</strong>培训<strong>目标对象</strong>，帮助这些<strong>目标对象</strong>达到<strong>客户</strong>所期望的高度。</p>
+<h4 id="理清需求准确描述问题现状">理清需求，准确描述问题现状</h4>
+<p>培训的目的是为了解决问题，在培训准备阶段则需要向客户收集问题，一般会采用<strong>问卷调查</strong>或<strong>当面访谈法</strong>，对与<strong>当面访谈法</strong>则应该提前准备好访谈的问题：</p>
+<ul>
+<li>事实性问题（客户遇到了什么问题）</li>
+<li>需求性问题（对培训有哪些需求）</li>
+<li>结果性问题（用什么标准来衡量培训效果）</li>
+<li>探索性问题</li>
+<li>确定性问题</li>
+</ul>
+<p>在和客户面对面访谈时，大多数情况下会出现以下问题：</p>
+<ul>
+<li>客户说不清楚</li>
+<li>有所隐蔽</li>
+<li>急于求成</li>
+</ul>
+<p>作为应对，可以使用 4W 大法引导客户，理清需求，who（谁的问题），what（出现了什么问题），when（问题发生的情景-时间），where（问题发生的情景-地点）。</p>
+<h3 id="选定有价值的问题">✨选定有价值的问题</h3>
+<p>经过第一轮，我们确定了客户的痛点是什么。接下来，又该轮到问自己几个问题了。</p>
+<ol>
+<li>是否可以通过培训解决</li>
+<li>是否有价值</li>
+<li>是否有内容专家</li>
+</ol>
+<p>如果这个问题是非培训影响力，比如制度、环境等非认为因素，那么就不该是培训所能解决的。其次，如果没有为客户带来任何价值，那么也不该进行培训。最后，如果有内容专家，那么可以选择定制开发or经验萃取否则则需要考虑是否要外部采购课程。<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-a6b3a7b23370b9be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="课程开发选题矩阵"></p>
+<h4 id="挖掘问题背后的本质">挖掘问题背后的本质</h4>
+<p>在确定该问题是可以通过培训所解决的前提下，就可以对该问题下手了，深度挖掘出现这个问题的背后的本质是什么；常用的方法有 5W法，俗称剥洋葱法、鱼骨图法，是什么原因导致了这个问题的出现，主要原因是什么，次要原因又是什么，从而帮助我们更好的制定目标 &amp; 课程。</p>
+<p>在经过对问题的深度挖掘后，接下来就可以梳理制定目标；凸出课程的价值定位。往往我们可以通过一句话来描述课程开发目标：<strong>解决（谁），在（什么情景和场景下），（什么问题），达到什么结果。</strong></p>
+<h2 id="二-课程开发">二 课程开发</h2>
+<h3 id="萃取内部经验">✨萃取内部经验</h3>
+<p>在准备开发课程之前，可以先收集内部资料，避免做一些不需要做的重复的事；其次对内容专家进行访谈，访谈之前可以准备以下问题：</p>
+<ul>
+<li>针对XX问题，你有哪些成功经历</li>
+<li>在这些经历中，哪些是关键环境or行为</li>
+<li>假如你在面对XX难题时，你会如何做</li>
+<li>普通员工最容易犯错的地方在哪？如何避免</li>
+</ul>
+<h3 id="搭建课程结构">✨ 搭建课程结构</h3>
+<p><strong>原则</strong>：不多不少不重复（对培训的目标没有帮助的内容直接舍去）<br>
+<strong>常用逻辑关系</strong></p>
+<ul>
+<li>流程：单向&amp;循环</li>
+<li>元素
+<ul>
+<li>根据不通的角度解决问题</li>
+<li>问题归纳</li>
+</ul>
+</li>
+<li>线索</li>
+<li>关系</li>
+</ul>
+<h3 id="细化内容">✨细化内容</h3>
+<p>**原则：**当堂可完成；当堂可检验<br>
+<strong>课堂表现目标的四元素</strong></p>
+<ul>
+<li>Audience</li>
+<li>Behavior</li>
+<li>Condition</li>
+<li>Degree</li>
+</ul>
+<p>经过培训，学员能够在XX条件下，完成XX任务，达到XX水平</p>
+<h2 id="三-4c培训">三 4C培训</h2>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-9b562cbabb3f941b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="自然学习模式-4MAT"></p>
+<h3 id="建立联系">✨ 建立联系</h3>
+<p>从培训开始，我们就应该把 C 位让给学员，因为这是一个以学员为中心的培训；那么学员的积极性则是非常重要的，其次学员还应该了解本次到培训的主题是什么，通过这次培训能获得自己想要的嘛？所以需要在开始时帮助学员建立以下几个联系：</p>
+<ul>
+<li>学员同学员之间的联系（建立安全感）</li>
+<li>学员同主题之间的联系</li>
+<li>学员同个人目标之间的联系</li>
+<li>学员同学习成果之间的联系</li>
+</ul>
+<p>一般可以在开场活动通过游戏来建立这些联系：</p>
+<ul>
+<li>
+<p>桌上讨论<br>
+讲一个和主题有关的开放性的问题贴在墙上，给大家几分钟的时间分组讨论，简单的讨论后，让学员把讨论的结果报告给大家。</p>
+</li>
+<li>
+<p>站在哪边<br>
+将一个和主题相关的问题的并提出一种解决方案，对于学员，同意该解决方案的站在左边，不同意的站在右边。培训师这个时候就可以问学员：</p>
+</li>
+<li>
+<p>关于队友的选择，你从中学到了什么（小组讨论）</p>
+</li>
+<li>
+<p>是什么让你选择站在这一方</p>
+</li>
+<li>
+<p>若要做出一个更加知情的选择，你还想要了解哪些信息</p>
+</li>
+</ul>
+<p>最后让大家发表自己的看法</p>
+<h3 id="概念">✨ 概念</h3>
+<p>在开始教学时，注意以下几个原则：</p>
+<ul>
+<li>只教应知应会知识</li>
+<li>提供组织图</li>
+<li>互动式教学</li>
+<li>十分钟原则（1分钟复习 ... 不要一直BB）</li>
+</ul>
+<p><strong>互动式教学练习：</strong><br>
+在讲课中间停下来，告诉学员思考一下刚才讲过的内容；让大家把自己感觉重要的内容说出来。除非有不对的地方，否则不要打断。<br>
+【可选附加练习】</p>
+<ul>
+<li>想一想到现在为止的学过的内容，如果必须要针对这些内容出一道测试题，你会问什么？写在卡片上（可以让大家互传卡片，进行回答）</li>
+<li>对刚学的内容用一句话进行总结</li>
+<li>思考如何向一名同事解释为什么你认为这个信息如此重要，记录在卡片上</li>
+</ul>
+<h3 id="实用练习">✨实用练习</h3>
+<p>在做练习时，为了让学员都能做有效的练习，需要注意以下三点：</p>
+<ul>
+<li>人人积极参与</li>
+<li>互相合作</li>
+<li>各司其职</li>
+</ul>
+<p>**倚赖型活动 练习：<br>
+人人都来教：两个人互相教学，一人假装完全不懂要学的这项技能，另一个人则需要向对方展示这个技能，并教会对方。</p>
+<p>当然也可以让学员自己来设计游戏。</p>
+<h3 id="总结">✨总结</h3>
+<p>在培训结束后，一般培训师会和学员们一起举行各种感谢活动... 而对于培训来说，为了让学员更好的巩固自身所学，由于近因原则，学员对开始培训阶段和结束阶段的这段时间记忆会更加深刻。所以在培训开始阶段，培训师也应该避免做过多的客套活动。在结束阶段更应该做更多的帮助学员巩固所学的活动；比如</p>
+<ol>
+<li>让学员回顾总结所学内容</li>
+<li>对学习效果进行评估（柯式四级：</li>
+</ol>
+<ul>
+<li>情绪（感受）：对所学内容感受如何</li>
+<li>知识（信息）：记住来哪些学过的知识</li>
+<li>行为（技能）：能应用所学的知识嘛</li>
+<li>投资回报：公司能从大家所学的东西里获得什么</li>
+</ul>
+<ol start="3">
+<li>帮助学员制定后续计划</li>
+<li>庆祝完成学习</li>
+</ol>
+<p><strong>总结的小练习</strong></p>
+<ol>
+<li>每个人在一张空白纸上写上一个问题</li>
+<li>每个人把纸片传递给右边的人，右边的人把问题的答案写在纸上</li>
+<li>然后接着把知传给右边的人，下一个人接着写出答案</li>
+<li>直到所有的人都把别人的答案回答一遍</li>
+<li>每个人收到最开始递出去的那张纸时，把上面写出来的所有答案读出来，并对收到的答案进行总结</li>
+<li>鼓励大家把总结的内容分享给大家</li>
+</ol>
+<p><strong>庆祝的活动</strong></p>
+<ol>
+<li>让大家站起来，2到3人一组</li>
+<li>让大家站起来沿着教室四处走动，轮流讲一讲培训中的收获，哪些乐趣，学到了哪些内容对自己有意义的东西以及如何学以致用</li>
+</ol>
+<p>背景音乐，营造气氛...</p>
+<h2 id="四-优化课程成精品">四 优化课程成精品</h2>
+<h3 id="美化ppt">✨美化PPT</h3>
+<ol>
+<li>标题</li>
+</ol>
+<ul>
+<li>页面内容的概括</li>
+<li>页面论据的论点</li>
+</ul>
+<ol start="2">
+<li>内容短小精悍（拆、删、凸）</li>
+<li>图文清晰</li>
+</ol>
+<p>在备注栏写上必要的信息方便后续他人理解。</p>
+<h3 id="讲师手册">✨讲师手册</h3>
+<ol>
+<li>功能</li>
+</ol>
+<ul>
+<li>介绍课程概要</li>
+<li>记录讲授要点（每页PPT的教学目标、讲授方式等）</li>
+<li>优化完善课程（改善点）</li>
+</ul>
+<ol start="2">
+<li>编写</li>
+</ol>
+<ul>
+<li>课程背景（SCQA法）</li>
+<li>课程简介（名称、对象、时长、人数、授课方式、课程目标）</li>
+<li>课程大纲</li>
+<li>授课计划（	呈现说明内容和如何呈现两部分）</li>
+<li>实施要求</li>
+<li>其它（附录、注意事项）</li>
+</ul>
+<p>###✨ 学员手册（课前学习&amp;课后应用）</p>
+<ol>
+<li>功能</li>
+</ol>
+<ul>
+<li>了解课程内容</li>
+<li>引导课堂学习</li>
+<li>展示练习内容</li>
+<li>推进课后练习</li>
+</ul>
+<ol start="2">
+<li>编写</li>
+</ol>
+<ul>
+<li>课程背景</li>
+<li>课程简介</li>
+<li>课程内容
+<ol>
+<li>帮助学员理解不同内容之间的关系</li>
+<li>可以把ppt导出PDF附上</li>
+<li>学员接受信息的速度比讲师讲课速度快3-7倍</li>
+</ol>
+</li>
+<li>课堂练习</li>
+<li>附录</li>
+</ul>
+<h2 id="五-反馈闭环">五 反馈闭环</h2>
+<hr>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-9f9a66cf3c07af4a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="反馈闭环"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 语义化版本规范]]></title>
+        <id>https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan</id>
+        <link href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">
+        </link>
+        <updated>2019-09-02T04:31:46.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="semver-简介">semver 简介</h2>
+<p>semver 是 <a href="http://semver.org/lang/zh-CN/">语义化版本（Semantic Versioning）规范</a> 的一个实现，目前是由 npm 的团队维护，实现了版本和版本范围的解析、计算、比较。</p>
+<h2 id="semver-的两个概念">semver 的两个概念</h2>
+<ul>
+<li>固定版本：是指例如 0.4.1、1.2.7、1.2.4-beta.0 这样表示包的特定版本的字符串。</li>
+<li>范围版本：是对满足特定规则的版本的一种表示，例如 1.2.3-2.3.4、1.x、^0.2、&gt;1.4.</li>
+</ul>
+<h2 id="版本号格式">版本号格式</h2>
+<p>主版本号[MAJOR].次版本号[MINOR].修订号[PATCH]，版本号递增规则如下：</p>
+<ol>
+<li>主版本号：当做了不兼容的 API 修改，</li>
+<li>次版本号：当做了向下兼容的功能性新增，</li>
+<li>修订号：当做了向下兼容的问题修正。</li>
+</ol>
+<p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+<blockquote>
+<p>当主版本号升级后，次版本号和修订号需要重置为0，次版本号进行升级后，修订版本需要重置为0。</p>
+</blockquote>
+<p><strong>先行版本号（Pre-release Version）</strong></p>
+<p>先行版本号可以作为发布正式版之前的版本，格式是在修订版本号后面加上一个连接号（-），再加上一连串以点（.）分割的标识符，标识符可以由英文、数字和连接号（[0-9A-Za-z-]）组成。example：</p>
+<pre><code>1.0​​.0-alpha
+1.0.0-alpha.1
+1.0.0-0.3.7
+1.0.0-x.7.z.92
+</code></pre>
+<p>以下是一些常见的先行版本号名称：</p>
+<ul>
+<li>alpha：是内部测试版,一般不向外部发布,会有很多Bug.一般只有测试人员使用。</li>
+<li>beta：也是测试版，这个阶段的版本会一直加入新的功能。在Alpha版之后推出</li>
+<li>rc：Release　Candidate)  系统平台上就是发行候选版本。RC版不会再加入新的功能了，主要着重于除错。</li>
+</ul>
+<h2 id="定义依赖版本号">定义依赖版本号</h2>
+<p>在 <a href="https://npmjs.com/">npm</a> 的依赖的规则中，还有 <code>~</code>、<code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>-</code>、<code>||</code>、<code>x</code>、<code>X</code>、<code>*</code> 等符号；当使用 <code>npm install XX</code> 时，被安装的依赖的版本号前会默认加上 <code>^</code> 符号。</p>
+<ul>
+<li><code>^</code> ：表示同一主版本号中，不小于指定版本号的版本号</li>
+</ul>
+<pre><code> `^2.2.1` 对应主版本号为 2，不小于 `2.2.1` 的版本号，比如 `2.2.1`、`2.2.2`、`2.3.0` ,主版本号固定
+// 当该依赖有最新版本时(eg:2.3.3)，npm install 会安装最新的依赖
+</code></pre>
+<ul>
+<li><code>~</code> ：表示同一主版本号和次版本号中，不小于指定版本号的版本号</li>
+</ul>
+<pre><code> `~2.2.1` 对应主版本号为 2，次版本号为 2，不小于 `2.2.1` 的版本号，比如 `2.2.1、2.2.2`，主版本号和次版本号固定
+</code></pre>
+<ul>
+<li><code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>-</code>：用来指定一个版本号范围</li>
+</ul>
+<pre><code> `&gt;2.1`
+ `1.0.0 - 1.2.0`
+//注意使用 `-` 的时候，必须两边都有空格。
+</code></pre>
+<ul>
+<li><code>||</code>：表示或</li>
+</ul>
+<pre><code> `^2 &lt;2.2 || &gt; 2.3`
+</code></pre>
+<ul>
+<li><code>x</code>、<code>X</code>、<code>*</code>：表示通配符</li>
+</ul>
+<pre><code> `*` 对应所有版本号
+ `3.x` 对应所有主版本号为 3 的版本号
+</code></pre>
+<h2 id="npm-中-package-lockjson-的一些坑">npm 中 package-lock.json 的一些坑</h2>
+<p>在 npm install 后，会生成一个 package-lock.json 文件用于保存当前安装依赖的各种来源及版本号。</p>
+<p>在 npm 5.4.2版本后，package-lock.json 的变动规则：</p>
+<ul>
+<li>当在 install dependency 的指定版本时，会自动更新 package-lock.json 文件中该 dependency 的 version 到指定的 version</li>
+<li>当在 install dependency 的范围版本时，当前的 version 低于or等于 package-lock.json 文件中对应的 dependency 的 version 时，会安装 package-lock.json 中的 version；</li>
+</ul>
+<pre><code>package.json
+&quot;antd&quot;: &quot;^3.6.1&quot;, // eg：最新版本是 3.9.4
+
+package-lock.json
+&quot;antd&quot;: &quot;3.7.1&quot;,
+
+执行npm install 会安装 3.7.1 版本
+</code></pre>
+<p>如果高于 package-lock.json 中对应的 dependency 的 version 时，会安装当前范围版本号中最高的版本，会更新 package-lock.json 文件中对应的版本号；</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[主题阅读]]></title>
+        <id>https://aceysx.github.io/post/zhu-ti-yue-du</id>
+        <link href="https://aceysx.github.io/post/zhu-ti-yue-du">
+        </link>
+        <updated>2019-09-02T04:29:30.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>声明：功利阅读的目的并不是沉浸阅读本身，而是吸收知识，快速实践所学知识。所以比较适用于致用类的书籍</p>
+</blockquote>
+<h2 id="一-什么是功利阅读">一 什么是功利阅读</h2>
+<p><strong>功利阅读</strong>是一种阅读书籍的方式，它具有目的性、快速以及按需阅读的特点。也就是说我们需要在很短的时间内，有目的性的阅读一本书的重要内容。</p>
+<p>阅读的目的一般分为两种，一种是纯粹为了娱乐消遣时间；另一种是为了从书中获取到有用的知识。事实上从小学到高中，在这以教师为中心的教育体系下，我们阅读的目的大多都是第二种，只是我们更多的可能是被动的获取知识，而非是我们自发的去阅读。一旦到了大学或是在社会上，我们的角色和责任也将转变，没有了以教师为中心的教学方式，由于长期的依赖教师， 我们很难转变到以学习者为中心的学习环境下，从而造成我们很难养成终身学习的能力，而一旦我们没有这种能力，就会愈发的感受到学习难、读书难。</p>
+<h2 id="二-为什么要功利阅读">二 为什么要功利阅读</h2>
+<p>唯有不断的学习才能改变我们的命运。随着信息量的指数级别增长，知识的更新速度也达到了三年之短，也就是说如果三年没有学习，那么你就已经被社会所淘汰了。在这种情况下，我们的学习时间也并不充足，虽然我们获取信息的渠道非常多，速度也非常快，但是我们很难去甄别哪些信息是对我们有用的。所以为了在不被知识所淹没的情况下快速定位到我们需要的知识，我们必须要有目的的去寻找去阅读我们所需要的知识。</p>
+<h2 id="三-阅读的几个关键点">三 阅读的几个关键点</h2>
+<ol>
+<li>就是因为没有读书，所以没有时间</li>
+<li>告诉自己书是我们的仆人，我们不一定要完整的看完一本书，不要觉得没能看完一本书会对不起作者或者自己，因为在书中学到的任何一点内容，只要我们在生活中用到了都是赚的。</li>
+<li>28原则，舍弃完美主义，不需要每一段话都理解</li>
+<li>一本书的重点只有 20%<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-3921210afd439740.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="20%"></li>
+</ol>
+<h2 id="四-步骤">四 步骤</h2>
+<ol>
+<li>准备阶段</li>
+</ol>
+<ul>
+<li>在开始阅读之前，我们先在笔记本上写下自己阅读该书的目的，要想从书中得到什么？可以多条</li>
+<li>调查文章：快速阅读 书名、目录、副标题、封面或封底所写的字、著作日期、第一页和最后一页、标题和摘要结论，目的是为了对本书有一个大致对了解。<strong>然后在纸上进一步对完善自己对阅读目的</strong></li>
+</ul>
+<ol start="2">
+<li>超阅读</li>
+</ol>
+<ul>
+<li>整个阅读过程需要我们保持精力集中，速读+跳读的方式快速阅读</li>
+<li>阅读过程中遇到与我们的阅读目的相关的地方减缓速读，并在笔记本上记录下来。</li>
+<li>阅读过程中遇到比较有意思、难理解的地方也放慢速度，将作者的观点先记录在笔记本上</li>
+</ul>
+<ol start="3">
+<li>总结</li>
+</ol>
+<ul>
+<li>将整个过程中与阅读目的相关的问题及答案归纳到思维导图上（也可以最开始就直接用思维导图）</li>
+<li>思考记录下来的作者的观点，回顾自己的经历进行对比，辩证的去看待作者的观点并总结。</li>
+</ul>
+<ol start="4">
+<li>实践</li>
+</ol>
+<ul>
+<li>和朋友聊天时可以讨论分享相关话题</li>
+<li>如果在总结中有产出 action，  那么将 action 写下来放在一个显眼的地方提示自己</li>
+</ul>
+<h2 id="五-阅读方法">五 阅读方法</h2>
+<h3 id="1-主题阅读">1 主题阅读</h3>
+<p><strong>第一步：</strong> 确定自己想要阅读的主题，提出相关的问题（列出提纲）<br>
+<strong>第二步：</strong> 收集书籍清单</p>
+<ul>
+<li>途径：知乎、豆瓣、亚马逊</li>
+<li>步骤：按主题、大家都在读相关、按趋势、按直觉</li>
+<li>标准：
+<ul>
+<li>226 法则：<br>
+两本鼻祖书：需要精读（分析阅读），搭建比较完整的知识体系<br>
+两本经典书籍：需要精读（分析阅读），进一步充实知识体系<br>
+六本入门书：跳读（检视阅读），完善知识体系下的具体章节内容</li>
+</ul>
+</li>
+</ul>
+<p><strong>第三步：</strong> 产出思维导图和总结</p>
+<h3 id="2-吉尼斯三段火箭法-快速阅读专业书">2 吉尼斯三段火箭法 - 快速阅读专业书</h3>
+<p><strong>第一步：</strong> 预览，调查文章（5 mins）<br>
+<strong>第二步：</strong> 跳读，根据第一步的结果选择性的阅读 ，标注（15 mins）<br>
+<strong>第三步：</strong> 记忆学习，彻底理解在第二步标注的内容，并转换成自己的语言</p>
+<h3 id="3-拆书帮便签读书法">3 拆书帮便签读书法</h3>
+<p>可以从书中的某个场景入手，快速学习并应用到实践中。<br>
+<strong>第一步</strong>：用较快的速读阅读<br>
+<strong>第二步</strong>：遇到核心、难理解的部分判断对自己是否有用<br>
+<strong>第三步</strong>：如果有用，拿一张便签纸用自己的话叙述、启发<br>
+<strong>第四步</strong>：回顾自己的经历，那另外一张便签纸记录<br>
+<strong>第五步</strong>：结合自己所读，设想以后遇到类似的情况自己应该怎么处理，记录在另外一张（A3）便签纸上<br>
+<strong>第六步</strong>：把 A3 这张便签纸放在显眼的地方提示自己</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[持续交付]]></title>
+        <id>https://aceysx.github.io/post/chi-xu-jiao-fu</id>
+        <link href="https://aceysx.github.io/post/chi-xu-jiao-fu">
+        </link>
+        <updated>2019-09-02T04:23:55.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="一-软件交付所存在的问题">一 软件交付所存在的问题</h2>
+<p><strong>反模式</strong></p>
+<p>对于传统IT公司来说，他们的部署方式大多都是使用手工部署，交付周期很长，大多会在实现一个非常大的 feature 才会进行部署，这样便会引发一系列的问题，比如手工部署会过多的依赖部署文档，环境复杂可能需要“部署专家”，部署周期间隔长则会导致反馈周期过长，不能及时的应对需求的变化。这被持续交付称之为软件交付的反模式。</p>
+<p><strong>如何避免这些反模式</strong></p>
+<p>为了避免以上所说的反模式，我们应该采取一些手段来降低部署/发布的风险：</p>
+<ul>
+<li>把尽可能多的东西都纳入到版本控制中，对这些进行版本控制，从而可以随时变更发布所需版本</li>
+<li>频繁发布</li>
+<li>及时反馈，且作出相应的行动</li>
+<li>自动化部署流水线</li>
+</ul>
+<p><strong>持续交付所推崇的交付原则</strong></p>
+<ol>
+<li>将所有事情自动化</li>
+</ol>
+<ul>
+<li>部署流程，一旦我们有了自动化部署环境，那么我们就可以摆脱手工部署所带来的一切困扰，并且可以进行频繁的部署/发布</li>
+<li>验收测试</li>
+<li>数据库升级</li>
+<li>...</li>
+</ul>
+<ol start="2">
+<li>把所有东西纳入版本控制</li>
+</ol>
+<ul>
+<li>它们可能是源代码，环境配置，数据库数据/配置，网络配置，构建脚本，文档等，从而确保所有的开发人员使用的是同一代码和配置，也最大力度的使得不同的服务器环境保持一致，除此之外，一旦部署失败，我们可以快速的切换到上一个可用的版本进行部署</li>
+</ul>
+<ol start="3">
+<li>内建质量</li>
+</ol>
+<ul>
+<li>软件的质量应该是由整个团结进行负责，不应该只是由QA来负责，越早发现缺陷，修复它的成本就会越低，在开发阶段，测试阶段发现问题要好过于客户发现问题</li>
+</ul>
+<ol start="4">
+<li>DONE 意味着已发布</li>
+</ol>
+<ul>
+<li>DONE 是敏捷看板中的一个story（小功能，包含需求，价值，AC验收条件）从分析到发布上线，当一个 story 的状态被置为 DONE 后，则说明这个 story 已经完成并被部署上线</li>
+</ul>
+<ol start="5">
+<li>持续改进</li>
+</ol>
+<ul>
+<li>retro 在每一次迭代结束或者在工作过程中团队的状态不太好，都可以进行retreo回顾最近一段时间的状况，并根据大家所提出的 feedback 提取出 action 去执行</li>
+<li>PDCA 可以适用与任何敏捷方法中，比如 standup，pair，inception，retro... 可以很好的对它们的流程/质量进行改善</li>
+</ul>
+<h2 id="二-测试策略">二 测试策略</h2>
+<p><strong>测试四象限</strong><br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-b1538229e664ed1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="四象限"></p>
+<p>其中：</p>
+<ul>
+<li>业务导向支持开发过程属于是端到端的测试<br>
+这种测试往往需要模拟用户的行为，从UI界面到后端的业务的实现整个流程。功能验收测试一般维护成本很大，而且测试也需要很长的时间，位于测试金字塔的顶端，所以这类测试应该尽可能的少写，一般会选择实现 happy path 即可。</li>
+<li>业务导向评判项目<br>
+一般是向客户演示软件的功能，进行易用性以及探索性的的测试，从而发现更优的一些需求</li>
+<li>技术导向支持开发过程<br>
+对于单元测试，由于不需要连接数据库，所以测试的速度会非常快，所以单元测试要去覆盖尽可能多的情况，集成测试需要连接数据库，一般会使用内存数据库，速度会慢与单元测试，但会快于功能性测试，位于测试金字塔的中层。单元测试和集成测试是以开发的角度来验证开发人员实现的代码的正确性，而非验证整个story的功能。</li>
+</ul>
+<p><strong>测试替身</strong></p>
+<p>对于单元测试或者在进行集成测试的时候需要调用第三方，那么就需要用到测试替身来模拟。测试替身有以下几种类型</p>
+<ul>
+<li>dummy object ： 致那些被传递但是不被真正使用的对象，一般用于参数列表</li>
+<li>fake object：是可以真正使用的对象，通常会使用一些捷径，不适合在 prod 上使用，比如内存数据库</li>
+<li>stub：在测试中为每个调用提供一个封装好的响应，不会对测试之外对请求进行响应，只用于测试</li>
+<li>spy：记录一些关于如何被调用对信息对桩</li>
+<li>mock object： 在编程时就设定了它预期要接收的调用和返回的结果</li>
+</ul>
+<h2 id="三-持续集成">三 持续集成</h2>
+<p>当团队有多人一起进行协作开发时，频繁的提交代码到版本库中进行合并是非常重要的，这可以最大限度的防止代码冲突的发生以及降低解决冲突的成本，并且可以让代码库的代码保持最新且可以work</p>
+<p><strong>实现持续集成的准备工作</strong></p>
+<ul>
+<li>版本控制</li>
+<li>自动化构建环境</li>
+<li>团队的共识，非常重要，团队中的每个人都必须遵守这一实践</li>
+</ul>
+<p><strong>集成步骤</strong></p>
+<ol>
+<li>提交代码时，先查看是否有构建正在运行，如果有先等他构建完，如果失败了，需要和组员一起修复它，然后提交自己的代码</li>
+<li>一旦构建完成且测试通过，就将最新代码更新到自己到开发环境上</li>
+<li>如果本地构建成功，就将代码提交到版本库中</li>
+<li>如果构建失败，就停下手中的事，在本机上立即修复这个问题，然后构建</li>
+<li>如果这次构建成功的话，就可以开始下一项任务</li>
+</ol>
+<p><strong>前提条件</strong></p>
+<ul>
+<li>频繁提交</li>
+<li>自动化测试套件（单元测试，集成测试，验收测试），如果没有测试，那么即使构建也无法验证所提交的代码是否可以work</li>
+</ul>
+<p><strong>最佳实践</strong></p>
+<ul>
+<li>构建失败后不要提交代码</li>
+<li>提交代码前在本地运行测试或让集成服务器去跑测试</li>
+<li>等提交测试通过在继续工作</li>
+<li>回家之前构建必须是处于成功状态（如果失败，修复失败的构建or回滚到上一个可以work的代码进行构建）</li>
+<li>时刻准备着回滚到上一个版本</li>
+<li>在回滚之前要规定一个修复时间，在这个时间内，其他人不能提交代码，如果在这个时间段内没有修复好，那么回滚</li>
+<li>不要将失败的测试注释掉，避免回归测试，如果业务发生改变应该修改测试，如果这个功能不存在则可以删除该测试</li>
+</ul>
+<h2 id="四-部署流水线">四 部署流水线</h2>
+<p>部署流水线是持续交付的核心，指软件从版本库到用户手中何以过程的自动化表现形式。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-573c3211d101006b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基本的部署流水线"></p>
+<p>其中：</p>
+<ol>
+<li>提交阶段<br>
+通过自动化的编译，测试，打包，从而将二进制文件放入到制品库中，为后续的流程作准备。如果编译/测试出错，开发人员可以看到详细的错误的原因并快速修复。</li>
+<li>验收阶段<br>
+从制品库中拿到提交阶段的输出（二进制文件）进行部署、冒烟测试以及验收测试，这一过程是针对业务的功能测试，而非针对开发。</li>
+<li>手工测试阶段<br>
+对系统进行一些易用性，探索性，UAT测试</li>
+<li>发布阶段<br>
+前面一系列的步骤都是为了发布作准备，从而将可以work的软件交付给客户。理想情况下，我们已经在前面的步骤已经确保了软件各方面的正确性，可以正确的发布，但实际情况下，我们难免会遇到一些bug导致发布失败，面对这一情况，我们就需要做到快速的修复或者使用一些方式做到即使发布失败也不会影响到正常的运行</li>
+</ol>
+<ul>
+<li>版本回退<br>
+在发布失败后，最常见的解决方法就是版本回退，不过这会导致一段时间内软件不可使用</li>
+<li>蓝绿部署<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-449744d81ba34b99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="蓝绿部署"></li>
+</ul>
+<p><strong>要点</strong>：修改路由，将用户导向不同的环境<br>
+<strong>对数据的处理</strong>：<br>
+1.在部署到蓝环境（待部署的环境）前，将绿环境（正常环境）DB设置为onlyread状态，并备份<br>
+2.迁移备份到蓝环境<br>
+3.切换路由到蓝环境，如果一切正常将蓝环境DB设置为读写<br>
+4.如果蓝环境正常，部署绿环境，将路由再切换回绿环境，备份蓝环境数据到绿环境<br>
+**影子城发布：**部署两个相同的环境，成本可能会比较高，一个替代方案就是将试运行环境和生产环境作为蓝绿环境</p>
+<ul>
+<li>金丝雀发布（A/B test）</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-89fc73cfecf8e049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="金丝雀发布"></p>
+<p>关键点也是通过路由将用户到向不同到服务器中，与蓝绿部署不同的在于，金丝雀发布会将不同的版本放在不同的服务器（集群）中，然后将部分用户导向到新的版本，这不仅适用于测试新版本到功能是否可用，也同时可以用来测试新功能到使用情况，从而决定是否需要这个功能。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[金字塔原理]]></title>
+        <id>https://aceysx.github.io/post/jin-zi-ta-yuan-li</id>
+        <link href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">
+        </link>
+        <updated>2019-09-02T04:19:57.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="开始之前">开始之前</h2>
+<p>在开始之前，先来回想一下。从会思考，写作开始一直到现在，我们每一次思考，写作的依据是什么呢？或者说流程是什么呢，我们有自己的思考写作框架嘛？大多数人可能都没有意识到这个问题，属于佛系写作，思考，想到哪表达到哪，这也就导致了平时写出来的东西，结构总是很乱，很难被人理解；和人沟通表达出来的讯息也总是让人抓不住要点。</p>
+<p>那么一旦有了一个框架并按照这个框架去写作/思考，那么会有什么不同呢？还记得在高中时，每次写作文，最常用的总分总结构吗？老师总能get到作文的要点是什么，不管我们写的多么的混乱。</p>
+<p>这就是养成对一件事使用固有的框架后可以带来的好处，在做这件事时不断的使用该框架并 review，让自己更加熟练的应用，高效的完成想要做的。而金字塔就是这样的一个框架，可以帮助我们写作，思考。</p>
+<h2 id="一-什么是金字塔结构">一 什么是金字塔结构</h2>
+<p>先上图<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-ef738ee02f5bad35.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="金字塔结构"></p>
+<p>和我们传统的金字塔还是有所不同的，图中金字塔的每一层都都是有1到n个块组成，每一个块都被称为是一个“思想”，即向读者发出新信息并引起读者疑问的句子。比如：金字塔结构是一个思考框架，那么向读者传达的信息就是<strong>金字塔结构是一个思考框架</strong>，也会引起读者的疑问<strong>为什么金字塔结构是一个思考框架</strong>。</p>
+<p>金字塔思想则是从金字塔的顶端开始，沿着各个分支向下展开，首先表达的中心思想将使读者对作者这样的表述产生某种疑问，而中心思想的（金字塔结构中的）下一层上的思想则是对此问题的回答，通过不断的进行疑问/回答式的对话，读者就可以了解文章中的所有思想。</p>
+<h2 id="二-具有金字塔结构的思想">二 具有金字塔结构的思想</h2>
+<h4 id="1-组织关系">1. 组织关系</h4>
+<p>在整个金字塔结构中，可分为 <strong>纵向</strong> 和 <strong>横向</strong> 两种关系，其中每一层中的思想是一个横向关系，每一层之间则是属于纵向关系。</p>
+<h5 id="纵向关系"><strong>纵向</strong>关系：</h5>
+<p>每一层中的每一思想都必须是下一层次所包含的思想的概括，上一层次的思想会引起读者的疑问，而下一层次的思想则是对这一疑问的回答。</p>
+<h5 id="横向关系"><strong>横向</strong>关系：</h5>
+<p>每一层中的一组思想可以是属于统一范涛的思想抽象归纳成一个上层思想，也可以是通过某种逻辑顺序演绎成一个上层思想。<br>
+其中<strong>抽象归纳</strong>需要我们观察发现将具有某种相同结构的思想归纳到一起，抽象成一个思想。比如：<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-f7e4c776d69dec92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="归纳推理"><br>
+其中逻辑顺序则包含了 演绎顺序，时间顺序，结构顺序（SECE：相互独立，完全穷尽），重要性顺序，可以通过不同的逻辑顺序最终推理出上一层的思想。</p>
+<h4 id="2-思考顺序">2 思考顺序</h4>
+<p>在了解了组织关系后，现在可以考虑该从哪开始入手，是选择从上至下构建金字塔结构还是从下至上？</p>
+<h5 id="从上至下">从上至下</h5>
+<p>如果我们知道想要表达的中心思想是什么，那么便可以快速的构建出金字塔。</p>
+<ol>
+<li>画出顶层主题方框，写入<strong>中心思想</strong></li>
+<li>在顶层的下一层确定主要的几个问题</li>
+<li>接着在下一层回答上一层提出的问题，采用归纳和逻辑顺序的方式</li>
+<li>如果上一层的答案非常的接地气（可以很容易让读者理解，且不会让读者产生新的问题），那么金字塔就已经构建完毕。否则需要进一步针对可能产生的新问题构建下一层并进行回答，直到不会产生新的问题为止。<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-c8f0cc098e5f8431.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="从上至下"></li>
+</ol>
+<h4 id="从下至上">从下至上</h4>
+<p>如果我们还没找到一个中心思想，那么只能选择从下至上的方法</p>
+<ol>
+<li>列出所要表达的所有思想（问题和解决方案）</li>
+<li>找出各个要点之间的关系（可能是一组相同范涛的思想，可以使用归纳抽象；也可能是某种逻辑关系）</li>
+<li>得出结论，不断的抽象推理出上层思想</li>
+</ol>
+<h2 id="三-写作思考的逻辑">三 写作/思考的逻辑</h2>
+<p>当我们可以将自己想要表达的思想构建成金字塔结构，即通过疑问/回答的方式将思想传达给读者。<br>
+在写作时，同样可以应用该结构，需要做的一点是如何将读者引导到金字塔的主要问题上来，即该如何吸引读者有兴趣进入到第一层思想。一个很好的方式是给文章写一个序言，序言的作用是承上启下，起一个过渡作用，让读者产生悬念，吸引读者。</p>
+<h4 id="序言的写法scqa">序言的写法：SCQA</h4>
+<p>通过讲故事的方式来引起读者的兴趣。</p>
+<p><strong>S</strong>ituation：对该中心思想的背景进行描述</p>
+<p><strong>C</strong>omplication：在描述的过程中会发现目前的状态和期望的结果存在差异性，从而会产生冲突</p>
+<p><strong>Q</strong>uestion：有了冲突，那么就会产生问题（引导到金字塔结构）</p>
+<p><strong>A</strong>nswer：使用构建好的金字塔结构进行回答</p>
+<h2 id="四-解决问题的逻辑">四 解决问题的逻辑</h2>
+<hr>
+<p>该方式适用的场景侧重于在做研究报告/ppt（通常用来给出解决方案）或者是写项目建议书/咨询报告（给出如果解决问题的过程）这种需要经过大量的前期调研过程。通过该方式可以回答以下几个问题：<br>
+1⃣️有没有/可不可能有问题？<br>
+2⃣️它在哪里？<br>
+3⃣️我们能做什么？<br>
+4⃣️我们应该做什么？</p>
+<p>解决问题的逻辑的流程：</p>
+<p><strong>1 界定问题</strong><br>
+首先可以通过一个问题来判断是否真的存在问题，经过某种努力后得到的结果和预期的结果之间是否有差距？如果经过努力后现实和理想的结果之间差距越来越小，那么就可以判定当下是存在问题的。那么就下来就可以尝试去确定问题是什么？<br>
+1⃣️发生了什么事情（Situation 是什么）<br>
+2⃣️ 我们不喜欢它什么（非期望的结果R1）<br>
+3⃣️ 我们想要的是什么（期望的结果R2）</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-4178acad1bede821.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="example"></p>
+<p><strong>2 结构性分析问题</strong><br>
+1⃣️对界定出来的问题提出假设<br>
+2⃣️设计一项or多项试验，排除部分假设<br>
+3⃣️通过假设得出结论<br>
+4⃣️提出方案</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-d3416692115c5148.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="example"></p>
+<p><strong>3 构建金字塔</strong></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[「OpenJdk-11 源码」 : Object]]></title>
         <id>https://aceysx.github.io/post/openjkd-11-yuan-ma-object</id>
@@ -21,7 +633,7 @@
 <p>在 Java 中 <code>Object</code> 类是所有类的祖先类，<code>Object</code> 没有定义属性，一共有13个方法。其它所有的子类都会继承这些方法。</p>
 <h2 id="构造函数">构造函数</h2>
 <hr>
-<h3 id="-registernatives">- registerNatives()</h3>
+<h3 id="registernatives">registerNatives()</h3>
 <pre><code class="language-java"> private static native void registerNatives();
  static {
         registerNatives();
@@ -31,7 +643,7 @@
 <p>在 Java 中，用 native 关键字修饰的函数表明该方法的实现并不是在Java中去完成，而是由C/C++去完成，并被编译成了.dll，由Java去调用</p>
 </blockquote>
 <p>而 <code>registerNatives()</code>方法的主要作用则是将C/C++中的方法映射到 Java 中的 <code>native</code>方法，实现方法命名的解耦。</p>
-<h3 id="-构造函数-public-object">- 构造函数 public Object()</h3>
+<h3 id="构造函数-public-object">构造函数 public Object()</h3>
 <pre><code class="language-java"> @HotSpotIntrinsicCandidate
  public Object() {}
 </code></pre>
@@ -41,12 +653,12 @@
 <p>一般创建对象的时候直接使用 <code>new className(Args)</code> 来创建一个新的对象。而在类的定义过程中，对于未定义构造函数的类，那么它就会默认继承<code>Object</code>的无参构造函数，如果定了一个或多个构造函数，那么就需要把无参构造函数方法也写上。</p>
 <h2 id="方法">方法</h2>
 <hr>
-<h3 id="-public-final-native-class-getclass">- public final native Class&lt;?&gt; getClass()</h3>
+<h3 id="public-final-native-class-getclass">public final native Class&lt;?&gt; getClass()</h3>
 <pre><code class="language-java"> @HotSpotIntrinsicCandidate
  public final native Class&lt;?&gt; getClass();
 </code></pre>
-<p><code>getClass</code>返回运行时当前对象的类对象。在 Java 中，类是对具有一组相同特征或行为的实例的抽象进行描述。而<strong>类对象</strong>则是对<strong>类</strong>的特征和行为进行描述（即类的名称，属性，方法...）。也就是说通过获取到类对象，则可以获取到该类的所有属性，方法...</p>
-<h3 id="-public-native-int-hashcode">- public native int hashCode()</h3>
+<p><code>getClass</code>返回运行时当前对象的类对象。在 Java 中，类是对具有一组相同特征或行为的实例的抽象进行描述。而<strong>类对象</strong>则是对<strong>类</strong>的特征和行为进行描述（即类的名称，属性，方法...）。也就是说通过获取到类对象，则可以获取到该类的所有属性，方法等。</p>
+<h3 id="public-native-int-hashcode">public native int hashCode()</h3>
 <pre><code class="language-java">@HotSpotIntrinsicCandidate
 public native int hashCode();
 </code></pre>
@@ -59,7 +671,7 @@ public native int hashCode();
 <p>也即是说，调用<code>equals</code>方法返回值相等，那么调用<code>hashCode</code>方法返回值也一定相等。所以，在重写<code>euqlas</code>方法之后，一定要重写<code>hashCode</code>方法。</p>
 <p>那么判断对象是否先等可以直接用<code>equals</code>来判断，为什么还需要<code>hashCode</code>方法呢？</p>
 <p>其实<code>hashCode</code>方法的一个主要作用是为了增强哈希表的性能。比如：我们知道<code>Set</code>集合不能存在相同的两个对象，那么该怎么判断两个对象是否相同呢？如果没有<code>hashCode</code>，那么就需要进行遍历来逐一判断。那么有<code>hashCode</code>，我们就可以计算出即将要加入集合的对象的<code>hashCode</code>，然后查看集合中对应的位置上是否有对象即可。</p>
-<h3 id="-public-boolean-equalsobject-obj">- public boolean equals(Object obj)</h3>
+<h3 id="public-boolean-equalsobject-obj">public boolean equals(Object obj)</h3>
 <pre><code class="language-java">public boolean equals(Object obj) {
    return (this == obj);
 }
@@ -87,19 +699,19 @@ public native int hashCode();
     return false;
 }
 </code></pre>
-<h3 id="-public-string-tostring">- public String toString()</h3>
+<h3 id="public-string-tostring">public String toString()</h3>
 <pre><code class="language-java"> public String toString() {  
     return getClass().getName() + &quot;@&quot; + Integer.toHexString(hashCode());  
 }
 </code></pre>
 <p><code>toString()</code>返回该对象的字符串表示。在使用 <code>System.out.printLn(obj)</code>的时候，其内部也是调用的<code>toString</code>方法。可以按需重写<code>toString</code>方法。</p>
-<h3 id="-protected-native-object-clone">- protected native Object clone()</h3>
+<h3 id="protected-native-object-clone">protected native Object clone()</h3>
 <pre><code class="language-java">protected native Object clone() throws CloneNotSupportedException;
 </code></pre>
 <p><code>clone()</code>方法返回的是当前对象的引用，指向的是新<code>clone</code>出来的对象，此对象和原对象占用不同的堆空间。</p>
 <p><strong><code>clone</code>方法的正确调用需要实现 <code>cloneable</code> 接口，如果没有实现该接口，那么子类调用父类的 <code>clone</code>方法则会抛出<code>CloneNotSupportedException</code>异常</strong></p>
 <blockquote>
-<p>Cloneable接口仅是一个表示接口，接口本身不包含任何方法，用来指示Object.clone()可以合法的被子类引用所调用。</p>
+<p>Cloneable接口仅仅是一个表示接口，接口本身不包含任何方法，用来指示Object.clone()可以合法的被子类引用所调用。</p>
 </blockquote>
 <h4 id="1-使用">1. 使用</h4>
 <p>先看一段代码</p>
@@ -175,12 +787,12 @@ public class CloneTest {
 
 参考：https://blog.csdn.net/chenssy/article/details/12952063
 </code></pre>
-<h3 id="-protected-void-finalize">- protected void finalize()</h3>
+<h3 id="protected-void-finalize">protected void finalize()</h3>
 <pre><code class="language-java">protected void finalize() throws Throwable {}
 </code></pre>
 <p><code>finalize()</code>方法主要与 Java 垃圾回收机制有关，JVM准备对此对形象所占用的内存空间进行垃圾回收前，将被调用。所以此方法并不是由我们主动去调用的。</p>
-<h3 id="-waitnotifynotifyall">- wait()/notify/notifyAll</h3>
-<p>详情可见 <a href="">线程安全</a>()</p>
+<h3 id="waitnotifynotifyall">wait()/notify/notifyAll</h3>
+<p>可先看<a href="https://www.jianshu.com/nb/10715227">java 多线程</a>尝鲜。后续会专门讲多线程相关源码。</p>
 ]]></content>
     </entry>
     <entry>

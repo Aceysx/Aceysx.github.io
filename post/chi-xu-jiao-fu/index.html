@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>持续交付 | Acey</title>
+<meta name="description" content="终身学习实践者">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567399623017">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://aceysx.github.io">Acey</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>持续交付</h1>
+            <p class="article-meta">
+              2019-09-02
+              
+                <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge success">
+                  CD/CD
+                </a>
+              
+            </p>
+            
+              <img src="https://upload-images.jianshu.io/upload_images/3126293-30e5ea85fb7a2cde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="持续交付">
+            
+            <div class="post-content">
+              <h2 id="一-软件交付所存在的问题">一 软件交付所存在的问题</h2>
+<p><strong>反模式</strong></p>
+<p>对于传统IT公司来说，他们的部署方式大多都是使用手工部署，交付周期很长，大多会在实现一个非常大的 feature 才会进行部署，这样便会引发一系列的问题，比如手工部署会过多的依赖部署文档，环境复杂可能需要“部署专家”，部署周期间隔长则会导致反馈周期过长，不能及时的应对需求的变化。这被持续交付称之为软件交付的反模式。</p>
+<p><strong>如何避免这些反模式</strong></p>
+<p>为了避免以上所说的反模式，我们应该采取一些手段来降低部署/发布的风险：</p>
+<ul>
+<li>把尽可能多的东西都纳入到版本控制中，对这些进行版本控制，从而可以随时变更发布所需版本</li>
+<li>频繁发布</li>
+<li>及时反馈，且作出相应的行动</li>
+<li>自动化部署流水线</li>
+</ul>
+<p><strong>持续交付所推崇的交付原则</strong></p>
+<ol>
+<li>将所有事情自动化</li>
+</ol>
+<ul>
+<li>部署流程，一旦我们有了自动化部署环境，那么我们就可以摆脱手工部署所带来的一切困扰，并且可以进行频繁的部署/发布</li>
+<li>验收测试</li>
+<li>数据库升级</li>
+<li>...</li>
+</ul>
+<ol start="2">
+<li>把所有东西纳入版本控制</li>
+</ol>
+<ul>
+<li>它们可能是源代码，环境配置，数据库数据/配置，网络配置，构建脚本，文档等，从而确保所有的开发人员使用的是同一代码和配置，也最大力度的使得不同的服务器环境保持一致，除此之外，一旦部署失败，我们可以快速的切换到上一个可用的版本进行部署</li>
+</ul>
+<ol start="3">
+<li>内建质量</li>
+</ol>
+<ul>
+<li>软件的质量应该是由整个团结进行负责，不应该只是由QA来负责，越早发现缺陷，修复它的成本就会越低，在开发阶段，测试阶段发现问题要好过于客户发现问题</li>
+</ul>
+<ol start="4">
+<li>DONE 意味着已发布</li>
+</ol>
+<ul>
+<li>DONE 是敏捷看板中的一个story（小功能，包含需求，价值，AC验收条件）从分析到发布上线，当一个 story 的状态被置为 DONE 后，则说明这个 story 已经完成并被部署上线</li>
+</ul>
+<ol start="5">
+<li>持续改进</li>
+</ol>
+<ul>
+<li>retro 在每一次迭代结束或者在工作过程中团队的状态不太好，都可以进行retreo回顾最近一段时间的状况，并根据大家所提出的 feedback 提取出 action 去执行</li>
+<li>PDCA 可以适用与任何敏捷方法中，比如 standup，pair，inception，retro... 可以很好的对它们的流程/质量进行改善</li>
+</ul>
+<h2 id="二-测试策略">二 测试策略</h2>
+<p><strong>测试四象限</strong><br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-b1538229e664ed1d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="四象限"></p>
+<p>其中：</p>
+<ul>
+<li>业务导向支持开发过程属于是端到端的测试<br>
+这种测试往往需要模拟用户的行为，从UI界面到后端的业务的实现整个流程。功能验收测试一般维护成本很大，而且测试也需要很长的时间，位于测试金字塔的顶端，所以这类测试应该尽可能的少写，一般会选择实现 happy path 即可。</li>
+<li>业务导向评判项目<br>
+一般是向客户演示软件的功能，进行易用性以及探索性的的测试，从而发现更优的一些需求</li>
+<li>技术导向支持开发过程<br>
+对于单元测试，由于不需要连接数据库，所以测试的速度会非常快，所以单元测试要去覆盖尽可能多的情况，集成测试需要连接数据库，一般会使用内存数据库，速度会慢与单元测试，但会快于功能性测试，位于测试金字塔的中层。单元测试和集成测试是以开发的角度来验证开发人员实现的代码的正确性，而非验证整个story的功能。</li>
+</ul>
+<p><strong>测试替身</strong></p>
+<p>对于单元测试或者在进行集成测试的时候需要调用第三方，那么就需要用到测试替身来模拟。测试替身有以下几种类型</p>
+<ul>
+<li>dummy object ： 致那些被传递但是不被真正使用的对象，一般用于参数列表</li>
+<li>fake object：是可以真正使用的对象，通常会使用一些捷径，不适合在 prod 上使用，比如内存数据库</li>
+<li>stub：在测试中为每个调用提供一个封装好的响应，不会对测试之外对请求进行响应，只用于测试</li>
+<li>spy：记录一些关于如何被调用对信息对桩</li>
+<li>mock object： 在编程时就设定了它预期要接收的调用和返回的结果</li>
+</ul>
+<h2 id="三-持续集成">三 持续集成</h2>
+<p>当团队有多人一起进行协作开发时，频繁的提交代码到版本库中进行合并是非常重要的，这可以最大限度的防止代码冲突的发生以及降低解决冲突的成本，并且可以让代码库的代码保持最新且可以work</p>
+<p><strong>实现持续集成的准备工作</strong></p>
+<ul>
+<li>版本控制</li>
+<li>自动化构建环境</li>
+<li>团队的共识，非常重要，团队中的每个人都必须遵守这一实践</li>
+</ul>
+<p><strong>集成步骤</strong></p>
+<ol>
+<li>提交代码时，先查看是否有构建正在运行，如果有先等他构建完，如果失败了，需要和组员一起修复它，然后提交自己的代码</li>
+<li>一旦构建完成且测试通过，就将最新代码更新到自己到开发环境上</li>
+<li>如果本地构建成功，就将代码提交到版本库中</li>
+<li>如果构建失败，就停下手中的事，在本机上立即修复这个问题，然后构建</li>
+<li>如果这次构建成功的话，就可以开始下一项任务</li>
+</ol>
+<p><strong>前提条件</strong></p>
+<ul>
+<li>频繁提交</li>
+<li>自动化测试套件（单元测试，集成测试，验收测试），如果没有测试，那么即使构建也无法验证所提交的代码是否可以work</li>
+</ul>
+<p><strong>最佳实践</strong></p>
+<ul>
+<li>构建失败后不要提交代码</li>
+<li>提交代码前在本地运行测试或让集成服务器去跑测试</li>
+<li>等提交测试通过在继续工作</li>
+<li>回家之前构建必须是处于成功状态（如果失败，修复失败的构建or回滚到上一个可以work的代码进行构建）</li>
+<li>时刻准备着回滚到上一个版本</li>
+<li>在回滚之前要规定一个修复时间，在这个时间内，其他人不能提交代码，如果在这个时间段内没有修复好，那么回滚</li>
+<li>不要将失败的测试注释掉，避免回归测试，如果业务发生改变应该修改测试，如果这个功能不存在则可以删除该测试</li>
+</ul>
+<h2 id="四-部署流水线">四 部署流水线</h2>
+<p>部署流水线是持续交付的核心，指软件从版本库到用户手中何以过程的自动化表现形式。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-573c3211d101006b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="基本的部署流水线"></p>
+<p>其中：</p>
+<ol>
+<li>提交阶段<br>
+通过自动化的编译，测试，打包，从而将二进制文件放入到制品库中，为后续的流程作准备。如果编译/测试出错，开发人员可以看到详细的错误的原因并快速修复。</li>
+<li>验收阶段<br>
+从制品库中拿到提交阶段的输出（二进制文件）进行部署、冒烟测试以及验收测试，这一过程是针对业务的功能测试，而非针对开发。</li>
+<li>手工测试阶段<br>
+对系统进行一些易用性，探索性，UAT测试</li>
+<li>发布阶段<br>
+前面一系列的步骤都是为了发布作准备，从而将可以work的软件交付给客户。理想情况下，我们已经在前面的步骤已经确保了软件各方面的正确性，可以正确的发布，但实际情况下，我们难免会遇到一些bug导致发布失败，面对这一情况，我们就需要做到快速的修复或者使用一些方式做到即使发布失败也不会影响到正常的运行</li>
+</ol>
+<ul>
+<li>版本回退<br>
+在发布失败后，最常见的解决方法就是版本回退，不过这会导致一段时间内软件不可使用</li>
+<li>蓝绿部署<br>
+<img src="https://upload-images.jianshu.io/upload_images/3126293-449744d81ba34b99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="蓝绿部署"></li>
+</ul>
+<p><strong>要点</strong>：修改路由，将用户导向不同的环境<br>
+<strong>对数据的处理</strong>：<br>
+1.在部署到蓝环境（待部署的环境）前，将绿环境（正常环境）DB设置为onlyread状态，并备份<br>
+2.迁移备份到蓝环境<br>
+3.切换路由到蓝环境，如果一切正常将蓝环境DB设置为读写<br>
+4.如果蓝环境正常，部署绿环境，将路由再切换回绿环境，备份蓝环境数据到绿环境<br>
+**影子城发布：**部署两个相同的环境，成本可能会比较高，一个替代方案就是将试运行环境和生产环境作为蓝绿环境</p>
+<ul>
+<li>金丝雀发布（A/B test）</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-89fc73cfecf8e049.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="金丝雀发布"></p>
+<p>关键点也是通过路由将用户到向不同到服务器中，与蓝绿部署不同的在于，金丝雀发布会将不同的版本放在不同的服务器（集群）中，然后将部分用户导向到新的版本，这不仅适用于测试新版本到功能是否可用，也同时可以用来测试新功能到使用情况，从而决定是否需要这个功能。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">
+                <h3 class="post-title">
+                  金字塔原理
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1567399623017" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">金字塔原理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">「OpenJdk-11 源码」 : Object</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">思维导图最佳实践</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">🏃跑步？也许你一开始就跑错咯</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge secondary">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge warning">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge secondary">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge ">
+          CD/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge success">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge ">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge ">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge success">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge secondary">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge ">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '6b3df5aab7628f658644',
+        clientSecret: '8f262215c4be4b77d5d8dbe4767a1016a95c13d5',
+        repo: 'Aceysx.github.io',
+        owner: 'Aceysx',
+        admin: ['Aceysx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

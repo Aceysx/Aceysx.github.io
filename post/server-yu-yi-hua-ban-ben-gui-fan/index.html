@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>关于 | Acey</title>
+<title>server 语义化版本规范 | Acey</title>
 <meta name="description" content="终身学习实践者">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -95,19 +95,113 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>关于</h1>
+            <h1>server 语义化版本规范</h1>
             <p class="article-meta">
-              2019-01-25
+              2019-09-02
+              
+                <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge warning">
+                  semver
+                </a>
               
             </p>
             
+              <img src="https://upload-images.jianshu.io/upload_images/3126293-79abec5fceaf717a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="server 语义化版本规范">
+            
             <div class="post-content">
-              <p>这是关于的页面，可以在这里向世界介绍你！</p>
+              <h2 id="semver-简介">semver 简介</h2>
+<p>semver 是 <a href="http://semver.org/lang/zh-CN/">语义化版本（Semantic Versioning）规范</a> 的一个实现，目前是由 npm 的团队维护，实现了版本和版本范围的解析、计算、比较。</p>
+<h2 id="semver-的两个概念">semver 的两个概念</h2>
+<ul>
+<li>固定版本：是指例如 0.4.1、1.2.7、1.2.4-beta.0 这样表示包的特定版本的字符串。</li>
+<li>范围版本：是对满足特定规则的版本的一种表示，例如 1.2.3-2.3.4、1.x、^0.2、&gt;1.4.</li>
+</ul>
+<h2 id="版本号格式">版本号格式</h2>
+<p>主版本号[MAJOR].次版本号[MINOR].修订号[PATCH]，版本号递增规则如下：</p>
+<ol>
+<li>主版本号：当做了不兼容的 API 修改，</li>
+<li>次版本号：当做了向下兼容的功能性新增，</li>
+<li>修订号：当做了向下兼容的问题修正。</li>
+</ol>
+<p>先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。</p>
+<blockquote>
+<p>当主版本号升级后，次版本号和修订号需要重置为0，次版本号进行升级后，修订版本需要重置为0。</p>
+</blockquote>
+<p><strong>先行版本号（Pre-release Version）</strong></p>
+<p>先行版本号可以作为发布正式版之前的版本，格式是在修订版本号后面加上一个连接号（-），再加上一连串以点（.）分割的标识符，标识符可以由英文、数字和连接号（[0-9A-Za-z-]）组成。example：</p>
+<pre><code>1.0​​.0-alpha
+1.0.0-alpha.1
+1.0.0-0.3.7
+1.0.0-x.7.z.92
+</code></pre>
+<p>以下是一些常见的先行版本号名称：</p>
+<ul>
+<li>alpha：是内部测试版,一般不向外部发布,会有很多Bug.一般只有测试人员使用。</li>
+<li>beta：也是测试版，这个阶段的版本会一直加入新的功能。在Alpha版之后推出</li>
+<li>rc：Release　Candidate)  系统平台上就是发行候选版本。RC版不会再加入新的功能了，主要着重于除错。</li>
+</ul>
+<h2 id="定义依赖版本号">定义依赖版本号</h2>
+<p>在 <a href="https://npmjs.com/">npm</a> 的依赖的规则中，还有 <code>~</code>、<code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>-</code>、<code>||</code>、<code>x</code>、<code>X</code>、<code>*</code> 等符号；当使用 <code>npm install XX</code> 时，被安装的依赖的版本号前会默认加上 <code>^</code> 符号。</p>
+<ul>
+<li><code>^</code> ：表示同一主版本号中，不小于指定版本号的版本号</li>
+</ul>
+<pre><code> `^2.2.1` 对应主版本号为 2，不小于 `2.2.1` 的版本号，比如 `2.2.1`、`2.2.2`、`2.3.0` ,主版本号固定
+// 当该依赖有最新版本时(eg:2.3.3)，npm install 会安装最新的依赖
+</code></pre>
+<ul>
+<li><code>~</code> ：表示同一主版本号和次版本号中，不小于指定版本号的版本号</li>
+</ul>
+<pre><code> `~2.2.1` 对应主版本号为 2，次版本号为 2，不小于 `2.2.1` 的版本号，比如 `2.2.1、2.2.2`，主版本号和次版本号固定
+</code></pre>
+<ul>
+<li><code>&gt;</code>、<code>&lt;</code>、<code>=</code>、<code>&gt;=</code>、<code>&lt;=</code>、<code>-</code>：用来指定一个版本号范围</li>
+</ul>
+<pre><code> `&gt;2.1`
+ `1.0.0 - 1.2.0`
+//注意使用 `-` 的时候，必须两边都有空格。
+</code></pre>
+<ul>
+<li><code>||</code>：表示或</li>
+</ul>
+<pre><code> `^2 &lt;2.2 || &gt; 2.3`
+</code></pre>
+<ul>
+<li><code>x</code>、<code>X</code>、<code>*</code>：表示通配符</li>
+</ul>
+<pre><code> `*` 对应所有版本号
+ `3.x` 对应所有主版本号为 3 的版本号
+</code></pre>
+<h2 id="npm-中-package-lockjson-的一些坑">npm 中 package-lock.json 的一些坑</h2>
+<p>在 npm install 后，会生成一个 package-lock.json 文件用于保存当前安装依赖的各种来源及版本号。</p>
+<p>在 npm 5.4.2版本后，package-lock.json 的变动规则：</p>
+<ul>
+<li>当在 install dependency 的指定版本时，会自动更新 package-lock.json 文件中该 dependency 的 version 到指定的 version</li>
+<li>当在 install dependency 的范围版本时，当前的 version 低于or等于 package-lock.json 文件中对应的 dependency 的 version 时，会安装 package-lock.json 中的 version；</li>
+</ul>
+<pre><code>package.json
+&quot;antd&quot;: &quot;^3.6.1&quot;, // eg：最新版本是 3.9.4
+
+package-lock.json
+&quot;antd&quot;: &quot;3.7.1&quot;,
+
+执行npm install 会安装 3.7.1 版本
+</code></pre>
+<p>如果高于 package-lock.json 中对应的 dependency 的 version 时，会安装当前范围版本号中最高的版本，会更新 package-lock.json 文件中对应的版本号；</p>
 
             </div>
           </article>
         </div>
         <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">
+                <h3 class="post-title">
+                  主题阅读
+                </h3>
+              </a>
+            </div>
           
         </div>
         
@@ -203,23 +297,23 @@
     </div>
     <div class="row">
       
-        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge warning">
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge secondary">
           培训
         </a>
       
-        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge ">
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge secondary">
           semver
         </a>
       
-        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge success">
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge secondary">
           阅读
         </a>
       
-        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge success">
+        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge secondary">
           CD/CD
         </a>
       
-        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge ">
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge warning">
           沟通
         </a>
       
@@ -231,15 +325,15 @@
           源码
         </a>
       
-        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge secondary">
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge warning">
           Java
         </a>
       
-        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge success">
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge ">
           实践
         </a>
       
-        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge secondary">
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge success">
           运动
         </a>
       
