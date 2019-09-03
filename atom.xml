@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-09-03T02:24:33.948Z</updated>
+    <updated>2019-09-03T05:56:21.463Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -16,10 +16,16 @@
         <link href="https://aceysx.github.io/post/serializable">
         </link>
         <updated>2019-09-02T14:45:08.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="serializable-是什么">Serializable 是什么</h2>
+<p><code>Serializable</code> 是一种用来处理对象流的机制。对象流就是将运行时对象的状态进行流化，即转换成二进制。说白了，就是将正在运行中程序的对象的状态/内容转换成二进制进行传输，持久化的操作。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-f81fb178849362a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在 Java 中，序列化是在 jdk 1.1 时引入的特性。Serializable 的定义</p>
+]]></summary>
         <content type="html"><![CDATA[<h2 id="serializable-是什么">Serializable 是什么</h2>
 <p><code>Serializable</code> 是一种用来处理对象流的机制。对象流就是将运行时对象的状态进行流化，即转换成二进制。说白了，就是将正在运行中程序的对象的状态/内容转换成二进制进行传输，持久化的操作。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/3126293-f81fb178849362a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>在 Java 中，序列化是在 jdk 1.1 时引入的特性。Serializable 的定义</p>
+<!-- more -->
 <pre><code class="language-java">public interface Serializable {
 }
 </code></pre>
@@ -144,10 +150,16 @@ public class Women implements Externalizable {
         <link href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">
         </link>
         <updated>2019-09-02T04:35:47.000Z</updated>
+        <summary type="html"><![CDATA[<p>一入培训深似海，从此各处寻套路哇。</p>
+<h2 id="一-聚焦问题显价值">一 聚焦问题显价值</h2>
+<h3 id="问题是什么">✨问题是什么</h3>
+<p>首先，我们来思考一个问题，为什么我们要做培训or参加培训呢？对于培训师而言，他们是帮助客户解决他们所遇到的问题；而作为参加培训的学员主要是为了改善自身的不足or提高自身的能力。任何一次培训都是为了解决或改善存在的问题（人的知识、态度、能力的差距问题）。所以对于一次培训来说，第一步需要先搞清楚以下几个问题：</p>
+]]></summary>
         <content type="html"><![CDATA[<p>一入培训深似海，从此各处寻套路哇。</p>
 <h2 id="一-聚焦问题显价值">一 聚焦问题显价值</h2>
 <h3 id="问题是什么">✨问题是什么</h3>
 <p>首先，我们来思考一个问题，为什么我们要做培训or参加培训呢？对于培训师而言，他们是帮助客户解决他们所遇到的问题；而作为参加培训的学员主要是为了改善自身的不足or提高自身的能力。任何一次培训都是为了解决或改善存在的问题（人的知识、态度、能力的差距问题）。所以对于一次培训来说，第一步需要先搞清楚以下几个问题：</p>
+<!-- more -->
 <p><strong>1. 需求来源（客户）是谁</strong><br>
 我们是在为谁解决问题？谁来和我们对接？谁来为这次培训买单？总之一定要搞清楚客户是谁。他们可能是某高层领导、业务部门或者是员工。</p>
 <p><strong>2. 培训的目标是谁</strong><br>
