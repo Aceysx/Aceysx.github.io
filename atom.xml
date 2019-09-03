@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-09-02T04:47:05.095Z</updated>
+    <updated>2019-09-03T02:24:33.948Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -10,6 +10,134 @@
     <logo>https://aceysx.github.io/images/avatar.png</logo>
     <icon>https://aceysx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Acey</rights>
+    <entry>
+        <title type="html"><![CDATA[「OpenJdk-11 源码」Serializable]]></title>
+        <id>https://aceysx.github.io/post/serializable</id>
+        <link href="https://aceysx.github.io/post/serializable">
+        </link>
+        <updated>2019-09-02T14:45:08.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="serializable-是什么">Serializable 是什么</h2>
+<p><code>Serializable</code> 是一种用来处理对象流的机制。对象流就是将运行时对象的状态进行流化，即转换成二进制。说白了，就是将正在运行中程序的对象的状态/内容转换成二进制进行传输，持久化的操作。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-f81fb178849362a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在 Java 中，序列化是在 jdk 1.1 时引入的特性。Serializable 的定义</p>
+<pre><code class="language-java">public interface Serializable {
+}
+</code></pre>
+<p>只有这么个接口，一旦某类实现了该接口，那么该类就有了序列化的能力，但严格来说，不一定能序列化/反序列化成功，为撒呐？先来看个 demo</p>
+<h2 id="quickly-start">Quickly start</h2>
+<p>举个栗子🌰，有一 <code>Women</code>类，该类有三个属性，分别是<code>age</code>,<code>weight</code>和<code>name</code>，我们来试试怎么序列/反序列化。</p>
+<p><strong>先来个 Women class</strong></p>
+<pre><code class="language-java">//Women.class
+public class Women implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    private Integer age;
+    private String name;
+    private Float weight;
+
+    public Women(String name, int age, float weight) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+    }
+    
+   '''
+   setter/getter    
+   '''
+}
+</code></pre>
+<h3 id="序列化">序列化</h3>
+<pre><code class="language-java">    public static void main(String[] args) throws IOException {
+        Women women = new Women(&quot;xiao ju&quot;,18, 45.1f);
+        File file = new File(&quot;xiaoju.txt&quot;);
+        FileOutputStream output = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(output);
+        objectOutputStream.writeObject(women);
+        output.close();
+        objectOutputStream.close();
+    }
+</code></pre>
+<h3 id="反序列化">反序列化</h3>
+<pre><code class="language-java">    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        File file = new File(&quot;xiaoju.txt&quot;);
+        FileInputStream input= new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(input);
+        Women women = (Women) objectInputStream.readObject();
+        input.close();
+        objectInputStream.close();
+    }
+</code></pre>
+<p>这就是序列化/反序列化的过程。可以看到我们在<code>Woemen</code>类中，不仅实现了<code>Serializable</code>接口外，还加了一个<code>serialVersionUID</code>，当然了，如果我们不手动加，那么系统也会根据当前类的结构会初始化一个<code>UID</code>，它的作用是什么呢？</p>
+<p>当进行序列化的时候，<code>UID</code>会和当前对象的状态一同持续久化，在反序列化的时候，会检测当前类的<code>UID</code>是否和持久化的<code>UID</code>一致，如果一致，那么反序列化成功，否则失败。</p>
+<p>如果我们没有指定<code>UID</code>的化，系统在初始化一个<code>UID</code>后，随着对象的持久化，如果我们这个时候改了该类的数据结构，那么这个类的<code>UID</code>就会发生改变（系统初始化的<code>UID</code>是根据类的数据结构算出来的），所以在反序列化的时候，就会检测到<code>UID</code>不一致，那么就会失败。所以，一般我们都会加上一个<code>UID</code>。</p>
+<h3 id="那问题来了全部类都支持序列化不好嘛">那问题来了，全部类都支持序列化不好嘛？</h3>
+<p>确实不好，不要你觉得，要我觉得，不是所有的类都想要序列化的，有些类是比较敏感的，比如用户类，卡号类... 对于序列化的对象的信息是很容易被破解的，不能保证其安全性。</p>
+<h3 id="问题又来了我只想要序列化部分怎么办">问题又来了，我只想要序列化部分怎么办</h3>
+<p>两种方式：</p>
+<ol>
+<li>在不想要被序列化的属性上添加<code>static</code>修饰符。前面我们说到，序列化/反序列化的都是程序正在运行中的对象的状态，而被<code>static</code>修饰的属性/方法其实是属于类的状态，不属于处于内存中的对象。</li>
+<li>在不想要被序列化的属性上添加<code>transient</code>修饰，<code>transient</code>不能修饰方法/类。一旦属性被<code>transient</code>修饰，那么该属性就不会被序列/反序列化。</li>
+</ol>
+<h2 id="序列化规则">序列化规则</h2>
+<ol>
+<li>
+<p>类成员</p>
+<p>为了减少存储，传输空间，从提高效率，那么在进行序列化的时候，可以将不需要序列化的属性通过 <code>static</code>和<code>transient</code>关键字修饰排除掉。</p>
+</li>
+<li>
+<p>继承关系</p>
+<ul>
+<li>如果父类实现了<code>Serializable</code>接口，子类序列化后，那么父类也会实现系列化</li>
+<li>如果父类没有实现<code>Serializable</code>接口，子类被序列化后，父类将不会被序列化</li>
+</ul>
+</li>
+<li>
+<p>引用关系</p>
+<p>如果一个类实现了序列化，并且引用了一个对象。该对象所属类实现了<code>Serializable</code>接口，那么会改对象也会被序列化，否则会抛出<code>java.io.NotSerializableExeception</code>。</p>
+</li>
+</ol>
+<h2 id="serializable-子接口-externalizable">Serializable 子接口 Externalizable</h2>
+<p>前面我们说到，实现了<code>Serializable</code>接口的类，可以将整个或部分对象的状态进行序列化/反序列化。那么如果我们想要更加定制化的序列化/反序列化一些东西的话，那么我们就需要用到<code>Externalizable</code>，比如：在序列化的时候我想保存一个时间，反序列化的时候我希望获取到这个时间，但是这个时间我不想放到类中。</p>
+<pre><code class="language-java">public interface Externalizable extends java.io.Serializable {
+    void writeExternal(ObjectOutput out) throws IOException;
+    void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
+}
+
+</code></pre>
+<p>可以看到<code>Externalizable</code>除了实现了<code>Serializable</code>接口外，还新增了两个方法，这两个方法就是可以在序列化和反序列化的时候做一些定制的东西。还是拿<code>Women</code>来看。</p>
+<pre><code class="language-java">//Women.class
+public class Women implements Externalizable {
+    private static final long serialVersionUID = 1L;
+    
+    private Integer age;
+    private String name;
+    private Float weight;
+
+    public Women(String name, int age, float weight) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(new Date());
+        out.writeObject(this.name);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        System.out.println(in.readObject());
+        this.name = (String) in.readObject();
+    }
+    
+   '''
+   setter/getter    
+   '''
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[培训入门儿——指导手册]]></title>
         <id>https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce</id>

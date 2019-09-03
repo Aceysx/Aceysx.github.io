@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>「OpenJdk-11 源码」Serializable | Acey</title>
+<meta name="description" content="终身学习实践者">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567441122060">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://aceysx.github.io">Acey</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>「OpenJdk-11 源码」Serializable</h1>
+            <p class="article-meta">
+              2019-09-02
+              
+                <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge ">
+                  源码
+                </a>
+              
+                <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge warning">
+                  Java
+                </a>
+              
+            </p>
+            
+              <img src="https://upload-images.jianshu.io/upload_images/3126293-655f07ecdb68fe51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="「OpenJdk-11 源码」Serializable">
+            
+            <div class="post-content">
+              <h2 id="serializable-是什么">Serializable 是什么</h2>
+<p><code>Serializable</code> 是一种用来处理对象流的机制。对象流就是将运行时对象的状态进行流化，即转换成二进制。说白了，就是将正在运行中程序的对象的状态/内容转换成二进制进行传输，持久化的操作。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/3126293-f81fb178849362a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>在 Java 中，序列化是在 jdk 1.1 时引入的特性。Serializable 的定义</p>
+<pre><code class="language-java">public interface Serializable {
+}
+</code></pre>
+<p>只有这么个接口，一旦某类实现了该接口，那么该类就有了序列化的能力，但严格来说，不一定能序列化/反序列化成功，为撒呐？先来看个 demo</p>
+<h2 id="quickly-start">Quickly start</h2>
+<p>举个栗子🌰，有一 <code>Women</code>类，该类有三个属性，分别是<code>age</code>,<code>weight</code>和<code>name</code>，我们来试试怎么序列/反序列化。</p>
+<p><strong>先来个 Women class</strong></p>
+<pre><code class="language-java">//Women.class
+public class Women implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
+    private Integer age;
+    private String name;
+    private Float weight;
+
+    public Women(String name, int age, float weight) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+    }
+    
+   '''
+   setter/getter    
+   '''
+}
+</code></pre>
+<h3 id="序列化">序列化</h3>
+<pre><code class="language-java">    public static void main(String[] args) throws IOException {
+        Women women = new Women(&quot;xiao ju&quot;,18, 45.1f);
+        File file = new File(&quot;xiaoju.txt&quot;);
+        FileOutputStream output = new FileOutputStream(file);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(output);
+        objectOutputStream.writeObject(women);
+        output.close();
+        objectOutputStream.close();
+    }
+</code></pre>
+<h3 id="反序列化">反序列化</h3>
+<pre><code class="language-java">    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        File file = new File(&quot;xiaoju.txt&quot;);
+        FileInputStream input= new FileInputStream(file);
+        ObjectInputStream objectInputStream = new ObjectInputStream(input);
+        Women women = (Women) objectInputStream.readObject();
+        input.close();
+        objectInputStream.close();
+    }
+</code></pre>
+<p>这就是序列化/反序列化的过程。可以看到我们在<code>Woemen</code>类中，不仅实现了<code>Serializable</code>接口外，还加了一个<code>serialVersionUID</code>，当然了，如果我们不手动加，那么系统也会根据当前类的结构会初始化一个<code>UID</code>，它的作用是什么呢？</p>
+<p>当进行序列化的时候，<code>UID</code>会和当前对象的状态一同持续久化，在反序列化的时候，会检测当前类的<code>UID</code>是否和持久化的<code>UID</code>一致，如果一致，那么反序列化成功，否则失败。</p>
+<p>如果我们没有指定<code>UID</code>的化，系统在初始化一个<code>UID</code>后，随着对象的持久化，如果我们这个时候改了该类的数据结构，那么这个类的<code>UID</code>就会发生改变（系统初始化的<code>UID</code>是根据类的数据结构算出来的），所以在反序列化的时候，就会检测到<code>UID</code>不一致，那么就会失败。所以，一般我们都会加上一个<code>UID</code>。</p>
+<h3 id="那问题来了全部类都支持序列化不好嘛">那问题来了，全部类都支持序列化不好嘛？</h3>
+<p>确实不好，不要你觉得，要我觉得，不是所有的类都想要序列化的，有些类是比较敏感的，比如用户类，卡号类... 对于序列化的对象的信息是很容易被破解的，不能保证其安全性。</p>
+<h3 id="问题又来了我只想要序列化部分怎么办">问题又来了，我只想要序列化部分怎么办</h3>
+<p>两种方式：</p>
+<ol>
+<li>在不想要被序列化的属性上添加<code>static</code>修饰符。前面我们说到，序列化/反序列化的都是程序正在运行中的对象的状态，而被<code>static</code>修饰的属性/方法其实是属于类的状态，不属于处于内存中的对象。</li>
+<li>在不想要被序列化的属性上添加<code>transient</code>修饰，<code>transient</code>不能修饰方法/类。一旦属性被<code>transient</code>修饰，那么该属性就不会被序列/反序列化。</li>
+</ol>
+<h2 id="序列化规则">序列化规则</h2>
+<ol>
+<li>
+<p>类成员</p>
+<p>为了减少存储，传输空间，从提高效率，那么在进行序列化的时候，可以将不需要序列化的属性通过 <code>static</code>和<code>transient</code>关键字修饰排除掉。</p>
+</li>
+<li>
+<p>继承关系</p>
+<ul>
+<li>如果父类实现了<code>Serializable</code>接口，子类序列化后，那么父类也会实现系列化</li>
+<li>如果父类没有实现<code>Serializable</code>接口，子类被序列化后，父类将不会被序列化</li>
+</ul>
+</li>
+<li>
+<p>引用关系</p>
+<p>如果一个类实现了序列化，并且引用了一个对象。该对象所属类实现了<code>Serializable</code>接口，那么会改对象也会被序列化，否则会抛出<code>java.io.NotSerializableExeception</code>。</p>
+</li>
+</ol>
+<h2 id="serializable-子接口-externalizable">Serializable 子接口 Externalizable</h2>
+<p>前面我们说到，实现了<code>Serializable</code>接口的类，可以将整个或部分对象的状态进行序列化/反序列化。那么如果我们想要更加定制化的序列化/反序列化一些东西的话，那么我们就需要用到<code>Externalizable</code>，比如：在序列化的时候我想保存一个时间，反序列化的时候我希望获取到这个时间，但是这个时间我不想放到类中。</p>
+<pre><code class="language-java">public interface Externalizable extends java.io.Serializable {
+    void writeExternal(ObjectOutput out) throws IOException;
+    void readExternal(ObjectInput in) throws IOException, ClassNotFoundException;
+}
+
+</code></pre>
+<p>可以看到<code>Externalizable</code>除了实现了<code>Serializable</code>接口外，还新增了两个方法，这两个方法就是可以在序列化和反序列化的时候做一些定制的东西。还是拿<code>Women</code>来看。</p>
+<pre><code class="language-java">//Women.class
+public class Women implements Externalizable {
+    private static final long serialVersionUID = 1L;
+    
+    private Integer age;
+    private String name;
+    private Float weight;
+
+    public Women(String name, int age, float weight) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(new Date());
+        out.writeObject(this.name);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        System.out.println(in.readObject());
+        this.name = (String) in.readObject();
+    }
+    
+   '''
+   setter/getter    
+   '''
+}
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">
+                <h3 class="post-title">
+                  培训入门儿——指导手册
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1567441122060" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/serializable">「OpenJdk-11 源码」Serializable</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">金字塔原理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">「OpenJdk-11 源码」 : Object</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">思维导图最佳实践</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">🏃跑步？也许你一开始就跑错咯</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge ">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge secondary">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge secondary">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge success">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge secondary">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge ">
+          CD/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge secondary">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge secondary">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge ">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge warning">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '6b3df5aab7628f658644',
+        clientSecret: '8f262215c4be4b77d5d8dbe4767a1016a95c13d5',
+        repo: 'Aceysx.github.io',
+        owner: 'Aceysx',
+        admin: ['Aceysx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
