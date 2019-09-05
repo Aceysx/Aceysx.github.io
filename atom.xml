@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-09-05T15:03:21.212Z</updated>
+    <updated>2019-09-05T15:09:55.009Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -11,7 +11,7 @@
     <icon>https://aceysx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Acey</rights>
     <entry>
-        <title type="html"><![CDATA[「OpenJdk-11 源码」Serializable]]></title>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」Serializable]]></title>
         <id>https://aceysx.github.io/post/serializable</id>
         <link href="https://aceysx.github.io/post/serializable">
         </link>
@@ -145,7 +145,7 @@ public class Women implements Externalizable {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[「OpenJdk-11 源码」 : String]]></title>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」 : String]]></title>
         <id>https://aceysx.github.io/post/openjdk-11-yuan-ma-string</id>
         <link href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">
         </link>
@@ -918,7 +918,7 @@ package-lock.json
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[「OpenJdk-11 源码」 : Object]]></title>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」 : Object]]></title>
         <id>https://aceysx.github.io/post/openjkd-11-yuan-ma-object</id>
         <link href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">
         </link>
