@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>「OpenJdk-11 源码」 : String | Acey</title>
+<meta name="description" content="终身学习实践者">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567695798139">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h2><a href="https://aceysx.github.io">Acey</a></h2>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>「OpenJdk-11 源码」 : String</h1>
+            <p class="article-meta">
+              2019-09-02
+              
+                <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge secondary">
+                  源码
+                </a>
+              
+                <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge ">
+                  Java
+                </a>
+              
+            </p>
+            
+              <img src="https://upload-images.jianshu.io/upload_images/3126293-ac6e6a5972991411.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="「OpenJdk-11 源码」 : String">
+            
+            <div class="post-content">
+              <h2 id="类的定义">类的定义</h2>
+<p>在日常开发中，<code>String</code>可以说是最常用的类之一了，但也是最容易被忽视的类。先来看看<code>String</code>的定义</p>
+<pre><code class="language-java">public final class String
+    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
+
+	private final char[] value; // jdk 8
+    private final byte[] value; // jdk 9 使用 byte 减少空间的浪费，
+
+    private final byte coder;
+    private int hash; // Default to 0
+    private static final long serialVersionUID = -6849794470754667710L;
+}
+</code></pre>
+<p>首先，<code>String</code>被<code>final</code>所修饰，同时实现了<code>Serializable</code>，<code>Comparable</code>和<code>CharSequence</code>接口。我们一个个来看：</p>
+<h4 id="为撒要用-final-修饰">为撒要用 final 修饰</h4>
+<p>根据源码，我们可以看到<code>String</code>的值在内部是用一个<code>byte</code>数组<code>value</code>维护的，所以<code>value</code>是一个引用类型，对于引用类型的变量，我们往往都会十分小心，因为鬼知道在什么时候，我们就会掉进一个大坑... 更何况<code>String</code>是一个非常常用的类。所以一个非常重要的原因就是<strong>安全性</strong>，使得<code>String</code>类需要被<code>final</code>修饰，即不可变。所以对<code>String</code>类加上了<code>final</code>修饰符，防止<code>String</code>被继承，从而重写<code>value</code>。刚才说到<code>value</code>是一个引用类型，所以在<code>value</code>上也加上了<code>final</code>修饰，并且在整个类中，没有对<code>value</code>进行update的操作。所有的update操作都是会新建一个新的<code>string</code>。</p>
+<h4 id="为撒实现-serializable-接口">为撒实现 Serializable 接口</h4>
+<p>详情可见🔎<a href="https://juejin.im/post/5d6d4107e51d453b5f1a04dc">「OpenJdk-11 源码-系列」Serializable</a></p>
+<h4 id="comparable-comparator">Comparable &amp; Comparator</h4>
+<p><strong>先来看看<code>Comparable</code>接口</strong></p>
+<pre><code class="language-java">public interface Comparable&lt;T&gt; {
+    public int compareTo(T o);
+}
+</code></pre>
+<p><code>Comparable</code>接口是一个排序接口，若一个类实现了该接口并重写了<code>compareTo</code>方法，就意味着这个类支持了排序。当存在一个实现了<code>Comparable</code>接口的类的集合或数组，那么该集合或数组就可以通过<code>Collections.sort / Arrays.sort</code>进行排序。</p>
+<ul>
+<li>当返回值为正数，那么就意味着 a &gt; b (<code>a.compareTo(b)</code>)</li>
+<li>当返回值为零，那么a = b</li>
+<li>当返回值为负数，那么a &lt; b</li>
+</ul>
+<p><strong>再来看看<code>Comparator</code> 接口</strong></p>
+<pre><code class="language-java">public interface Comparator&lt;T&gt; {
+    //最主要的俩方法
+    int compare(T o1, T o2);
+    boolean equals(Object obj);
+}
+</code></pre>
+<p>刚才我们说到如果一个类实现了<code>Comparable</code>接口后，那么该类就有了排序的功能。但有的时候我们不想修改这个类，减少对类的侵入。那么我们就可以自定义一个类来实现<code>Comparator</code>接口。</p>
+<p>总结一下，实现<code>Comparable</code>接口可以做到内部比较（即相同类之间的比较）；而实现了<code>Comparator</code>接口的类，可以使用该类对任意两个类型的对象进行比较，且无侵入性。</p>
+<h2 id="属性">属性</h2>
+<pre><code class="language-java">public final class String
+    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
+    private final byte[] value;
+    private final byte coder;
+    private int hash; // Default to 0
+
+}
+</code></pre>
+<ul>
+<li>
+<p>value</p>
+<p><code>value</code>存储的是 <code>String</code>的内容，即当使用<code>String str = &quot;abc&quot;;</code>的时候，&quot;abc&quot;是存储在一个<code>byte</code>类型的数组中的。这在后续的构造函数中会讲解到。</p>
+</li>
+<li>
+<p>coder</p>
+<p>在JDK9中，<code>String</code>维护了这样一个新的属性<code>coder</code>，它是一个编码格式的标识，表示LATIN1或者UTF-16，String生成的时候会自动初始化这个值，如果字符串中都是能用LATIN1就能表示的就是0，否则就是UTF-16。</p>
+<p>那么为什么要加这个<code>coder</code>属性呢？先说结论，可以对字符串的空间进行压缩。先看源码</p>
+<pre><code class="language-java">//jdk8
+    public int length() {
+        return value.length;
+    }
+//jdk9
+    static final boolean COMPACT_STRINGS;
+    static {
+        COMPACT_STRINGS = true; //默认开启压缩
+    }    
+    byte coder() {
+        return COMPACT_STRINGS ? coder : UTF16;
+    }
+    public int length() {
+        return value.length &gt;&gt; coder(); //如果coder() = 1则会右移一位
+    }
+</code></pre>
+<p>所以，如果当我们调用<code>length</code>方法的时候，如果<code>value</code>是<code>LATIN1</code>编码的话那么就会右移一位，减少一个字节数。</p>
+</li>
+<li>
+<p>hash</p>
+<p><code>hash</code>是<code>String</code>在实例化的时候对<code>hashcode</code>的一个缓存。由于在开发中<code>String</code>会经常拿来比较，比如<code>HashMap</code>中如果<code>key</code>  是<code>String</code>类型，每次比较如果都重新计算<code>hashcode</code>的话就会很费时。</p>
+</li>
+</ul>
+<h2 id="构造方法">构造方法</h2>
+<pre><code class="language-java">    public String() {
+        this.value = &quot;&quot;.value;
+        this.coder = &quot;&quot;.coder;
+    }
+</code></pre>
+<p>空参构造方法，会创建一个空的字符串序列。一般不会这么创建。</p>
+<pre><code class="language-java">    //常见的几种构造方法
+	public String(byte[] bytes) {
+        this(bytes, 0, bytes.length);
+    }
+	public String(byte bytes[], String charsetName)
+            throws UnsupportedEncodingException {
+        this(bytes, 0, bytes.length, charsetName);
+    }
+	public String(byte bytes[], Charset charset) {
+        this(bytes, 0, bytes.length, charset);
+    }
+    public String(byte bytes[], String charsetName)
+            throws UnsupportedEncodingException {
+        this(bytes, 0, bytes.length, charsetName);
+    }
+    
+    public String(byte bytes[], int offset, int length, String charsetName)
+            throws UnsupportedEncodingException {
+        if (charsetName == null)
+            throw new NullPointerException(&quot;charsetName&quot;);
+        checkBoundsOffCount(offset, length, bytes.length);
+        StringCoding.Result ret =
+            StringCoding.decode(charsetName, bytes, offset, length);
+        this.value = ret.value;
+        this.coder = ret.coder;
+    }
+	
+	public String(byte bytes[], int offset, int length, Charset charset) {
+        if (charset == null)
+            throw new NullPointerException(&quot;charset&quot;);
+        checkBoundsOffCount(offset, length, bytes.length);
+        StringCoding.Result ret =
+            StringCoding.decode(charset, bytes, offset, length);
+        this.value = ret.value;
+        this.coder = ret.coder;
+    }
+</code></pre>
+<p>使用字节数组来创建可以分为指定编码或默认编码（ISO-8859-1）进行编码操作。</p>
+<h2 id="常用方法">常用方法</h2>
+<p>比较简单，可直接查看API</p>
+<h2 id="其它">其它</h2>
+<h4 id="string-对-号的重载">String 对 + 号的重载</h4>
+<pre><code class="language-java">String str = &quot;this is&quot;;
+String str1 = str + &quot;str&quot;
+</code></pre>
+<p>在底层，Java 对 String 的+的支持使用的是 <code>StringBuilder</code> 以及它的<code>append</code>和<code>toString</code>方法。即：</p>
+<pre><code class="language-java">String str = &quot;str&quot;;
+String str1 = (new StringBuilder(String.valueOf(str))).append(&quot;str&quot;).toString();
+</code></pre>
+<h4 id="intern">intern</h4>
+<pre><code class="language-java">public native String intern();
+</code></pre>
+<p>可以看到 <code>intern</code> 是被 <code>native</code>修饰，这说明该方法是由底层的C/C++进行实现的。它的作用是 如果常量池中存在当前字符串, 就会直接返回当前字符串。如果常量池中没有此字符串, 会将此字符串放入常量池中后, 再返回。<strong>通过双引号声明的字符串会放入到常量池中</strong></p>
+<pre><code class="language-java">String str = &quot;123&quot;;
+String str1 = new String(&quot;123&quot;);
+String str2 = str1.intern();
+s
+System.out.println(str == str1); //false
+System.out.println(str == str2); // true
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">
+                <h3 class="post-title">
+                  培训入门儿——指导手册
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1567695798139" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/serializable">「OpenJdk-11 源码」Serializable</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">「OpenJdk-11 源码」 : String</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">金字塔原理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">「OpenJdk-11 源码」 : Object</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">思维导图最佳实践</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">🏃跑步？也许你一开始就跑错咯</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge warning">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge warning">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge warning">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge secondary">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge warning">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge warning">
+          CD/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge ">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge ">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge secondary">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge secondary">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '6b3df5aab7628f658644',
+        clientSecret: '8f262215c4be4b77d5d8dbe4767a1016a95c13d5',
+        repo: 'Aceysx.github.io',
+        owner: 'Aceysx',
+        admin: ['Aceysx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
