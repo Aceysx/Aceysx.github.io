@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" >
 
-<title>「OpenJdk-11 源码-系列」 : String | Acey</title>
+<title>「OpenJdk-11 源码-系列」String | Acey</title>
 <meta name="description" content="终身学习实践者">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567696341188">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567874174921">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -95,7 +95,7 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>「OpenJdk-11 源码-系列」 : String</h1>
+            <h1>「OpenJdk-11 源码-系列」String</h1>
             <p class="article-meta">
               2019-09-02
               
@@ -103,21 +103,21 @@
                   源码
                 </a>
               
-                <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge ">
+                <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge warning">
                   Java
                 </a>
               
             </p>
             
-              <img src="https://upload-images.jianshu.io/upload_images/3126293-ac6e6a5972991411.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="「OpenJdk-11 源码-系列」 : String">
+              <img src="https://upload-images.jianshu.io/upload_images/3126293-ac6e6a5972991411.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="「OpenJdk-11 源码-系列」String">
             
             <div class="post-content">
               <h2 id="类的定义">类的定义</h2>
 <p>在日常开发中，<code>String</code>可以说是最常用的类之一了，但也是最容易被忽视的类。先来看看<code>String</code>的定义</p>
 <pre><code class="language-java">public final class String
-    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
+ implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
 
-	private final char[] value; // jdk 8
+  private final char[] value; // jdk 8
   private final byte[] value; // jdk 9 使用 byte 减少空间的浪费，
 
   private final byte coder;
@@ -290,7 +290,7 @@ System.out.println(str == str2); // true
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://aceysx.github.io/images/avatar.png?v=1567696341188" class="no-responsive avatar">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1567874174921" class="no-responsive avatar">
     <div class="text-muted">终身学习实践者</div>
     <div class="social-container">
       
@@ -315,13 +315,19 @@ System.out.println(str == str2); // true
         
           
             <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer">「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer</a>
+            </li>
+          
+        
+          
+            <li>
               <a href="https://aceysx.github.io/post/serializable">「OpenJdk-11 源码-系列」Serializable</a>
             </li>
           
         
           
             <li>
-              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">「OpenJdk-11 源码-系列」 : String</a>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">「OpenJdk-11 源码-系列」String</a>
             </li>
           
         
@@ -368,10 +374,6 @@ System.out.println(str == str2); // true
           
         
           
-            <li>
-              <a href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">🏃跑步？也许你一开始就跑错咯</a>
-            </li>
-          
         
       </ul>
     </div>
@@ -382,7 +384,7 @@ System.out.println(str == str2); // true
     </div>
     <div class="row">
       
-        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge warning">
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge success">
           源码
         </a>
       
@@ -394,31 +396,31 @@ System.out.println(str == str2); // true
           培训
         </a>
       
-        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge ">
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge secondary">
           semver
         </a>
       
-        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge secondary">
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge success">
           阅读
         </a>
       
-        <a href="https://aceysx.github.io/tag/0_sgm3d3J" class="badge secondary">
-          CD/CD
+        <a href="https://aceysx.github.io/tag/yj-SRumhW" class="badge warning">
+          CI/CD
         </a>
       
         <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge secondary">
           沟通
         </a>
       
-        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge success">
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge warning">
           写作
         </a>
       
-        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge warning">
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge ">
           实践
         </a>
       
-        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge ">
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge secondary">
           运动
         </a>
       

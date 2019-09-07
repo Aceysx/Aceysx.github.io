@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer | Acey</title>
+<meta name="description" content="终身学习实践者">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1567874174921">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h2><a href="https://aceysx.github.io">Acey</a></h2>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer</h1>
+            <p class="article-meta">
+              2019-09-05
+              
+                <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge ">
+                  源码
+                </a>
+              
+                <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge secondary">
+                  Java
+                </a>
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="abstractstringbuilder">AbstractStringBuilder</h2>
+<p><code>AbstracStringBuilder</code>是<code>StringBuilder</code> 和 <code>StringBuffer</code> 的父类。前面我们讲到<code>String</code>是一个不可变的字符串。而<code>StringBuilder</code> 和 <code>StringBuffer</code> 则是对<code>String</code>的一个补充，它们是可变的。先来看<code>AbstractStringBuilder</code>的定义</p>
+<h3 id="定义">定义</h3>
+<pre><code class="language-java">abstract class AbstractStringBuilder implements Appendable, CharSequence {
+    char[] value;
+	int count;
+	AbstractStringBuilder() {
+	}
+	AbstractStringBuilder(int capacity) {
+    	value = new char[capacity];
+	}
+}
+</code></pre>
+<p>从类名上就可以看出来它是一个抽象方法。并且实现了<code>Appendable</code>以及<code>Appendable</code>接口中的<code>append</code>方法。使用了<code>char[]</code>来保存值，而两个构造函数也是子类所必须要实现的，用于初始化 <code>char[]</code>的大小。</p>
+<h3 id="扩容">扩容</h3>
+<pre><code class="language-java">	public void ensureCapacity(int minimumCapacity) {
+        if (minimumCapacity &gt; 0)
+            ensureCapacityInternal(minimumCapacity);
+    }
+
+    private void ensureCapacityInternal(int minimumCapacity) {
+        // overflow-conscious code
+        if (minimumCapacity - value.length &gt; 0) {
+            value = Arrays.copyOf(value,
+                    newCapacity(minimumCapacity));
+        }
+    }
+    private int newCapacity(int minCapacity) {
+        // overflow-conscious code
+        int newCapacity = (value.length &lt;&lt; 1) + 2;
+        if (newCapacity - minCapacity &lt; 0) {
+            newCapacity = minCapacity;
+        }
+        return (newCapacity &lt;= 0 || MAX_ARRAY_SIZE - newCapacity &lt; 0)
+            ? hugeCapacity(minCapacity)
+            : newCapacity;
+    }
+
+    private int hugeCapacity(int minCapacity) {
+        if (Integer.MAX_VALUE - minCapacity &lt; 0) { // overflow
+            throw new OutOfMemoryError();
+        }
+        return (minCapacity &gt; MAX_ARRAY_SIZE)
+            ? minCapacity : MAX_ARRAY_SIZE;
+    } 
+</code></pre>
+<p>对于扩容，需要确保传入的<code>capacity</code>大于目前的<code>value</code>的长度，且小于<code>Integer.MAX_VALUE</code>（0x7fffffff）。在这个方法中首先把容量扩大为<strong>原来的容量乘2加2</strong>，如果此时仍小于指定的容量，那么就把新的容量设为<code>minCapacity</code>。然后判断是否溢出，如果溢出了，把容量设为<code>MAX_ARRAY_SIZE（Integer.MAX_VALUE-8）</code></p>
+<h3 id="添加">添加</h3>
+<pre><code class="language-java">    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }	
+
+	//String.class
+	public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
+        if (srcBegin &lt; 0) {
+            throw new StringIndexOutOfBoundsException(srcBegin);
+        }
+        if (srcEnd &gt; value.length) {
+            throw new StringIndexOutOfBoundsException(srcEnd);
+        }
+        if (srcBegin &gt; srcEnd) {
+            throw new StringIndexOutOfBoundsException(srcEnd - srcBegin);
+        }
+        System.arraycopy(value, srcBegin, dst, dstBegin, srcEnd - srcBegin);
+    }
+</code></pre>
+<p>对于 <code>append</code> 方法有很多重载。对于每种重载方法的内部实现大概可以分为下面几步：</p>
+<ol>
+<li>确保 <code>append</code>的值为有效的。如果是字符串，那么值如果为 <code>null</code>，则会<code>append</code>一个<code>null</code>字符串，如果是<code>long</code>或<code>int</code>的值是小于最小值，那么会<code>append</code>一个固定值</li>
+<li>扩容当前值。<code>ensureCapacityInternal</code>方法会将当前的<code>char[] value</code>值复制到一个新的<code>char[] value</code>中。</li>
+<li>使用 <code>getChars</code>方法将<code>append</code>的值追加到扩容的<code>value</code>后</li>
+</ol>
+<h2 id="stringbuilder-stringbuffer">StringBuilder &amp; StringBuffer</h2>
+<p><code>StringBuilder &amp; StringBuffer</code>都实现了 <code>AbstractStringBuilder</code>接口。他们最大的不同就是<code>StringBuilder</code> 是线程不安全的，而<code>StringBuffer</code>是线程安全的。所以它们的属性和方法大致都是一样的，只是<code>StringBuffer</code>的部分方法上添加了<code>Synchronized</code>关键字来保证线程的安全。</p>
+<pre><code class="language-java">	//StringBuffer.class
+	public synchronized StringBuffer append(String str) { 
+        toStringCache = null;
+        super.append(str);
+        return this;
+    }
+</code></pre>
+<p>在<code>StringBuilder</code> 中没有<code>synchronized</code>这个关键字。对于<code>StringBuilder &amp; StringBuffer</code>的大部分都是调用的父类的方法，只是最后多了一个 <code>return this</code>。</p>
+<p>上面的代码我们发现有这么一行代码<code>toStringCache=null</code>,我们来看看它的定义</p>
+<pre><code class="language-java">	/**
+     * A cache of the last value returned by toString. Cleared
+     * whenever the StringBuffer is modified.
+     */
+    private transient String toStringCache;
+</code></pre>
+<p>根据注释，我们可以知道这个<code>toStringCache</code>是用来缓冲最后一次 <code>toString</code> 的值，如果<code>StringBuffer</code>被修改了的话，那么<code>toStringCache</code>就会被清空。接着再来看看 <code>toString</code>方法</p>
+<pre><code class="language-java">	public synchronized String toString() {
+        if (toStringCache == null) {
+            return toStringCache =
+                    isLatin1() ? StringLatin1.newString(value, 0, count)
+                               : StringUTF16.newString(value, 0, count);
+        }
+        return new String(toStringCache);
+    }
+</code></pre>
+<p>当调用<code>toString</code>方法的时候，如果<code>toStringCache</code>为<code>null</code>的话，那么就会调用<code>StringXXX.newString</code>方法。如果不为<code>null</code>的话，直接返回<code>toStringCache</code>。而<code>StringXXX.newString</code>的实现如下：</p>
+<pre><code class="language-java">    public static String newString(byte[] val, int index, int len) {
+        return new String(Arrays.copyOfRange(val, index, index + len),
+                          LATIN1);
+    }
+</code></pre>
+<p>可以发现它其实是一个copy的操作。也就是说如果<code>toStringCache</code> 存在的话，就不需要再次进行copy。直接返回<code>toStringCache</code>，这样就可以减少不必要的消耗，提升性能。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://aceysx.github.io/post/serializable">
+                <h3 class="post-title">
+                  「OpenJdk-11 源码-系列」Serializable
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1567874174921" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer">「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/serializable">「OpenJdk-11 源码-系列」Serializable</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">「OpenJdk-11 源码-系列」String</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/jin-zi-ta-yuan-li">金字塔原理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">「OpenJdk-11 源码-系列」 : Object</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">思维导图最佳实践</a>
+            </li>
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge warning">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge success">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge secondary">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge warning">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge success">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/yj-SRumhW" class="badge secondary">
+          CI/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge ">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge warning">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge warning">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge secondary">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '6b3df5aab7628f658644',
+        clientSecret: '8f262215c4be4b77d5d8dbe4767a1016a95c13d5',
+        repo: 'Aceysx.github.io',
+        owner: 'Aceysx',
+        admin: ['Aceysx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

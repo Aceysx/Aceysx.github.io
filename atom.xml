@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-09-05T15:12:23.037Z</updated>
+    <updated>2019-09-07T16:36:17.555Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -10,6 +10,126 @@
     <logo>https://aceysx.github.io/images/avatar.png</logo>
     <icon>https://aceysx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Acey</rights>
+    <entry>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer]]></title>
+        <id>https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer</id>
+        <link href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer">
+        </link>
+        <updated>2019-09-05T15:33:13.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="abstractstringbuilder">AbstractStringBuilder</h2>
+<p><code>AbstracStringBuilder</code>是<code>StringBuilder</code> 和 <code>StringBuffer</code> 的父类。前面我们讲到<code>String</code>是一个不可变的字符串。而<code>StringBuilder</code> 和 <code>StringBuffer</code> 则是对<code>String</code>的一个补充，它们是可变的。先来看<code>AbstractStringBuilder</code>的定义</p>
+<h3 id="定义">定义</h3>
+<pre><code class="language-java">abstract class AbstractStringBuilder implements Appendable, CharSequence {
+    char[] value;
+	int count;
+	AbstractStringBuilder() {
+	}
+	AbstractStringBuilder(int capacity) {
+    	value = new char[capacity];
+	}
+}
+</code></pre>
+<p>从类名上就可以看出来它是一个抽象方法。并且实现了<code>Appendable</code>以及<code>Appendable</code>接口中的<code>append</code>方法。使用了<code>char[]</code>来保存值，而两个构造函数也是子类所必须要实现的，用于初始化 <code>char[]</code>的大小。</p>
+<h3 id="扩容">扩容</h3>
+<pre><code class="language-java">	public void ensureCapacity(int minimumCapacity) {
+        if (minimumCapacity &gt; 0)
+            ensureCapacityInternal(minimumCapacity);
+    }
+
+    private void ensureCapacityInternal(int minimumCapacity) {
+        // overflow-conscious code
+        if (minimumCapacity - value.length &gt; 0) {
+            value = Arrays.copyOf(value,
+                    newCapacity(minimumCapacity));
+        }
+    }
+    private int newCapacity(int minCapacity) {
+        // overflow-conscious code
+        int newCapacity = (value.length &lt;&lt; 1) + 2;
+        if (newCapacity - minCapacity &lt; 0) {
+            newCapacity = minCapacity;
+        }
+        return (newCapacity &lt;= 0 || MAX_ARRAY_SIZE - newCapacity &lt; 0)
+            ? hugeCapacity(minCapacity)
+            : newCapacity;
+    }
+
+    private int hugeCapacity(int minCapacity) {
+        if (Integer.MAX_VALUE - minCapacity &lt; 0) { // overflow
+            throw new OutOfMemoryError();
+        }
+        return (minCapacity &gt; MAX_ARRAY_SIZE)
+            ? minCapacity : MAX_ARRAY_SIZE;
+    } 
+</code></pre>
+<p>对于扩容，需要确保传入的<code>capacity</code>大于目前的<code>value</code>的长度，且小于<code>Integer.MAX_VALUE</code>（0x7fffffff）。在这个方法中首先把容量扩大为<strong>原来的容量乘2加2</strong>，如果此时仍小于指定的容量，那么就把新的容量设为<code>minCapacity</code>。然后判断是否溢出，如果溢出了，把容量设为<code>MAX_ARRAY_SIZE（Integer.MAX_VALUE-8）</code></p>
+<h3 id="添加">添加</h3>
+<pre><code class="language-java">    public AbstractStringBuilder append(String str) {
+        if (str == null)
+            return appendNull();
+        int len = str.length();
+        ensureCapacityInternal(count + len);
+        str.getChars(0, len, value, count);
+        count += len;
+        return this;
+    }	
+
+	//String.class
+	public void getChars(int srcBegin, int srcEnd, char dst[], int dstBegin) {
+        if (srcBegin &lt; 0) {
+            throw new StringIndexOutOfBoundsException(srcBegin);
+        }
+        if (srcEnd &gt; value.length) {
+            throw new StringIndexOutOfBoundsException(srcEnd);
+        }
+        if (srcBegin &gt; srcEnd) {
+            throw new StringIndexOutOfBoundsException(srcEnd - srcBegin);
+        }
+        System.arraycopy(value, srcBegin, dst, dstBegin, srcEnd - srcBegin);
+    }
+</code></pre>
+<p>对于 <code>append</code> 方法有很多重载。对于每种重载方法的内部实现大概可以分为下面几步：</p>
+<ol>
+<li>确保 <code>append</code>的值为有效的。如果是字符串，那么值如果为 <code>null</code>，则会<code>append</code>一个<code>null</code>字符串，如果是<code>long</code>或<code>int</code>的值是小于最小值，那么会<code>append</code>一个固定值</li>
+<li>扩容当前值。<code>ensureCapacityInternal</code>方法会将当前的<code>char[] value</code>值复制到一个新的<code>char[] value</code>中。</li>
+<li>使用 <code>getChars</code>方法将<code>append</code>的值追加到扩容的<code>value</code>后</li>
+</ol>
+<h2 id="stringbuilder-stringbuffer">StringBuilder &amp; StringBuffer</h2>
+<p><code>StringBuilder &amp; StringBuffer</code>都实现了 <code>AbstractStringBuilder</code>接口。他们最大的不同就是<code>StringBuilder</code> 是线程不安全的，而<code>StringBuffer</code>是线程安全的。所以它们的属性和方法大致都是一样的，只是<code>StringBuffer</code>的部分方法上添加了<code>Synchronized</code>关键字来保证线程的安全。</p>
+<pre><code class="language-java">	//StringBuffer.class
+	public synchronized StringBuffer append(String str) { 
+        toStringCache = null;
+        super.append(str);
+        return this;
+    }
+</code></pre>
+<p>在<code>StringBuilder</code> 中没有<code>synchronized</code>这个关键字。对于<code>StringBuilder &amp; StringBuffer</code>的大部分都是调用的父类的方法，只是最后多了一个 <code>return this</code>。</p>
+<p>上面的代码我们发现有这么一行代码<code>toStringCache=null</code>,我们来看看它的定义</p>
+<pre><code class="language-java">	/**
+     * A cache of the last value returned by toString. Cleared
+     * whenever the StringBuffer is modified.
+     */
+    private transient String toStringCache;
+</code></pre>
+<p>根据注释，我们可以知道这个<code>toStringCache</code>是用来缓冲最后一次 <code>toString</code> 的值，如果<code>StringBuffer</code>被修改了的话，那么<code>toStringCache</code>就会被清空。接着再来看看 <code>toString</code>方法</p>
+<pre><code class="language-java">	public synchronized String toString() {
+        if (toStringCache == null) {
+            return toStringCache =
+                    isLatin1() ? StringLatin1.newString(value, 0, count)
+                               : StringUTF16.newString(value, 0, count);
+        }
+        return new String(toStringCache);
+    }
+</code></pre>
+<p>当调用<code>toString</code>方法的时候，如果<code>toStringCache</code>为<code>null</code>的话，那么就会调用<code>StringXXX.newString</code>方法。如果不为<code>null</code>的话，直接返回<code>toStringCache</code>。而<code>StringXXX.newString</code>的实现如下：</p>
+<pre><code class="language-java">    public static String newString(byte[] val, int index, int len) {
+        return new String(Arrays.copyOfRange(val, index, index + len),
+                          LATIN1);
+    }
+</code></pre>
+<p>可以发现它其实是一个copy的操作。也就是说如果<code>toStringCache</code> 存在的话，就不需要再次进行copy。直接返回<code>toStringCache</code>，这样就可以减少不必要的消耗，提升性能。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[「OpenJdk-11 源码-系列」Serializable]]></title>
         <id>https://aceysx.github.io/post/serializable</id>
@@ -145,7 +265,7 @@ public class Women implements Externalizable {
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」 : String]]></title>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」String]]></title>
         <id>https://aceysx.github.io/post/openjdk-11-yuan-ma-string</id>
         <link href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">
         </link>
@@ -153,9 +273,9 @@ public class Women implements Externalizable {
         <content type="html"><![CDATA[<h2 id="类的定义">类的定义</h2>
 <p>在日常开发中，<code>String</code>可以说是最常用的类之一了，但也是最容易被忽视的类。先来看看<code>String</code>的定义</p>
 <pre><code class="language-java">public final class String
-    implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
+ implements java.io.Serializable, Comparable&lt;String&gt;, CharSequence {
 
-	private final char[] value; // jdk 8
+  private final char[] value; // jdk 8
   private final byte[] value; // jdk 9 使用 byte 减少空间的浪费，
 
   private final byte coder;
@@ -1167,86 +1287,6 @@ public class CloneTest {
 ④ 深度思考 -&gt; 更加适合用来解决问题</p>
 </blockquote>
 <p><img src="http://upload-images.jianshu.io/upload_images/3126293-b771f94270df747f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="纲要.jpg"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[🏃跑步？也许你一开始就跑错咯]]></title>
-        <id>https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯</id>
-        <link href="https://aceysx.github.io/post/🏃跑步？也许你一开始就跑错咯">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <content type="html"><![CDATA[<p>前几天在朋友圈看到小波老师发的一个小故事，大概内容是，读书人在讨论XXX思维，XXX理论...的时候，如果没有读书的人碰到，大多都会说，卧槽，这是传销，骗人的...</p>
-<p>在很多方面都是这样，如果你愿意去学习， 愿意探索，你总是会发现更优解来优化当前的自己。比如睡眠，阅读，沟通，健身.... 当你对它们亮起绿灯的时候，你会发现 哇，还可以这样.. 不过一旦你亮起了黄灯，那么 卧槽，这绝对是骗人的 就来了..  养成绿灯思维很重要。</p>
-<hr>
-<p>来，开始聊聊跑步，如果你点进来了。我猜猜你可能遇到过以下的场景</p>
-<blockquote>
-<p>还没开始就结束了：每次跑步还没到几分钟，我的妈，就上气不接下气，两腿不听使唤... 第二天一想起前一天跑步的痛苦赶脚，嗯，太痛苦了，还是算了... 不去了</p>
-</blockquote>
-<blockquote>
-<p>我每天都跑，但是咋就是减肥减不下来...</p>
-</blockquote>
-<blockquote>
-<p>长期跑步后，跑了一身的伤痛出来</p>
-</blockquote>
-<blockquote>
-<p>......</p>
-</blockquote>
-<h5 id="首先我们先来了解下科学跑步的几种方式"><strong>首先</strong>，我们先来了解下科学跑步的几种方式</h5>
-<ol>
-<li>快走：大概 10min/km</li>
-<li>慢跑：大概 6～8min/km</li>
-<li>短跑</li>
-</ol>
-<p>来看看自己是属于哪种？大多数是第三种吧，你可能就会说了，第三种咋了，我跑的快还不好？跑的快不是消耗的热量就越多吗，减肥就更快吗？No No No，跑的快意味着你很难将这种速度保持很长的时间，一般都会在半个小时内结束掉这次跑步。我们知道想要减肥，那么就需要我们消耗的热量要多余摄入的，而这半个小时消耗的热量可能才刚好把当时多摄入的热量消耗掉，而短跑的话，体内的糖类会优先供能，而我们的脂肪缺毫发无伤... 这就是为什么我们即使天天跑，而体重很难降下来。说白了，我们要选择合适自己的跑步速率。</p>
-<h5 id="那么我们的跑步速率是多少呢">那么我们的跑步速率是多少呢？</h5>
-<p>首先先来了解一个概念，<strong>心率</strong></p>
-<blockquote>
-<p>心率是每分钟的心跳数，反应了活动的剧烈程度，目前身体对血液需求量的大小。当跑的更快时，会大口呼吸，肌肉就会收缩剧烈，身体就需要大量的供血量来输送氧气和运走代谢副产物，于是心率就会增高</p>
-</blockquote>
-<p>那么心率是用来干撒用的呢？心率可以反映你费力程度的真实数据，决定了你的训练强度。可以告诉你现在是不是跑的太快了（心率偏高），是不是可以再加速，是不是可以继续跑很久... 所以在跑步的时候，我们需要时刻关注我们的心率。</p>
-<p>每个人都会有一个心率的最高点（最大心率）和最低点（安静心率），这两个心率分别是</p>
-<ul>
-<li>最大心率：一般在网上我们可以搜到说最大心率=220-年龄 这种简单粗暴的方式来计算得到，但是这个并不准确，每个人的最大心率都是不同的，且可以通过锻炼得到提升的。那么如果想要测试的话，可以可以进行一个最快的几分钟跑步，通过心率测试工具，来测得最大心率。</li>
-<li>安静心率：普通人一般会在60～70之间，常年运动的人为40～50，安静心率月底，代表心肺功能越强。可以在上床休息的时候或者刚起床的时候进行测试。</li>
-</ul>
-<p>我们把最大心率减去安静心率，就可以得到储备心率，储备心率很重要，它将决定我们在跑步的时候，根据我们自己的目的来确定我们跑步心率。</p>
-<p>储备心率 是一个范围心率，可以分为 <strong>无氧区</strong>，<strong>过渡区</strong>和<strong>有氧区</strong></p>
-<p><strong>无氧区</strong></p>
-<ul>
-<li>心率一般高于储备心率的88%以上，多是100，200，400米短跑为主。</li>
-<li>主要以糖类为能量补给，产生大量乳酸，所以在每次短跑结束后我们总是腿特别酸痛</li>
-<li>无氧区又分为
-<ul>
-<li>A强度（Anaerobic 无氧 88%～95%）</li>
-<li>I强度（Interval 间歇 95%～100%）</li>
-<li>R强度（Repetition 反复）</li>
-</ul>
-</li>
-</ul>
-<p><strong>过渡区</strong></p>
-<ul>
-<li>心率84%～88%之间</li>
-<li>过渡区又分为
-<ul>
-<li>T强度（Threshold 乳酸阈值） 长期T跑，有助于提高软酸临界值，提高长跑能力</li>
-</ul>
-</li>
-</ul>
-<p><strong>有氧区</strong></p>
-<ul>
-<li>心率保持在59～84%之间，多以LSD马拉松，长距离慢跑</li>
-<li>以脂肪为热量消耗 59%～74%</li>
-<li>有氧区又分为
-<ul>
-<li>E强度（easy）</li>
-<li>M强度（Marathon 马拉松）74%～84%</li>
-</ul>
-</li>
-</ul>
-<p>所以呐，如果你想要降脂（降脂和减重的区别相信这么聪明的你肯定知道的），那么你在跑步的时候就需要保持心率为59～74%的储备心率，长时间持续性的消耗脂肪。如果没有测试心率的工具，那么一个方式也可以让自己心率保持在这个范围，在跑步时候控制自己的速率，可以边跑步，边聊天，且不会出现喘气，可以一直跑下去这种状态。<br>
-如果你想要提高自己长跑能力，那么就将自己的心率保持在过渡区。<br>
-怎么样，很简单吧。</p>
-<p>而对于跑姿和装备的选择，啊额嗯，下回继续聊。</p>
 ]]></content>
     </entry>
 </feed>
