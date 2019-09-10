@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://aceysx.github.io</id>
     <title>Acey</title>
-    <updated>2019-09-07T16:38:46.580Z</updated>
+    <updated>2019-09-10T05:46:24.297Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://aceysx.github.io"/>
     <link rel="self" href="https://aceysx.github.io/atom.xml"/>
@@ -10,6 +10,212 @@
     <logo>https://aceysx.github.io/images/avatar.png</logo>
     <icon>https://aceysx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Acey</rights>
+    <entry>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」 ArrayList]]></title>
+        <id>https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-arraylist</id>
+        <link href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-arraylist">
+        </link>
+        <updated>2019-09-08T14:42:59.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="arraylist-定义">ArrayList 定义</h2>
+<pre><code class="language-java">public class ArrayList&lt;E&gt; extends AbstractList&lt;E&gt;
+	implements List&lt;E&gt;, RandomAccess, Cloneable, java.io.Serializable{
+	
+	private static final int DEFAULT_CAPACITY = 10;
+	private static final Object[] EMPTY_ELEMENTDATA = {};
+	private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+	transient Object[] elementData;
+	private int size;
+}
+</code></pre>
+<p>首先可以看到<code>ArrayList</code>继承了<code>AbstractList</code>并实现了<code>List</code>，也就是说<code>ArrayList</code>是一个数组队列，拥有了基本的增删改查，遍历的操作。</p>
+<p>同时实现了</p>
+<ul>
+<li><code>Cloneable</code>接口，即可以被<code>clone</code></li>
+<li><code>Serializable</code>接口，意味着可以被<a href="https://juejin.im/post/5d6d4107e51d453b5f1a04dc">序列化</a></li>
+<li><code>RandomAccess</code>接口，<code>RandomAccess</code>接口是一个空的接口，和<code>Serializable</code>接口一样，也是作为一个标识，即可以快速访问，对于<code>ArrayList</code>来说，就是可以通过下标来访问元素。而<code>LinkedList</code>就没有实现这*个接口。</li>
+</ul>
+<h4 id="default_capacity-和-size-的关系"><strong>DEFAULT_CAPACITY 和 size 的关系</strong></h4>
+<p>根据官方注解知道，<code>DEFAULT_CAPACITY</code>是数组总空间大小，而<code>size</code>是数组的当前的容量的大小。举个例子来说，一个可以装1L水的杯子，那么<code>DEFAULT_CAPACITY</code>就是1L，我们现在往杯子里倒入了0.5L水，那么<code>size</code>就是0.5L。当然在这，<code>DEFAULT_CAPACITY</code>的默认值是10，当<code>size</code>&gt;10的时候，会进行扩容。</p>
+<h4 id="为撒-elementdata-需要-transient-进行修饰"><strong>为撒 elementData 需要 transient 进行修饰</strong></h4>
+<p>刚才我们讲到<code>ArrayList</code>内部其实就是用了一个<code>Object[]</code>来进行维护数据，那既然我们已经实现了<code>Serializable</code>接口，那为撒还要用<code>transient</code>来修饰<code>elementData</code>呢？来看看序列化/反序列化的代码</p>
+<pre><code class="language-java"> 	private void readObject(java.io.ObjectInputStream s)
+        throws java.io.IOException, ClassNotFoundException {
+
+        // Read in size, and any hidden stuff
+        s.defaultReadObject();
+
+        // Read in capacity
+        s.readInt(); // ignored
+
+        if (size &gt; 0) {
+            // like clone(), allocate array based upon size not capacity
+            SharedSecrets.getJavaObjectInputStreamAccess().checkArray(s, Object[].class, size);
+            Object[] elements = new Object[size];
+
+            // Read in all elements in the proper order.
+            for (int i = 0; i &lt; size; i++) {
+                elements[i] = s.readObject();
+            }
+
+            elementData = elements;
+        } else if (size == 0) {
+            elementData = EMPTY_ELEMENTDATA;
+        } else {
+            throw new java.io.InvalidObjectException(&quot;Invalid size: &quot; + size);
+        }
+    }
+
+	private void writeObject(java.io.ObjectOutputStream s)
+        throws java.io.IOException {
+        // Write out element count, and any hidden stuff
+        int expectedModCount = modCount;
+        s.defaultWriteObject();
+
+        // Write out size as capacity for behavioral compatibility with clone()
+        s.writeInt(size);
+
+        // Write out all elements in the proper order.
+        for (int i=0; i&lt;size; i++) {
+            s.writeObject(elementData[i]);
+        }
+
+        if (modCount != expectedModCount) {
+            throw new ConcurrentModificationException();
+        }
+    }
+</code></pre>
+<p><code>ArrayList</code>在序列化的时候会调用<code>writeObject</code>方法，将数组的<code>size</code>和<code>elementData</code>写入<code>ObjectOutputStream</code>，</p>
+<p>在反序列化时调用<code>readObject</code>，从<code>ObjectInputStream</code>获取<code>size</code>和<code>elementData</code>，再恢复到<code>elementData</code>.</p>
+<p>这样就可以很好的节省空间和时间。因为<code>elementData</code>整个的大小是<code>CAPACITY</code>，一般情况下都会预留一些容量，我们真正需要序列化/反序列化的只是当前存入的数据。</p>
+<h2 id="构造方法">构造方法</h2>
+<h4 id="无参构造方法">无参构造方法</h4>
+<pre><code class="language-java">
+    public ArrayList() {
+        this.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;
+    }
+
+    public ArrayList(int initialCapacity) {
+        if (initialCapacity &gt; 0) {
+            this.elementData = new Object[initialCapacity];
+        } else if (initialCapacity == 0) {
+            this.elementData = EMPTY_ELEMENTDATA;
+        } else {
+            throw new IllegalArgumentException(&quot;Illegal Capacity: &quot;+
+                                               initialCapacity);
+        }
+    }
+
+	 public ArrayList(Collection&lt;? extends E&gt; c) {
+        elementData = c.toArray();
+        if ((size = elementData.length) != 0) {
+            if (elementData.getClass() != Object[].class)
+                elementData = Arrays.copyOf(elementData, size, Object[].class);
+        } else {
+            // replace with empty array.
+            this.elementData = EMPTY_ELEMENTDATA;
+        }
+    }
+</code></pre>
+<p>第一个空参构造函数，会默认将<code>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</code>的引用传入<code>elementData</code>。在第一次添加元素的时候会扩容一个容量为10的数组。</p>
+<p>第二个指定初始化的 <code>capacity</code>来创建 <code>elementData</code>, 一般推荐使用这种方式来创建<code>ArrayList</code>，减少扩容带来的内存开销。</p>
+<p>第三个则是传入一个<code>Collection</code>来创建<code>elementData</code></p>
+<h2 id="添加">添加</h2>
+<h4 id="adde-element">add(E element)</h4>
+<p>添加方法有三个重载方法，最终都会调用下面这个<code>add</code>方法</p>
+<pre><code class="language-java">    private void add(E e, Object[] elementData, int s) {
+        if (s == elementData.length)
+            elementData = grow();
+        elementData[s] = e;
+        size = s + 1;
+    }
+    private Object[] grow() {
+        return grow(size + 1);
+    }
+    private Object[] grow(int minCapacity) {
+        return elementData = Arrays.copyOf(elementData,
+                                           newCapacity(minCapacity));
+    }
+	private int newCapacity(int minCapacity) {
+        // overflow-conscious code
+        int oldCapacity = elementData.length;
+        int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1); // 每次扩容1.5倍
+        //如果扩容后的capcity的大小等于或小于mincapacity，且如果是使用空参构造器初始化的，那么就返回Math.max(DEFAULT_CAPACITY, minCapacity)，否则返回 minCapacity（if minCapacity &gt; 0)
+        if (newCapacity - minCapacity &lt;= 0) {
+            if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) // 使用空参构造函数elementData=DEFAULTCAPACITY_EMPTY_ELEMENTDATA
+                return Math.max(DEFAULT_CAPACITY, minCapacity);
+            if (minCapacity &lt; 0) // overflow
+                throw new OutOfMemoryError();
+            return minCapacity;
+        }
+        return (newCapacity - MAX_ARRAY_SIZE &lt;= 0)
+            ? newCapacity
+            : hugeCapacity(minCapacity);
+    }	
+</code></pre>
+<p>在第一个方法中，<code>e</code>是指当前<code>add</code>的元素，<code>s</code>指当前<code>arrList</code>的size。可以发现，当<code>size</code>的大小和<code>elementData</code>的长度相等时，才会进行扩容，即调用<code>grow</code>，从<code>newCapacity</code>方法中可以发现，每次扩容会是当前<code>size</code>(即 <code>elementData.length</code>)的1.5倍。</p>
+<h4 id="addint-index-e-element">add(int index, E element)</h4>
+<pre><code class="language-java"> public void add(int index, E element) {
+        rangeCheckForAdd(index);
+        modCount++;
+        final int s;
+        Object[] elementData;
+        if ((s = size) == (elementData = this.elementData).length)
+            elementData = grow();
+        System.arraycopy(elementData, index,
+                         elementData, index + 1,
+                         s - index);
+        elementData[index] = element;
+        size = s + 1;
+    }
+</code></pre>
+<p>在指定下标条件元素的步骤</p>
+<ol>
+<li>检查<code>index</code>，如果<code>index</code>小于0，或者大于<code>size</code>，那么会抛出<code>IndexOutOfBoundsException</code>异常</li>
+<li><code>modCount++</code>，后续会介绍用处</li>
+<li>判断当前<code>arrayList</code>的<code>size</code>和当前<code>elementData</code>的长度是否相等，如果相当那么先进行扩容</li>
+<li><code>System.arraycopy</code>进行复制，把<code>index</code>这个下标空出来</li>
+<li>赋值</li>
+</ol>
+<h2 id="删除">删除</h2>
+<h4 id="removeint-index">remove(int index)</h4>
+<pre><code class="language-java">    public E remove(int index) {
+        Objects.checkIndex(index, size);
+        final Object[] es = elementData;
+
+        @SuppressWarnings(&quot;unchecked&quot;) E oldValue = (E) es[index];
+        fastRemove(es, index);
+
+        return oldValue;
+    }
+    private void fastRemove(Object[] es, int i) {
+        modCount++;
+        final int newSize;
+        if ((newSize = size - 1) &gt; i)
+            System.arraycopy(es, i + 1, es, i, newSize - i);
+        es[size = newSize] = null;
+    }
+</code></pre>
+<p>对于<code>remove(int index)</code>源码就比较简单了，唯一需要注意的就是在<code>fastRemove</code>中的判断，如果需要删除的是数组的最后一个元素，那么直接将最后一个元素设置为<code>null</code>，否则进行<code>arraycopy</code>，将<code>index</code>的值覆盖掉。</p>
+<h2 id="其它">其它</h2>
+<h3 id="fail-fast-机制">Fail-Fast 机制</h3>
+<p>前面我们经常看到<code>modCount++</code>的操作，那么为什么要加这个呢？其实当每次对数组进行操作（修改）的时候，都会进行<code>modCount++</code>，这样做是为了记录修改次数。</p>
+<p>我们知道 <code>ArrayList</code> 不是线程安全的，因此如果在使用迭代器的过程中如果有其他线程修改（新增/删除）了<code>arrayList</code>的数据(或当前线程在遍历的过程中对数据进行修改)，那么将抛出<code>ConcurrentModificationException</code>，这就是所谓fail-fast策略。</p>
+<p>在每次进行遍历的时候，会先将<code>modCount</code>赋值给<code>expectedCount</code>，在迭代过程中，进行判断，如果它们不相等，则说明<code>arrayList</code>的数据已经被修改，抛出异常。</p>
+<h4 id="arrayscopyof-方法和-systemarraycopy-方法的区别">Arrays.copyOf 方法和 System.arraycopy 方法的区别？</h4>
+<p><code>Arrays.copyOf(T[], int length)</code> 方法是 <code>Arrays</code> 工具类中用来进行任意类型数组赋值，并使数组具有指定长度的方法，<code>ArrayList</code> 中用这个方法来实现 <code>elementData</code> 数组的元素移动。但实际上 <code>Arrays.copyOf</code> 方法最终调用的是 <code>System.arraycopy(U[], int srcPos, T[], desPos, int length)</code> 方法，这个方法是一个<code>native</code>方法</p>
+<pre><code class="language-java">    public static native void arraycopy(Object src,  int  srcPos,
+                                        Object dest, int destPos,
+                                        int length);
+</code></pre>
+<ul>
+<li>src 表示的是原始数组（源数组）</li>
+<li>dest 表示的是存放拷贝值的数组（目标数组）</li>
+<li>srcPos 是指原始数组中的起始位置（从原始数组的哪个位置开始拷贝）</li>
+<li>desPos 是指存放拷贝值的数组拷贝起始位置（从目标数组的哪个位置插入这些拷贝的值）</li>
+<li>length 表示要拷贝的元素数量（要从原始数组中拷贝多少个）。</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer]]></title>
         <id>https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer</id>
@@ -1042,7 +1248,7 @@ package-lock.json
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」 : Object]]></title>
+        <title type="html"><![CDATA[「OpenJdk-11 源码-系列」 Object]]></title>
         <id>https://aceysx.github.io/post/openjkd-11-yuan-ma-object</id>
         <link href="https://aceysx.github.io/post/openjkd-11-yuan-ma-object">
         </link>
@@ -1212,85 +1418,6 @@ public class CloneTest {
 <p><code>finalize()</code>方法主要与 Java 垃圾回收机制有关，JVM准备对此对形象所占用的内存空间进行垃圾回收前，将被调用。所以此方法并不是由我们主动去调用的。</p>
 <h3 id="waitnotifynotifyall">wait()/notify/notifyAll</h3>
 <p>可先看<a href="https://www.jianshu.com/nb/10715227">java 多线程</a>尝鲜。后续会专门讲多线程相关源码。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[思维导图最佳实践]]></title>
-        <id>https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian</id>
-        <link href="https://aceysx.github.io/post/si-wei-dao-tu-zui-jia-shi-jian">
-        </link>
-        <updated>2019-08-30T05:54:34.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="一-思维导图是什么">一 思维导图是什么</h2>
-<hr>
-<p>思维导图也被称为是心智图，是一种图像式思维的工具以及利用图形式思考辅助工具来表达思维的工具。</p>
-<blockquote>
-<p>图形式思考辅助工具：是一种将知识、概念或构思用视觉方式表达出来，以便将来向他人重述自己的思考过程，让形象思维和逻辑思维联合起来。</p>
-</blockquote>
-<p>心智图是使用一个中心关键字或想法来引起形象化的构造和分类的想法。它用一个中央关键词或想法以辐射线形连接所有的代表字词、想法、任务或其它关联项目的图解方式。</p>
-<h2 id="二-思维导图的特点">二 思维导图的特点</h2>
-<hr>
-<p>思维导图被应用在很多方面，比如：个人、家庭、教育...  在做记录、问题决策以及信息传达时是非常高效的，非常有利于记忆并向他人重述自己的思考过程，之所以这么有效，离不开它的以下几个特点：</p>
-<ul>
-<li>树状发散<br>
-我们在思考或写作时，我们的思维总是非常发散的，可以想到非常多的点，但我们在表达的时候却很难表达清楚，因为这些点是无序的。树状发散正是需要我们抓住事物的关键，通过联想和想象找到与事物的联系点，然后用线把它们连接起来。</li>
-<li>颜色丰富<br>
-相对于黑白纯色来说，人们对于丰富的颜色的敏感度是非常高的，更加有利于我们的记忆。</li>
-<li>图形呈现<br>
-文字对于我们来说是非常枯燥的，你可能不记得你的朋友的名字，但却忘不了他的样子。我们一旦记住了某个图形，那么我们对它的记忆便会更加深刻。</li>
-<li>内容精炼<br>
-对于长篇大论，我们更喜欢精炼简短。这在我们开始上学的时候我们就开始练习了，比如：我们在阅读的时候划重点，背中心思想...</li>
-</ul>
-<h2 id="三-思维导图的作用">三 思维导图的作用</h2>
-<hr>
-<p>思维导图虽然应用的非常广泛，也可以很好的帮助我们做记录，提高我们的工作效率。但它的应用场景是比较有限的，主要是在以下几种场景使用：</p>
-<ul>
-<li>内容记录</li>
-<li>问题决策</li>
-<li>思维洞察</li>
-</ul>
-<h3 id="1-内容记录">1 内容记录</h3>
-<p><img src="http://upload-images.jianshu.io/upload_images/3126293-b84599a3f79a3c9e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="内容记录"></p>
-<p>其中内容记录的种类包括 文章笔记、会议记录、信息传达 和 列举大纲，它们也被应用在不同的场景，但是它们都需要我们具备总结能力，以便我们可以快速的捕捉重点，我们可以通过以下几点来锻炼总结能力：</p>
-<ul>
-<li>句子练习</li>
-<li>段落练习</li>
-<li>文章练习</li>
-<li>书本练习</li>
-</ul>
-<p><strong>文章笔记</strong><br>
-<img src="http://upload-images.jianshu.io/upload_images/3126293-8ae681d2f920d4e2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="文章笔记"></p>
-<p><strong>会议记录</strong><br>
-<img src="http://upload-images.jianshu.io/upload_images/3126293-89ee9eb79924fc1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="会议记录"><br>
-参加会议、培训，我们想要做记录是非常困难的，我们需要在固定的时间内去听，识别重点，然后记录下来。<br>
-所以在这种情况下，我们可以进行录音，在会议过程中只记重点，事后在听录音并完善自己的记录。</p>
-<p><strong>列举大纲</strong><br>
-<img src="http://upload-images.jianshu.io/upload_images/3126293-356b7d4917fa75be.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="列举大纲"><br>
-列举大纲是文章记录的反向思考过程，主要用来在写作前捋清思路。</p>
-<ol>
-<li>首先我们需要确定中心点，</li>
-<li>其次对中心点进行拆分，我们需要分哪几个点进行阐述</li>
-<li>然后我们在针对每一个点进行发散思考，把自己想到的点记录在纸上，最后在将这些点进行归纳串联</li>
-<li>画思维导图</li>
-<li>信息补充，开始下笔写作</li>
-</ol>
-<p><strong>信息传达</strong><br>
-<img src="http://upload-images.jianshu.io/upload_images/3126293-203c5ae66f0428b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="信息传达"><br>
-信息传达用思维导图来做是非常高效的，因为你的 BOSS 可不想看到你的长篇大论，然后再自己再挑出重点...如果可以用一张图的形式来给你的 BOSS 讲解，是不是高效了很多，但其中很困难的一点就是我们需要确保我们自己所表达的东西在对方看来和我们是一致的，所以我们在做图的时候需要尽量多的换位思考，确保他人可以把握住你想要表达的信息。</p>
-<h3 id="2-问题决策">2 问题决策</h3>
-<p><img src="http://upload-images.jianshu.io/upload_images/3126293-3ca18bdba4f9b387.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="问题决策"></p>
-<h3 id="3-思维洞察">3 思维洞察</h3>
-<p><img src="http://upload-images.jianshu.io/upload_images/3126293-53b4a82a854d099d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="思维洞察"></p>
-<p>其中<br>
-广度思维更有利于我们在组织活动的时候使用，我们可以发散思考考虑的更加全面，从而确保活动可以顺利的进行。</p>
-<p>深度思维更有利于我们在解决问题的时候使用，对问题进行拆分，深度解析。</p>
-<blockquote>
-<p>总结：思维导图可以用来<br>
-① 内容记录 -&gt; 文章笔记、会议记录、写作、信息传达<br>
-② 问题决策 -&gt; 更加理性的方式来做决定<br>
-③ 广度思考 -&gt; 更加适合用来组织活动<br>
-④ 深度思考 -&gt; 更加适合用来解决问题</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/3126293-b771f94270df747f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="纲要.jpg"></p>
 ]]></content>
     </entry>
 </feed>
