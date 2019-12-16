@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>「OpenJdk-11 源码-系列」 LinkedList | Acey</title>
+<meta name="description" content="终身学习实践者">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1576498906799">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h2><a href="https://aceysx.github.io">Acey</a></h2>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>「OpenJdk-11 源码-系列」 LinkedList</h1>
+            <p class="article-meta">
+              2019-09-10
+              
+                <a href="https://aceysx.github.io/tag/a9_btR17J" class="badge ">
+                  java
+                </a>
+              
+                <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge secondary">
+                  源码
+                </a>
+              
+            </p>
+            
+              <img src="https://upload-images.jianshu.io/upload_images/3126293-8385c2430ab9cec4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="「OpenJdk-11 源码-系列」 LinkedList">
+            
+            <div class="post-content">
+              <h2 id="定义">定义</h2>
+<p><code>List</code>中除了之前讲到的<code>ArrayList</code>外，还有<code>LinkedList</code>也非常常用，之前在学习这两个类的时候，只是简单的记录了它们各自的特性。如果我们需要多次添加新元素，很少有从中间<code>get</code>的操作，那么就使用<code>LinkedList</code>，反之则使用<code>ArrayList</code>。之前我们在研究<code>ArrayList</code>源码时发现，当我们在添加元素时，如果<code>size = capacity</code>的时候，那么就会进行扩容，在扩容的时候就回影响性能，而<code>LinkedList</code>则不会有这个问题。先来看看定义：</p>
+<pre><code class="language-java">public class LinkedList&lt;E&gt;
+    extends AbstractSequentialList&lt;E&gt;
+    implements List&lt;E&gt;, Deque&lt;E&gt;, Cloneable, java.io.Serializable
+{
+    transient int size = 0;
+
+    transient Node&lt;E&gt; first;
+
+    transient Node&lt;E&gt; last;
+}
+</code></pre>
+<p>从定义上，我们可以看出来 , <code>linkedList</code>继承了<code>AbstractSequenttialList</code>以及实现了<code>List</code>，<code>Deque</code>，<code>Clone</code>，<code>Serializable</code>接口。实现了<code>List</code>的基本操作，以及可以进行<code>clone</code>和序列化，和<code>ArrayList</code>最大的区别在于，<code>ArrayList</code>实现了<code>RandomAccess</code>接口，而<code>LinkedList</code>实现的是<code>Deque</code>双向队列(Double-ended queue)接口，双向队列即同时具备<strong>栈</strong>和<strong>队列</strong>的性质的数据结构。队列中的元素可以从两端进行操作，也可以从两端添加。</p>
+<h3 id="node的实现"><code>Node</code>的实现</h3>
+<pre><code class="language-java">private static class Node&lt;E&gt; {
+        E item;
+        Node&lt;E&gt; next;
+        Node&lt;E&gt; prev;
+
+        Node(Node&lt;E&gt; prev, E element, Node&lt;E&gt; next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+</code></pre>
+<p>可以发现，其实 <code>Node</code>的数据结构很简单，只包含了三个属性</p>
+<ul>
+<li>E item : 当前<code>Node</code>的<code>value</code></li>
+<li>Node next：当前<code>Node</code>的下一个<code>Node</code>是什么</li>
+<li>Node prev：当前<code>Node</code>的上一个<code>Node</code>是什么</li>
+</ul>
+<p>举个例子来讲，有一个<code>LinkedList</code>，有两个元素<code>A</code>和<code>B</code>，依次添加<code>A</code>和<code>B</code>，那么<code>B</code>就是<code>A</code>的<code>next</code>，而<code>A</code>就是<code>B</code>的<code>prev</code>。</p>
+<h2 id="构造函数">构造函数</h2>
+<p><code>LinkedList</code>有俩构造函数</p>
+<h3 id="无参构造函数">无参构造函数</h3>
+<pre><code class="language-java">public LinkedList() {}
+</code></pre>
+<p>可以发现，啥都没干，啥都没干也就意味着<code>LinkedList</code>中的两个属性<code>Node first</code>和<code>Node last</code>都为<code>null</code>，即<code>LinkedList</code>为空。</p>
+<h3 id="有参构造函数">有参构造函数</h3>
+<pre><code class="language-java">public LinkedList(Collection&lt;? extends E&gt; c) {
+    this();
+    addAll(c);
+}	
+</code></pre>
+<p>可以看到，传入了一个<code>collection</code>来初始化：</p>
+<ol>
+<li>首先会先调用<code>this()</code>来使用空参构造函数来初始化<code>LinkedList</code></li>
+<li>调用<code>addAll</code>方法（这个地方的<code>index</code>就是<code>size</code>，默认是0）</li>
+</ol>
+<pre><code class="language-java">//在 index 所在的node前添加 c 集合节点
+public boolean addAll(int index, Collection&lt;? extends E&gt; c) {
+        checkPositionIndex(index); // index &gt;=0 &amp;&amp; index &lt;=size
+
+        Object[] a = c.toArray();
+        int numNew = a.length;
+        if (numNew == 0)
+            return false;
+		//保存 index 的节点为 succ，当前节点的上一个节点为 pred
+        Node&lt;E&gt; pred, succ;
+    	//如果 index == size ，说明在尾部进行添加，即当前节点为null，当前节点的上一个节点为 
+        if (index == size) {
+            succ = null;
+            pred = last;
+        } else {
+            succ = node(index); // 查找 index 所在的 node
+            pred = succ.prev;
+        }
+
+        for (Object o : a) {
+            @SuppressWarnings(&quot;unchecked&quot;) E e = (E) o;
+            Node&lt;E&gt; newNode = new Node&lt;&gt;(pred, e, null);
+            //如果 pred 为null，则说明 LinkedList 为空，那么当前节点就为first
+            if (pred == null)
+                first = newNode;
+            else
+                pred.next = newNode;
+            pred = newNode;
+        }
+		//如果succ为空，则说明是要在尾部进行添加
+        if (succ == null) {
+            last = pred;
+        } else {
+            //否则pred（即添加的最后一个节点）的下一个节点指向当前节点（index所在的节点）
+            pred.next = succ;
+            succ.prev = pred;
+        }
+
+        size += numNew;
+        modCount++;
+        return true;
+    }
+</code></pre>
+<h2 id="添加">添加</h2>
+<p><code>LinkedList</code>的添加方法包含了<code>add</code>,<code>addFirst</code>,<code>addLast</code>,<code>add(int index,E e)</code>，<code>add == addLast</code>，也就是说，我们可以在<code>LinkedList</code>中的任意位置插入一个节点，而所有的<code>add</code>操作，最终都是调用了下面的两个方法</p>
+<pre><code class="language-java">void linkLast(E e) {
+        final Node&lt;E&gt; l = last;
+        final Node&lt;E&gt; newNode = new Node&lt;&gt;(l, e, null);
+        last = newNode;
+        if (l == null)
+            first = newNode;
+        else
+            l.next = newNode;
+        size++;
+        modCount++;
+    }
+void linkBefore(E e, Node&lt;E&gt; succ) {
+        // assert succ != null;
+        final Node&lt;E&gt; pred = succ.prev;
+        final Node&lt;E&gt; newNode = new Node&lt;&gt;(pred, e, succ);
+        succ.prev = newNode;
+        if (pred == null)
+            first = newNode;
+        else
+            pred.next = newNode;
+        size++;
+        modCount++;
+    }
+</code></pre>
+<p>实现也就比较简单了，就不赘述了。</p>
+<h2 id="删除">删除</h2>
+<p><code>LinkedList</code>的删除方法包含了<code>remove</code>,<code>removeFirst</code>,<code>removeLast</code>,<code>remove(Object obj)</code>,其中<code>remove == removeFirst</code>，默认先会<code>remove</code>最先进入的节点。和<code>add</code>方法类似，<code>remove</code>方法最终也会调用俩方法</p>
+<pre><code class="language-java">private E unlinkFirst(Node&lt;E&gt; f) {
+        // assert f == first &amp;&amp; f != null;
+        final E element = f.item;
+        final Node&lt;E&gt; next = f.next;
+        f.item = null;
+        f.next = null; // help GC
+        first = next;
+        if (next == null)
+            last = null;
+        else
+            next.prev = null;
+        size--;
+        modCount++;
+        return element;
+    }
+private E unlinkLast(Node&lt;E&gt; l) {
+        // assert l == last &amp;&amp; l != null;
+        final E element = l.item;
+        final Node&lt;E&gt; prev = l.prev;
+        l.item = null;
+        l.prev = null; // help GC
+        last = prev;
+        if (prev == null)
+            first = null;
+        else
+            prev.next = null;
+        size--;
+        modCount++;
+        return element;
+    }
+</code></pre>
+<p>值得说明的一点是将待删除的节点的信息设置为<code>null</code>，目的是为了 释放头节点的<code>next/prev</code> 指针和 <code>element</code> 下次 gc 的时候回收这个内部类</p>
+<h2 id="获取">获取</h2>
+<p><code>LinkedList</code>的获取节点的方法也是相似的，分为了<code>getFirst</code>,<code>getLast</code>和<code>get(int index)</code>,对于<code>getFirst</code>和<code>getLast</code>比较简单，只需要获取<code>first</code>或<code>last</code>的<code>value</code>就好了。值得一看的是<code>get(int index)</code>,最主要的方法</p>
+<pre><code class="language-java">Node&lt;E&gt; node(int index) {
+        // assert isElementIndex(index);
+
+        if (index &lt; (size &gt;&gt; 1)) {
+            Node&lt;E&gt; x = first;
+            for (int i = 0; i &lt; index; i++)
+                x = x.next;
+            return x;
+        } else {
+            Node&lt;E&gt; x = last;
+            for (int i = size - 1; i &gt; index; i--)
+                x = x.prev;
+            return x;
+        }
+    }
+</code></pre>
+<p>看到这个关键的<code>if (index &lt; (size &gt;&gt; 1))</code>，如果想要查找的<code>index</code>处于<code>size</code>当前长度的后半段，那么就从后往前找，否则从前往后着，以此来提高效率。可见，如果我们需要大量的查找操作，特别是通过<code>index</code>来查找，那么推荐使用<code>ArrayList</code>，而不是<code>LinkedList</code>。</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-arraylist">
+                <h3 class="post-title">
+                  「OpenJdk-11 源码-系列」 ArrayList
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+          
+            <div class="paper" data-aos="fade-in">
+              <div id="gitalk-container"></div>
+            </div>
+          
+
+          
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1576498906799" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-hashmap">「OpenJdk-11 源码-系列」 HashMap</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-linkedlist">「OpenJdk-11 源码-系列」 LinkedList</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-arraylist">「OpenJdk-11 源码-系列」 ArrayList</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer">「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/serializable">「OpenJdk-11 源码-系列」Serializable</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">「OpenJdk-11 源码-系列」String</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/a9_btR17J" class="badge secondary">
+          java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge secondary">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge ">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge warning">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge warning">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge success">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/yj-SRumhW" class="badge secondary">
+          CI/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge warning">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge success">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge success">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge ">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: '6b3df5aab7628f658644',
+        clientSecret: '8f262215c4be4b77d5d8dbe4767a1016a95c13d5',
+        repo: 'Aceysx.github.io',
+        owner: 'Aceysx',
+        admin: ['Aceysx'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>

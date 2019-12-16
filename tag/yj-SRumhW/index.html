@@ -1,240 +1,295 @@
 <!DOCTYPE html>
 <html>
-<head>
-  
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <head>
+    <meta charset="utf-8" >
 
-<!-- 百度验证 -->
-<meta name="baidu-site-verification" content="1IkquSGR9Z"/>
+<title>CI/CD | Acey</title>
+<meta name="description" content="终身学习实践者">
 
-<title>Acey</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico?v=1576498906799">
 
-<meta name="description" content="终身学习实践者"/>
-<meta name="keywords" content="终身学习实践者"/>
-
-<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-<link rel="shortcut icon" href="https://aceysx.github.io/favicon.ico">
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://aceysx.github.io/styles/main.css">
 
-<!-- Modernizr JS -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/modernizr-2.6.2.min.js"></script>
-<!-- FOR IE9 below -->
-<!--[if lt IE 9]>
-<scripts src="https://aceysx.github.io/media/scripts/_vendors/respond.min.js"></scripts>
-<![endif]-->
 
-<!-- Comment -->
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
 
-<script src="https://cdn.bootcss.com/highlight.js/9.15.8/highlight.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-<link crossorigin="anonymous" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" href="https://lib.baomitu.com/font-awesome/5.8.1/css/all.min.css" rel="stylesheet">
 
-</head>
-<body>
-
-<div id="fh5co-offcanvas">
-    <a href="#!" class="fh5co-close-offcanvas js-fh5co-close-offcanvas">
-        <span><i class="icon-cross3"></i> <span>Close</span></span>
-    </a>
-    <div class="fh5co-bio">
-        <figure>
-            <img src="https://aceysx.github.io/media/images/avatar.png" alt="Acey" class="img-responsive">
-        </figure>
-        <h3 class="heading">ABOUT ME</h3>
-        <h2>Acey</h2>
-        <p>终身学习实践者</p>
-        <ul class="fh5co-social">
+  </head>
+  <body>
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h2><a href="https://aceysx.github.io">Acey</a></h2>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
             
-                <li>
-                    
-                </li>
+              <a href="/" class="menu">
+                首页
+              </a>
             
-                <li>
-                    
-                </li>
+          </li>
+        
+          <li>
             
-                <li>
-                    
-                </li>
+              <a href="/archives" class="menu">
+                归档
+              </a>
             
-                <li>
-                    
-                </li>
+          </li>
+        
+          <li>
             
-                <li>
-                    
-                </li>
+              <a href="/tags" class="menu">
+                标签
+              </a>
             
-        </ul>
+          </li>
+        
+          <li>
+            
+              <a href="https://aceysx.github.io/post/about/index.html" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="https://github.com/Aceysx" class="menu" target="_blank">
+                Github
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <div class="fh5co-menu">
-        <div class="fh5co-box">
-            <h3 class="heading">搜索</h3>
-            <form action="#">
-                <div class="form-group">
-                    <input type="text" id="bdcsMain" class="form-control" placeholder="输入关键字">
-<!--                    <button type="submit" class="btn btn-sm btn-warning" style="margin-top: 6px; width: 100%">点击搜索</button>-->
-                </div>
-            </form>
-        </div>
-        <div class="fh5co-box">
-            <h3 class="heading">标签</h3>
-            <ul>
-                
-                    <li><a href="https://aceysx.github.io/tag/a9_btR17J">java</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/xDOTW_ajF">源码</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/H7zClUp1Zn">Java</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/d7JtpZe_Z">培训</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/YZTSYsotq">semver</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/c7FOkgyJb">阅读</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/yj-SRumhW">CI/CD</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/Prn9CdFMe">沟通</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/ZaVixV3aXn">写作</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/mTR3MtR3C">实践</a></li>
-                
-                    <li><a href="https://aceysx.github.io/tag/lLpswgN2-">运动</a></li>
-                
-            </ul>
-        </div>
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <h2 class="current-tag">标签: CI/CD</h2>
+          
+  <article class="article">
+    <h1 class="article-title">
+      <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+    </h1>
+    <p class="article-meta">
+      2019-09-02
+      
+        <a href="https://aceysx.github.io/tag/yj-SRumhW" class="badge ">
+          CI/CD
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://aceysx.github.io/post/chi-xu-jiao-fu" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
+    <hr/>
+  </article>
+
+
+        </div>
+        <div class="row flex-edges">
+  
+  
 </div>
 
-<header id="fh5co-header">
-    <div class="container-fluid">
-        <div class="row">
-            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
-            <ul class="fh5co-social">
-                
-                    <li>
-                        <a href="/"
-                         >
-                            首页
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives"
-                         >
-                            归档
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags"
-                         >
-                            标签
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="https://aceysx.github.io/post/about/index.html"
-                         >
-                            关于
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="https://github.com/Aceysx"
-                        
-                           target="_blank"
-                                 >
-                            Github
-                        </a>
-                    </li>
-                
-            </ul>
-            <div class="col-lg-12 col-md-12 text-center">
-                <h1 id="fh5co-logo">
-                    <a href="https://aceysx.github.io">Acey </a>
-                </h1>
-            </div>
-        </div>
+      </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://aceysx.github.io/images/avatar.png?v=1576498906799" class="no-responsive avatar">
+    <div class="text-muted">终身学习实践者</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
-</header>
-
-
-<div class="container-fluid">
-
-  <div class="col-lg-12 col-md-12 text-center tag-title">
-      <i class="fa fa-tag"></i> 标签: <h3>CI/CD</h3>
   </div>
-
-  <div class="row fh5co-post-entry">
-
-    
-      <article class="col-lg-3 col-md-3 col-sm-3 col-xs-12 col-xxs-12 animate-box article-box">
-        <figure class="img-box">
-          <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">
-            
-              <img src="https://upload-images.jianshu.io/upload_images/3126293-30e5ea85fb7a2cde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="持续交付" class="img-responsive">
-            
-          </a>
-        </figure>
-        <span class="fh5co-meta">
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
           
-            <div class="tag-container">
-              
-                <a href="https://aceysx.github.io/tag/yj-SRumhW" class="tag">CI/CD, </a>
-              
-            </div>
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-hashmap">「OpenJdk-11 源码-系列」 HashMap</a>
+            </li>
           
-        </span>
-        <h3 class="fh5co-article-title">
-          <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
-        </h3>
-        <span class="fh5co-meta fh5co-date">2019-09-02</span>
-      </article>
-    
-    <div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
-
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-linkedlist">「OpenJdk-11 源码-系列」 LinkedList</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-arraylist">「OpenJdk-11 源码-系列」 ArrayList</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-xi-lie-abstractstringbuilderstringbuilderstringbuffer">「OpenJdk-11 源码-系列」AbstractStringBuilder,StringBuilder,StringBuffer</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/serializable">「OpenJdk-11 源码-系列」Serializable</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/openjdk-11-yuan-ma-string">「OpenJdk-11 源码-系列」String</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/pei-xun-ru-men-er-zhi-dao-shou-ce">培训入门儿——指导手册</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/server-yu-yi-hua-ban-ben-gui-fan">server 语义化版本规范</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/zhu-ti-yue-du">主题阅读</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://aceysx.github.io/post/chi-xu-jiao-fu">持续交付</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
   </div>
-
-  <div class="pagination-box animate-box">
-    
-    
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://aceysx.github.io/tag/a9_btR17J" class="badge secondary">
+          java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/xDOTW_ajF" class="badge secondary">
+          源码
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/H7zClUp1Zn" class="badge success">
+          Java
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/d7JtpZe_Z" class="badge ">
+          培训
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/YZTSYsotq" class="badge ">
+          semver
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/c7FOkgyJb" class="badge warning">
+          阅读
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/yj-SRumhW" class="badge success">
+          CI/CD
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/Prn9CdFMe" class="badge secondary">
+          沟通
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/ZaVixV3aXn" class="badge warning">
+          写作
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/mTR3MtR3C" class="badge secondary">
+          实践
+        </a>
+      
+        <a href="https://aceysx.github.io/tag/lLpswgN2-" class="badge warning">
+          运动
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by xin❤️
+ | <a class="rss" href="https://aceysx.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
 
+    </div>
 
-<footer id="fh5co-footer">
-  <p>Powered by xin❤️
-</p>
-</footer>
-
-
-<!-- jQuery -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/jquery.waypoints.min.js"></script>
-<!-- Main JS -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/main.js"></script>
-<!-- Md5 Min JS -->
-<script src="https://aceysx.github.io/media/scripts/_vendors/md5.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
-    hljs.initHighlightingOnLoad();
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
 </script>
 
 
 
 
-</body>
+  </body>
 </html>
